@@ -1,9 +1,9 @@
 // @flow
-
 import React from 'react';
 import { Route } from 'react-router-dom';
 import withStyles from 'react-jss';
 import { Routes } from '../../routes';
+import './AppRoot.scss';
 
 const AppRoot = () => {
     return (

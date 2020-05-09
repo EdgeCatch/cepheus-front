@@ -2,11 +2,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
-// $FlowFixMe
 import { createBrowserHistory } from 'history';
+import { Provider } from 'react-redux';
+import store from './store/index';
 import { AppRoot, ErrorBoundary } from './view/components';
-import './style.css';
-// eslint-disable-next-line import/prefer-default-export
+import './view/styles/index.scss';
+
+/* eslint-disable import/prefer-default-export */
 export const history = createBrowserHistory();
 
 const getRootElement = (): HTMLElement => (document.getElementById('root'): any);
@@ -20,8 +22,10 @@ const renderApp = Component => {
 
 renderApp(
     <ErrorBoundary>
-        <Router history={history}>
-            <AppRoot />
-        </Router>
+        <Provider store={store}>
+            <Router history={history}>
+                <AppRoot />
+            </Router>
+        </Provider>
     </ErrorBoundary>,
 );
