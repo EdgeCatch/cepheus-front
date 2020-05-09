@@ -1,0 +1,13 @@
+[ignore]
+<PROJECT_ROOT>/\(node_modules\|build\|\vendor\)/.*
+
+[include]
+
+[libs]
+flow-typed
+
+[lints]
+
+[options]
+
+[strict]
