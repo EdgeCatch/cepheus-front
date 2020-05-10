@@ -1,9 +1,16 @@
-
-
 /* <Footer STYLES> */
 .footer {
     background: #31323b;
     position: absolute;
     color:#fff;
+}
+
+.col a {
+    text-align: center;
+    color:#fff;
+}
+
+.col a:first-child {
+    font-weight: bold;;
 }
 /* <Footer STYLES> */
