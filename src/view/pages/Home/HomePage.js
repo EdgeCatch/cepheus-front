@@ -6,16 +6,16 @@ import HomeImgBlock from '../../components/HomeImgBlock/HomeImgBlock';
 import './homePage.scss';
 
 const HomePage = () => (
-    <Container>
-        <Row className="homePage__block">
+    <Container className="homePage">
+        <Row className="homePage__block justify-content-between">
             <HomeImgBlock imgElement={imgHomeArray[0]} text="Bags And Cases" />
             <HomeImgBlock imgElement={imgHomeArray[1]} text=" Ties And Belts " />
         </Row>
-        <Row className="homePage__block">
+        <Row className="homePage__block justify-content-between">
             <HomeImgBlock imgElement={imgHomeArray[2]} text=" Ties And Belts " />
             <HomeImgBlock imgElement={imgHomeArray[3]} text=" Ties And Belts " />
         </Row>
-        <Row className="homePage__block">
+        <Row className="homePage__block justify-content-between">
             <HomeImgBlock imgElement={imgHomeArray[4]} text=" Ties And Belts " />
             <HomeImgBlock imgElement={imgHomeArray[5]} text=" Ties And Belts " />
         </Row>

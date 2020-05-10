@@ -9,7 +9,7 @@ import Footer from './Footer/Footer';
 
 const AppRoot = () => {
     return (
-        <div className="wrapper">
+        <div id="wrapper">
             <Header />
             <Route component={Routes} />
             <Footer />
