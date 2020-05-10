@@ -2,7 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import imgHomeArray from './img/index';
-import HomeImgBlock from './HomeImgBlock';
+import HomeImgBlock from '../../components/HomeImgBlock/HomeImgBlock';
 import './homePage.scss';
 
 const HomePage = () => (
