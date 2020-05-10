@@ -1,0 +1,19 @@
+/* <Header STYLES> */
+.header {
+    background: #31323b;
+    position: absolute;
+    font-size: 12px;
+    a {
+        color: #fff !important;
+    }
+}
+
+.header__input {
+    background-color: #1e1e1f !important;
+    color: #fff !important;
+    border-color: #1e1e1f !important;
+}
+.header__input::placeholder {
+    color: #fff !important;
+}
+/* </Header STYLES> */

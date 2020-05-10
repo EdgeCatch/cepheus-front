@@ -1,6 +1,9 @@
 @import url(fonts.scss);
 @import url(reset.scss);
 @import url(pages.scss);
-body {
+@import "~bootstrap/scss/bootstrap";
+
+#root {
     font-family: "Alef";
+    background:#31323B;
 }
