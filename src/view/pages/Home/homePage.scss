@@ -6,3 +6,16 @@ h2 {
 .home__container {
     height: 100vh;
 }
+
+.homePage__block {
+    margin: 1.5rem;
+}
+.homePage__block_item:first-child {
+    margin-right: 20px;
+}
+.homePage__block_item:last-child {
+    margin-left: 20px;
+}
+.homePage__block:last-child {
+    margin-bottom: 5rem;
+}

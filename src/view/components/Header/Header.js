@@ -14,8 +14,11 @@ const Header = () => {
             </Form>
             <Nav className="">
                 <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#features">Features</Nav.Link>
-                <Nav.Link href="#pricing">Pricing</Nav.Link>
+                <Nav.Link href="#features">Market</Nav.Link>
+                <Nav.Link href="#pricing">Help</Nav.Link>
+                <Nav.Link href="#pricing">WishList</Nav.Link>
+                <Nav.Link href="#pricing">CartLogo</Nav.Link>
+                <Nav.Link href="#pricing">ProfileLogo</Nav.Link>
             </Nav>
         </Navbar>
     );

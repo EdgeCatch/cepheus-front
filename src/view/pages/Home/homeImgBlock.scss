@@ -1,0 +1,24 @@
+.homePage__block_item {
+    position: relative;
+}
+
+.homePage__block_item,
+img {
+    width: 500px;
+    height: 600px;
+    border-radius: 20px;
+}
+
+.homePage__block_item h4 {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    width: 100%;
+}
+
+h4 span {
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+    line-height: 150%;
+}
