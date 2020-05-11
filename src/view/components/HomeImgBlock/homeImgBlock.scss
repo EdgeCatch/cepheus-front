@@ -2,11 +2,13 @@
     position: relative;
 }
 
-.homePage__block_item,
 img {
     width: 500px;
     height: 600px;
     border-radius: 20px;
+}
+
+img::before {
 }
 
 .homePage__block_item h4 {

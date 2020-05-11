@@ -7,6 +7,7 @@ import './homePage.scss';
 
 const HomePage = () => (
     <Container className="homePage">
+        <h2>What are you looking for?</h2>
         <Row className="homePage__block  justify-content-center">
             <HomeImgBlock imgElement={imgHomeArray[0]} text="Bags And Cases" />
             <HomeImgBlock imgElement={imgHomeArray[1]} text=" Ties And Belts " />
@@ -19,6 +20,7 @@ const HomePage = () => (
             <HomeImgBlock imgElement={imgHomeArray[4]} text=" Ties And Belts " />
             <HomeImgBlock imgElement={imgHomeArray[5]} text=" Ties And Belts " />
         </Row>
+        <div className="homePage__divider" />
     </Container>
 );
 

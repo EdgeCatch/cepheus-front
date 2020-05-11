@@ -1,8 +1,10 @@
-.homePage{
-}
+
 h2 {
     color: #fff;
     text-align: center;
+    padding: 100px 0 70px;
+    font-size: 36px;
+    font-weight: bold;
 }
 .home__container {
     height: 100vh;
@@ -16,8 +18,12 @@ h2 {
 }
 .homePage__block_item:last-child {
     margin-left: 20px;
-}
-.homePage__block:last-child {
-    margin-bottom: 5rem;
+
 }
 
+.homePage__divider {
+    height: 1px;
+    width: 100%;
+    background-color:#fff;
+    margin: 3rem 0 2em ;
+  }
