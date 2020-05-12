@@ -2,15 +2,23 @@
     position: relative;
 }
 
-img {
+.block_item-img {
     width: 500px;
     height: 600px;
     border-radius: 20px;
+    filter: brightness(50%);
+    box-shadow: 17.1981px 17.1981px 34.3963px #020303, -17.1981px -17.1981px 34.3963px rgba(39, 42, 47, 0.29);
 }
+.homePage__block_item::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 2em;
+    background-color: rgba(0, 0, 0, 0.6);
 
-img::before {
 }
-
 .homePage__block_item h4 {
     position: absolute;
     top: 50%;

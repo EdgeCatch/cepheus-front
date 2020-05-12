@@ -4,7 +4,7 @@ import './homeImgBlock.scss';
 
 const HomeImgBlock = ({ imgElement, text }) => (
     <div className="homePage__block_item">
-        <img src={imgElement} alt="Bags" />
+        <img className="block_item-img" src={imgElement} alt={text} />
         <h4>
             <span>{text}</span>
         </h4>

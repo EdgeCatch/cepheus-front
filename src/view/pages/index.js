@@ -1,2 +1,6 @@
 // eslint-disable-next-line import/prefer-default-export
-export { default as HomePage } from './Home/HomePage';
+import HomePage from './Home/HomePage';
+import WishListPage from './WishList/WishListPage';
+import CartPage from './Cart/CartPage';
+
+export { HomePage, WishListPage, CartPage };
