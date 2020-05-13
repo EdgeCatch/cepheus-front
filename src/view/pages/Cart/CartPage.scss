@@ -1,11 +1,11 @@
-.cartPage {
+.cart-page {
     height: 100vh;
     padding: 60px 0 0 0;
     display: flex;
     flex-grow: 1;
     justify-content: space-between;
 }
-.purchasesTotal {
+.purchases_total {
     position: relative;
     padding: 20px 24px;
     background: linear-gradient(170.75deg, rgba(0, 0, 0, 0.4) -9.69%, rgba(43, 43, 43, 0.4) 115.55%), #2f3338;
@@ -19,7 +19,7 @@
 .summary__article {
     text-align: center;
 }
-.cartPage__headline {
+.cart-page__headline {
     text-align: left;
     color: #fff;
 }
