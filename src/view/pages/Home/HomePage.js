@@ -10,15 +10,15 @@ const HomePage = () => (
         <h2>What are you looking for?</h2>
         <Row className="home-page__block  justify-content-center">
             <HomeImgBlock imgElement={imgHomeArray[0]} text="Bags And Cases" />
-            <HomeImgBlock imgElement={imgHomeArray[1]} text="Parfumes " />
+            <HomeImgBlock imgElement={imgHomeArray[1]} text="Parfumes" />
         </Row>
         <Row className="home-page__block  justify-content-center">
-            <HomeImgBlock imgElement={imgHomeArray[2]} text=" Ties And Belts " />
-            <HomeImgBlock imgElement={imgHomeArray[3]} text="  Phone Accessories  " />
+            <HomeImgBlock imgElement={imgHomeArray[2]} text="Ties And Belts" />
+            <HomeImgBlock imgElement={imgHomeArray[3]} text="Phone Accessories " />
         </Row>
         <Row className="home-page__block  justify-content-center">
-            <HomeImgBlock imgElement={imgHomeArray[4]} text=" Alcohol " />
-            <HomeImgBlock imgElement={imgHomeArray[5]} text=" E-cigarettes " />
+            <HomeImgBlock imgElement={imgHomeArray[4]} text=" Alcohol" />
+            <HomeImgBlock imgElement={imgHomeArray[5]} text=" E-cigarettes" />
         </Row>
         <div className="home-page__divider" />
     </Container>

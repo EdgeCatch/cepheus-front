@@ -30,8 +30,73 @@
     left: 0%;
     right: 0%;
     bottom: 0%;
+    height: 45px;
     color: #fff;
     background: #5458f7;
     border-color: #5458f7;
     border-radius: 0px 0px 20px 20px;
 }
+
+//<Form styles >//
+
+.purchases__modal_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 108px;
+}
+
+.purchases__modal_item {
+    background: #1e1e1f;
+    box-shadow: inset -5px -5px 10px #242529, inset 5px 5px 10px #0a0a0a;
+    border-radius: 8px;
+    margin: 10px 0;
+    border: 0;
+    font-size: 12px;
+    line-height: 16px;
+    padding: 10px 14px;
+}
+
+.purchases__modal_item::placeholder {
+    padding: 9px 0;
+}
+.purchases__modal_item,
+.purchases__modal_item::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+//<Form styles />//
+
+.textarea__item {
+    background: #1e1e1f;
+    box-shadow: inset -5px -5px 10px #242529, inset 5px 5px 10px #0a0a0a;
+    border-radius: 8px;
+    border: 0;
+    font-size: 12px;
+    line-height: 16px;
+    height: 90px;
+}
+/*
+<Textearea style>
+Used on all pages! Should be exist as a component in futher*/
+.textarea__item {
+    background: #1e1e1f;
+    box-shadow: inset -5px -5px 10px #242529, inset 5px 5px 10px #0a0a0a;
+    border-radius: 8px;
+    border: 0;
+    font-size: 12px;
+    line-height: 16px;
+    height: 90px;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 10px 14px;
+    resize: none;
+}
+.textarea__item {
+    outline-width: 0;
+}
+
+.textarea__item::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+/*
+</Texareastyles />
+*/

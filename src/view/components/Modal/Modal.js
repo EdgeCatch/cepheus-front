@@ -5,7 +5,7 @@ import Icon from '../Icon/Icon';
 import Button from '../Button/Button';
 import './Modal.scss';
 
-const Modal = ({ title, isOpen, onCancel, onSubmit, children }) => (
+const Modal = ({ title, isOpen, onCancel, onSubmit, children, buttonText }) => (
     <>
         {isOpen && (
             <Portal>
@@ -18,7 +18,7 @@ const Modal = ({ title, isOpen, onCancel, onSubmit, children }) => (
                         <div className="modal-body">{children}</div>
                         <div className="modal-footer">
                             <Button className="buy-btn" onClick={onSubmit}>
-                                Submit
+                                {buttonText}
                             </Button>
                         </div>
                     </div>
@@ -34,6 +34,7 @@ Modal.propTypes = {
     onCancel: PropTypes.func,
     onSubmit: PropTypes.func,
     children: PropTypes.node,
+    buttonText: PropTypes.string,
 };
 
 Modal.defaultProps = {
@@ -42,6 +43,7 @@ Modal.defaultProps = {
     onCancel: () => {},
     onSubmit: () => {},
     children: null,
+    buttonText: 'Submit',
 };
 
 export default Modal;

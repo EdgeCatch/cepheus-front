@@ -41,12 +41,20 @@ class CartPage extends React.Component {
                     onCancel={this.handleCancel}
                     onSubmit={this.handleSubmit}
                     isOpen={isOpenModalPurchase}
+                    buttonText="Buy"
                 >
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry`s standard dummy text ever since the 1500s, when an unknown printer took a galley
-                        of type and scrambled it to make a
-                    </p>
+                    <form action="" className="purchases__modal_form">
+                        <input className="purchases__modal_item" type="text" placeholder="Password" />
+                        <input className="purchases__modal_item" type="text" placeholder="Receiver" />
+                        <input className="purchases__modal_item" type="text" placeholder="Phone number" />
+                        <textarea
+                            name=""
+                            className="textarea__item"
+                            cols="30"
+                            rows="10"
+                            placeholder="Nova Poshta Office"
+                        />
+                    </form>
                 </Modal>
             </Container>
         );
