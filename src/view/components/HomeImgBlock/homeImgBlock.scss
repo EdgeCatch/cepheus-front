@@ -1,7 +1,6 @@
-.homePage__block_item {
+.home-page__block_item {
     position: relative;
 }
-
 .block_item-img {
     width: 500px;
     height: 600px;
@@ -9,7 +8,7 @@
     filter: brightness(50%);
     box-shadow: 17.1981px 17.1981px 34.3963px #020303, -17.1981px -17.1981px 34.3963px rgba(39, 42, 47, 0.29);
 }
-.homePage__block_item::after {
+.home-page__block_item::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -17,14 +16,21 @@
     color: #fff;
     font-size: 2em;
     background-color: rgba(0, 0, 0, 0.6);
-
 }
-.homePage__block_item h4 {
+.home-page__block_item:first-child {
+    margin-right: 20px;
+}
+.home-page__block_item:last-child {
+    margin-left: 20px;
+}
+.home-page__block_item h4 {
     position: absolute;
     top: 50%;
     left: 40%;
     width: 100%;
 }
+
+
 
 h4 span {
     font-size: 14px;

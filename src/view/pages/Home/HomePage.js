@@ -3,10 +3,14 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import imgHomeArray from './img/index';
 import HomeImgBlock from '../../components/HomeImgBlock/HomeImgBlock';
-import './homePage.scss';
+import './HomePage.scss';
 
 const HomePage = () => (
+<<<<<<< HEAD
     <Container className="homePage">
+=======
+    <Container id="home-page">
+>>>>>>> ccda280... Header refactor
         <h2>What are you looking for?</h2>
         <Row className="homePage__block  justify-content-center">
             <HomeImgBlock imgElement={imgHomeArray[0]} text="Bags And Cases" />
