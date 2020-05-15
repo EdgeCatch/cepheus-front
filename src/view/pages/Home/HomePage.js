@@ -10,7 +10,7 @@ class HomePage extends React.Component {
     render() {
         return (
             <Container id="home-page">
-                <h2>What are you looking for?</h2>
+                <h2 className="">What are you looking for?</h2>
                 <Row className="homePage__block  justify-content-center">
                     <HomeImgBlock imgElement={imgHomeArray[0]} text="Bags And Cases" />
                     <HomeImgBlock imgElement={imgHomeArray[1]} text="Parfumes " />

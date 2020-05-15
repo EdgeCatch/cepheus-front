@@ -1,26 +1,14 @@
 // @flow
 import React from 'react';
 import Nav from 'react-bootstrap/Nav';
-import Form from 'react-bootstrap/Form';
 import Navbar from 'react-bootstrap/Navbar';
-import FormControl from 'react-bootstrap/FormControl';
-import { Link } from 'react-router-dom';
+import HeaderLogo from '../pageComponents/HomePage/HeaderLogo/HeaderLogo';
 import iconsCollection from './icons/index';
 import './navigation.scss';
 
 const Navigation = () => (
     <Navbar className="header d-flex d-flex justify-content-between">
-        <div className="header__logo">
-            <div className="header__logo_item">
-                <Link to="">
-                    <img className="header__logo_img" src={iconsCollection.base} alt="logo" />
-                    <span className="logo_item-text">Cepheus</span>
-                </Link>
-            </div>
-            <Form inline>
-                <FormControl type="text" placeholder="Search" className="mr-sm-2 header__input" />
-            </Form>
-        </div>
+        <HeaderLogo />
         <Nav id="header__nav">
             <Nav.Link href="/" className="header__nav_items">
                 Home
