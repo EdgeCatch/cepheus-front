@@ -5,4 +5,5 @@ export default {
     wishListPage: () => '/wish-list',
     cartPage: () => '/cart',
     profilePage: () => '/profile',
+    bagsPage: () => '/bags-and-cases',
 };

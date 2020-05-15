@@ -12,7 +12,7 @@ class HomePage extends React.Component {
             <Container id="home-page">
                 <h2 className="">What are you looking for?</h2>
                 <Row className="homePage__block  justify-content-center">
-                    <HomeImgBlock imgElement={imgHomeArray[0]} text="Bags And Cases" />
+                    <HomeImgBlock imgElement={imgHomeArray[0]} text="Bags And Cases" link="/bags-and-cases" />
                     <HomeImgBlock imgElement={imgHomeArray[1]} text="Parfumes " />
                 </Row>
                 <Row className="homePage__block  justify-content-center">

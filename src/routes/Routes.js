@@ -11,6 +11,7 @@ const Routes = () => (
             <Route exact path={routePaths.wishListPage()} component={Pages.WishListPage} />
             <Route exact path={routePaths.cartPage()} component={Pages.CartPage} />
             <Route exact path={routePaths.profilePage()} component={Pages.ProfilePage} />
+            <Route exact path={routePaths.bagsPage()} component={Pages.BagsAndCases} />
         </Switch>
     </main>
 );
