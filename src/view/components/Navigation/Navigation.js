@@ -37,7 +37,7 @@ const Navigation = () => (
             <Nav.Link href="/cart">
                 <img className="header__nav_icons" src={iconsCollection.cart} alt="" />
             </Nav.Link>
-            <Nav.Link href="#profile">
+            <Nav.Link href="/profile">
                 <img className="header__nav_icons" src={iconsCollection.user} alt="" />
             </Nav.Link>
         </Nav>
