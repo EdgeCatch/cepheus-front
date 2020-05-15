@@ -6,10 +6,10 @@ import Navbar from 'react-bootstrap/Navbar';
 import FormControl from 'react-bootstrap/FormControl';
 import { Link } from 'react-router-dom';
 import iconsCollection from './icons/index';
-import './Navigation.scss';
+import './navigation.scss';
 
 const Navigation = () => (
-    <Navbar className="header d-flex d-flex justify-content-around">
+    <Navbar className="header d-flex d-flex justify-content-between">
         <div className="header__logo">
             <div className="header__logo_item">
                 <Link to="">

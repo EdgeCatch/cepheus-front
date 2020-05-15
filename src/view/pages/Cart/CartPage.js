@@ -1,7 +1,7 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
 import Modal from '../../components/Modal/Modal';
 import './CartPage.scss';
+import CartItem from '../../components/pageComponents/CartPage/CartItem/CartItem';
 
 class CartPage extends React.Component {
     state = {
@@ -24,8 +24,9 @@ class CartPage extends React.Component {
         const { isOpenModalPurchase } = this.state;
 
         return (
-            <Container className="cart-page">
+            <div className="cart-page">
                 <h4 className="cart-page__headline">Cart</h4>
+                <CartItem />
                 <div className="purchases_total">
                     <p className="summary__article">Summary</p>
                     <div className="summary__block">
@@ -56,7 +57,7 @@ class CartPage extends React.Component {
                         />
                     </form>
                 </Modal>
-            </Container>
+            </div>
         );
     }
 }
