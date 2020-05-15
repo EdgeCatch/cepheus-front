@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from '../../components/Modal/Modal';
 import './CartPage.scss';
 import CartItem from '../../components/pageComponents/CartPage/CartItem/CartItem';
+import CartModalForm from '../../components/pageComponents/CartPage/CartModalForm/CartModalForm';
 
 class CartPage extends React.Component {
     state = {
@@ -24,17 +25,19 @@ class CartPage extends React.Component {
         const { isOpenModalPurchase } = this.state;
 
         return (
-            <div className="cart-page">
+            <div>
                 <h4 className="cart-page__headline">Cart</h4>
-                <CartItem />
-                <div className="purchases_total">
-                    <p className="summary__article">Summary</p>
-                    <div className="summary__block">
-                        <p>Items count:</p>
-                        <p>Total price:</p>
-                        <button id="make-order" type="submit" onClick={() => this.openPurchaseModal()}>
-                            Make an Order
-                        </button>
+                <div className="cart-page">
+                    <CartItem />
+                    <div className="purchases_total">
+                        <p className="summary__article">Summary</p>
+                        <div className="summary__block">
+                            <p>Items count:</p>
+                            <p>Total price:</p>
+                            <button id="make-order" type="submit" onClick={() => this.openPurchaseModal()}>
+                                Make an Order
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <Modal
@@ -44,18 +47,7 @@ class CartPage extends React.Component {
                     isOpen={isOpenModalPurchase}
                     buttonText="Buy"
                 >
-                    <form action="" className="purchases__modal_form">
-                        <input className="purchases__modal_item" type="text" placeholder="Password" />
-                        <input className="purchases__modal_item" type="text" placeholder="Receiver" />
-                        <input className="purchases__modal_item" type="text" placeholder="Phone number" />
-                        <textarea
-                            name=""
-                            className="textarea__item"
-                            cols="30"
-                            rows="10"
-                            placeholder="Nova Poshta Office"
-                        />
-                    </form>
+                    <CartModalForm />
                 </Modal>
             </div>
         );
