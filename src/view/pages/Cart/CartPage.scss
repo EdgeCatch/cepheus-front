@@ -16,6 +16,11 @@
     height: 250px;
     margin: 0 50px;
 }
+
+.cart-items{
+    display: flex;
+    flex-direction: column;
+}
 .summary__article {
     text-align: center;
 }

@@ -3,6 +3,7 @@ import React from 'react';
 import './cartItem.scss';
 import InfoItem from '../../../InfoItem/InfoItem';
 
-const CartItem = () => <InfoItem itemNameClass="cart" />;
+const CartItem = ({ remove }) => <InfoItem itemNameClass="cart" onRemove={remove} />;
 
+// onRemove={remove} itemId={id}
 export default CartItem;

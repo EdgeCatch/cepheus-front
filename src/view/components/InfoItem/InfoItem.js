@@ -4,7 +4,7 @@ import './infoItem.scss';
 
 const bag = require('./img/bag.jpg');
 
-const InfoItem = ({ itemNameClass }) => {
+const InfoItem = ({ itemNameClass, onRemove }) => {
     return (
         <div className={`${itemNameClass} item`}>
             <div className="item__img">
@@ -27,7 +27,7 @@ const InfoItem = ({ itemNameClass }) => {
                     <h4 className="item__info_article">Total </h4>
                     <p className="item__info_exact">$109</p>
                 </div>
-                <button type="submit" className="remove-btn">
+                <button type="submit" className="remove-btn" onClick={onRemove}>
                     x
                 </button>
             </div>
