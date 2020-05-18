@@ -37,6 +37,7 @@ const InfoItem = ({ itemNameClass, onRemove }) => {
 
 InfoItem.propTypes = {
     itemNameClass: PropTypes.string.isRequired,
+    onRemove: PropTypes.func.isRequired,
 };
 
 export default InfoItem;
