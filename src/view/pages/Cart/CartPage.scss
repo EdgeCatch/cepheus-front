@@ -16,7 +16,10 @@
     height: 250px;
     margin: 0 50px;
 }
-
+/* Add to cart  */
+.add-cart{
+    height:max-content;
+}
 .cart-items{
     display: flex;
     flex-direction: column;
@@ -82,7 +85,7 @@
 }
 /*
 <Textearea style>
-Used on all pages! Should be exist as a component in futher*/
+Used on all pages! Should be exist as a component in further*/
 .textarea__item {
     background: #1e1e1f;
     box-shadow: inset -5px -5px 10px #242529, inset 5px 5px 10px #0a0a0a;

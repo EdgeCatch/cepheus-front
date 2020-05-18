@@ -31,9 +31,9 @@ class CartPage extends React.Component {
             id: _.uniqueId(),
         };
 
-        this.setState({
-            items: [...this.state.items, item],
-        });
+        this.setState(prevState => ({
+            items: [...prevState.items, item],
+        }));
     };
 
     delete(id) {
@@ -51,7 +51,10 @@ class CartPage extends React.Component {
             <div>
                 <h4 className="cart-page__headline">Cart</h4>
                 <div className="cart-page">
-                    <button type="button" onClick={this.addItem}>
+                    {/*
+                    ADD cart button test version,
+                    */}
+                    <button type="button" className="add-cart" onClick={this.addItem}>
                         Add TestItem
                     </button>
                     <div className="cart-items">{renderedItems()}</div>

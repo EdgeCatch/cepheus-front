@@ -5,5 +5,4 @@ import InfoItem from '../../../InfoItem/InfoItem';
 
 const CartItem = ({ remove }) => <InfoItem itemNameClass="cart" onRemove={remove} />;
 
-// onRemove={remove} itemId={id}
 export default CartItem;
