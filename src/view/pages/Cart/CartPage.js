@@ -48,7 +48,7 @@ class CartPage extends React.Component {
             items.map(item => <CartItem key={item.id} id={item.id} remove={() => this.delete(item)} />);
 
         return (
-            <div>
+            <div className="cart-page__wrapper">
                 <h4 className="cart-page__headline">Cart</h4>
                 <div className="cart-page">
                     {/*

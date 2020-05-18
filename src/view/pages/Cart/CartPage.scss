@@ -1,5 +1,9 @@
+.cart-page__wrapper{
+    min-height: 100vh;
+}
+
 .cart-page {
-    height: 100vh;
+    height: auto;
     display: flex;
     flex-grow: 1;
     justify-content: space-between;
@@ -17,12 +21,14 @@
     margin: 0 50px;
 }
 /* Add to cart  */
-.add-cart{
-    height:max-content;
+.add-cart {
+    height: max-content;
 }
-.cart-items{
+.cart-items {
     display: flex;
     flex-direction: column;
+    height: auto;
+    margin-bottom: 90px;
 }
 .summary__article {
     text-align: center;

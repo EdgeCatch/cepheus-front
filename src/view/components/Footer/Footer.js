@@ -6,7 +6,7 @@ import './footer.scss';
 
 const Footer = () => {
     return (
-        <Container className="d-flex justify-content-between">
+        <Container id="footer" className="d-flex justify-content-between">
             <Col className="d-flex flex-column">
                 <Link> Learn more</Link>
                 <Link>About Us </Link>
