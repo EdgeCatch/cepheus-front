@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -6,7 +7,7 @@ import HomeImgBlock from '../../components/pageComponents/CartPage/HomeImgBlock/
 import './homePage.scss';
 
 // eslint-disable-next-line react/prefer-stateless-function
-class HomePage extends React.Component {
+class HomePage {
     render() {
         return (
             <Container id="home-page">
@@ -23,7 +24,6 @@ class HomePage extends React.Component {
                     <HomeImgBlock imgElement={imgHomeArray[4]} text=" Alcohol " />
                     <HomeImgBlock imgElement={imgHomeArray[5]} text=" E-cigarettes " />
                 </Row>
-                <div className="homePage__divider" />
             </Container>
         );
     }
