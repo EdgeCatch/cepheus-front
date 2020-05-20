@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
 import './icon.scss';
 
 const Icon = ({ name, className, size, onClick, disabled }) => {
