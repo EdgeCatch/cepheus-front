@@ -3,7 +3,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import withStyles from 'react-jss';
 import { Routes } from '../../routes';
-import './AppRoot.scss';
+import './appRoot.scss';
 import Divider from './Divider/Divider';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';

@@ -7,7 +7,7 @@ import HomeImgBlock from '../../components/pageComponents/CartPage/HomeImgBlock/
 import './homePage.scss';
 
 // eslint-disable-next-line react/prefer-stateless-function
-class HomePage {
+class HomePage extends React.Component {
     render() {
         return (
             <Container id="home-page">

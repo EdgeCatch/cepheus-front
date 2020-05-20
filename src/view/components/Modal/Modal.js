@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Portal from '../Portal/Portal';
 import Icon from '../Icon/Icon';
 import Button from '../Button/Button';
-import './Modal.scss';
+import './modal.scss';
 
 const Modal = ({ title, isOpen, onCancel, onSubmit, children, buttonText }) => (
     <>

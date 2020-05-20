@@ -6,4 +6,5 @@ export default {
     cartPage: () => '/cart',
     profilePage: () => '/profile',
     bagsPage: () => '/bags-and-cases',
+    infoItem: () => '/profile/buyer',
 };

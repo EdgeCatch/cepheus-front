@@ -1,6 +1,10 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
-// import Modal from '../../components/Modal/Modal';
-import './ProfilePage.scss';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import ProfilePageRoutes from '../../components/pageComponents/ProfilePage/ProfilePageRoutes/ProfilePageRoutes';
+import ProfileNavbar from '../../components/pageComponents/ProfilePage/ProfileNavbar';
+import './profilePage.scss';
 
 class ProfilePage extends React.Component {
     state = {
@@ -9,11 +13,19 @@ class ProfilePage extends React.Component {
     };
 
     render() {
+        const history = createBrowserHistory();
+
         return (
-            <div>
-                <p>profile</p>
-            </div>
+            <Router history={history}>
+                <div className="cart-page__wrapper">
+                    <ProfileNavbar />
+                    <div className="profile__main_column">
+                        <Route component={ProfilePageRoutes} />
+                    </div>
+                </div>
+            </Router>
         );
     }
 }
+
 export default ProfilePage;

@@ -1,7 +1,7 @@
 import React from 'react';
 import * as _ from 'lodash';
 import Modal from '../../components/Modal/Modal';
-import './CartPage.scss';
+import './cartPage.scss';
 import CartItem from '../../components/pageComponents/CartPage/CartItem/CartItem';
 import CartModalForm from '../../components/pageComponents/CartPage/CartModalForm/CartModalForm';
 

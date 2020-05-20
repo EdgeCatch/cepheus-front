@@ -1,3 +1,43 @@
+.cart-page__wrapper {
+    display: flex;
+}
+
+/*
+<seller and buyer styles>
+*/
+
+.seller-component,
+.buyer-component {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(345.46deg, #32383e -77.68%, #17191c 87.35%);
+    box-shadow: 12.571px 12.571px 56.5696px rgba(0, 0, 0, 0.4), -12.571px -6.28551px 50.2841px rgba(195, 200, 205, 0.05);
+    border-radius: 20px;
+    width: 380px;
+    padding: 30px;
+    margin-bottom: 30px;
+
+}
+
+/*
+</seller and buyer-component styles>
+*/
+.seller-component a,
+.buyer-component a  {
+padding :20px 0;
+}
+/*
+<nav and buyer styles>
+*/
+
+.nav-components {
+  margin: 0 36px;
+}
+
+/*
+</nav-component styles>
+*/
 
 .purchases_total {
     position: relative;
@@ -71,7 +111,7 @@
 }
 /*
 <Textearea style>
-Used on all pages! Should be exist as a component in futher*/
+Used on all pages! Should be exist as a component in further*/
 .textarea__item {
     background: #1e1e1f;
     box-shadow: inset -5px -5px 10px #242529, inset 5px 5px 10px #0a0a0a;

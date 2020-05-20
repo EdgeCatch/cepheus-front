@@ -4,5 +4,6 @@ import WishListPage from './WishList/WishListPage';
 import CartPage from './Cart/CartPage';
 import ProfilePage from './Profile/ProfilePage';
 import BagsAndCases from './BagsAndCases/BagsAndCases';
+import InfoItem from '../components/InfoItem/InfoItem';
 
-export { HomePage, WishListPage, CartPage, ProfilePage, BagsAndCases };
+export { HomePage, WishListPage, CartPage, ProfilePage, BagsAndCases, InfoItem };

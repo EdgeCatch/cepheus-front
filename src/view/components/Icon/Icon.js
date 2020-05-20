@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import './Icon.scss';
+import './icon.scss';
 
 const Icon = ({ name, className, size, onClick, disabled }) => {
     const classes = classNames('fa', `fa-${name}`, { func: onClick }, { disabled }, className);
