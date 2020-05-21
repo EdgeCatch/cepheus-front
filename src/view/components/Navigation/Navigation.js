@@ -1,7 +1,7 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
-import HeaderLogo from '../pageComponents/HomePage/HeaderLogo/HeaderLogo';
+import HeaderLogo from '../pageComponents/HomePage/HeaderLogo';
 import iconsCollection from './icons/index';
 import './navigation.scss';
 

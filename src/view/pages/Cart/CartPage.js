@@ -1,12 +1,20 @@
-import React from 'react';
+// @flow
+import * as React from 'react';
 import * as _ from 'lodash';
 import Modal from '../../components/Modal/Modal';
 import './cartPage.scss';
-import CartItem from '../../components/pageComponents/CartPage/CartItem/CartItem';
-import CartModalForm from '../../components/pageComponents/CartPage/CartModalForm/CartModalForm';
+import type CartItem from '../../components/pageComponents/CartPage/CartItem';
+import type CartModalForm from '../../components/pageComponents/CartPage/CartModalForm';
 
-class CartPage extends React.Component {
-    constructor(props) {
+type CartPageState = {
+    isOpenModalPurchase: boolean,
+    items: Array<Object>,
+};
+
+type CartPageProps = {};
+
+class CartPage extends React.Component<CartPageProps, CartPageState> {
+    constructor(props: CartPageProps) {
         super(props);
         this.state = {
             isOpenModalPurchase: false,

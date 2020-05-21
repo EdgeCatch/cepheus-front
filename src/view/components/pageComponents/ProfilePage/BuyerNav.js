@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 const BuyerNav = () => (
     <div className="buyer-component">
-        <Link to="/profile/buyer">Buyer</Link>
-        <Link to="/profile/test">Orders</Link>
-        <Link to="/profile/test">Refund Requests</Link>
+        <Link to="/buyer">Buyer</Link>
+        <Link to="/test">Orders</Link>
+        <Link to="/test">Refund Requests</Link>
     </div>
 );
 

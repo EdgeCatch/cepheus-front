@@ -55,6 +55,7 @@
     "@babel/preset-flow": "^7.9.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-stage-0": "^7.0.0",
+    "@types/react-bootstrap": "^1.0.1",
     "eslint": "^6.5.1",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.11.0",

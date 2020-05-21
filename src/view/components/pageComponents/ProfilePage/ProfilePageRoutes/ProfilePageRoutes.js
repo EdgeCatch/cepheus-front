@@ -7,11 +7,11 @@ import * as Components from './components';
 const ProfilePageRoutes = () => (
     <Switch>
         <Route path={routePaths.buyerSetup()} component={Components.BuyerSetup} />
-        <Route exact path={routePaths.TestItem()} component={Components.TestItem} />
-        <Route exact path={routePaths.TestItem()} component={Components.TestItem} />
-        <Route exact path={routePaths.TestItem()} component={Components.TestItem} />
-        <Route exact path={routePaths.TestItem()} component={Components.TestItem} />
-        <Route exact path={routePaths.TestItem()} component={Components.TestItem} />
+        <Route path={routePaths.TestItem()} component={Components.TestItem} />
+        <Route path={routePaths.TestItem()} component={Components.TestItem} />
+        <Route path={routePaths.TestItem()} component={Components.TestItem} />
+        <Route path={routePaths.TestItem()} component={Components.TestItem} />
+        <Route path={routePaths.TestItem()} component={Components.TestItem} />
     </Switch>
 );
 

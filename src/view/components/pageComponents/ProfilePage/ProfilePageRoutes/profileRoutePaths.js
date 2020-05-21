@@ -1,4 +1,4 @@
 export default {
-    buyerSetup: () => '/profile/buyer',
-    TestItem: () => '/profile/test',
+    buyerSetup: () => '/buyer',
+    TestItem: () => '/test',
 };
