@@ -3,8 +3,8 @@ import * as React from 'react';
 import * as _ from 'lodash';
 import Modal from '../../components/Modal/Modal';
 import './cartPage.scss';
-import type CartItem from '../../components/pageComponents/CartPage/CartItem';
-import type CartModalForm from '../../components/pageComponents/CartPage/CartModalForm';
+import CartItem from '../../components/pageComponents/CartPage/CartItem';
+import CartModalForm from '../../components/pageComponents/CartPage/CartModalForm';
 
 type CartPageState = {
     isOpenModalPurchase: boolean,

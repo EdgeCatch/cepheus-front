@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Portal from '../Portal/Portal';
 import Icon from '../Icon/Icon';
-import Button from '../Button/Button';
+import Button from '../Button';
 import './modal.scss';
 
 const Modal = ({ title, isOpen, onCancel, onSubmit, children, buttonText }) => (
@@ -18,7 +18,7 @@ const Modal = ({ title, isOpen, onCancel, onSubmit, children, buttonText }) => (
                         </div>
                         <div className="modal-body">{children}</div>
                         <div className="modal-footer">
-                            <Button className="buy-btn" onClick={onSubmit}>
+                            <Button className="buy-btn purple" onClick={onSubmit}>
                                 {buttonText}
                             </Button>
                         </div>

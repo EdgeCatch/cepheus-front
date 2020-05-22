@@ -7,7 +7,7 @@ const CartModalForm = () => (
         <input className="purchases__modal_item" type="text" placeholder="Password" />
         <input className="purchases__modal_item" type="text" placeholder="Receiver" />
         <input className="purchases__modal_item" type="text" placeholder="Phone number" />
-        <textarea name="" className="textarea__item" cols="30" rows="10" placeholder="Nova Poshta Office" />
+        <textarea name="" className="textarea__item modal-item" cols="30" rows="10" placeholder="Nova Poshta Office" />
     </form>
 );
 
