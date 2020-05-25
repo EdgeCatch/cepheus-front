@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/prefer-default-export
 import HomePage from './Home/HomePage';
 import WishListPage from './WishList';
 import CartPage from './Cart/CartPage';

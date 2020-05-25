@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-// eslint-disable-next-line react/prefer-stateless-function
 
 const BagItem = () => (
     <Card style={{ width: 'auto', height: '19rem' }}>
