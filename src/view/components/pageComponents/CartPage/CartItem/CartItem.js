@@ -1,9 +1,7 @@
-// @flow
-
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import './cartItem.scss';
-import typeof InfoItem from '../../../InfoItem';
+import InfoItem from '../../../InfoItem';
 
 const CartItem = ({ remove }) => <InfoItem itemNameClass="cart" onRemove={remove} />;
 

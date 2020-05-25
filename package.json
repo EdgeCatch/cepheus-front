@@ -6,6 +6,7 @@
     "@babel/polyfill": "^7.4.4",
     "@babel/runtime-corejs2": "^7.4.4",
     "@inlet/react-pixi": "^1.1.2",
+    "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "classnames": "^2.2.6",
     "history": "^4.10.1",
