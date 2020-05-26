@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import PropTypes from 'prop-types';
 import './infoItem.scss';
 
 const bag = require('./img/bag.jpg');
@@ -34,11 +33,6 @@ const InfoItem = ({ itemNameClass, onRemove }) => {
             </div>
         </div>
     );
-};
-
-InfoItem.propTypes = {
-    itemNameClass: PropTypes.string.isRequired,
-    onRemove: PropTypes.func.isRequired,
 };
 
 export default InfoItem;

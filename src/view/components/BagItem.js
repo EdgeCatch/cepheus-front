@@ -1,5 +1,6 @@
-import React from 'react';
-import Card from 'react-bootstrap/Card';
+// @flow
+import * as React from 'react';
+import Card from 'react-bootstrap/esm/Card';
 
 const BagItem = () => (
     <Card style={{ width: 'auto', height: '19rem' }}>
