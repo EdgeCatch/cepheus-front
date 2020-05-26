@@ -9,6 +9,7 @@ import CartModalForm from '../../components/pageComponents/CartPage/CartModalFor
 type CartPageState = {
     isOpenModalPurchase: boolean,
     items: Array<Object>,
+    totalPrice: Number,
 };
 
 type CartPageProps = {};
@@ -51,7 +52,7 @@ class CartPage extends React.Component<CartPageProps, CartPageState> {
     }
 
     render() {
-        const { isOpenModalPurchase, items } = this.state;
+        const { isOpenModalPurchase, items, totalPrice } = this.state;
         const renderedItems = () =>
             items.map(item => <CartItem key={item.id} id={item.id} remove={() => this.delete(item)} />);
 
@@ -59,9 +60,6 @@ class CartPage extends React.Component<CartPageProps, CartPageState> {
             <div className="cart-page__wrapper">
                 <h4 className="cart-page__headline">Cart</h4>
                 <div className="cart-page">
-                    {/*
-                    ADD cart button test version,
-                    */}
                     <button type="button" className="add-cart" onClick={this.addItem}>
                         Add TestItem
                     </button>
@@ -70,7 +68,7 @@ class CartPage extends React.Component<CartPageProps, CartPageState> {
                         <p className="summary__article">Summary</p>
                         <div className="summary__block">
                             <p>Items count:</p>
-                            <p>Total price:</p>
+                            <p>Total price{totalPrice}</p>
                             <button id="make-order" type="submit" onClick={() => this.openPurchaseModal()}>
                                 Make an Order
                             </button>

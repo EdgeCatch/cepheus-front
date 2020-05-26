@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import routePaths from './routePaths';
 import * as Pages from '../view/pages';
 
@@ -16,4 +16,4 @@ const Routes = () => (
     </main>
 );
 
-export default Routes;
+export default withRouter(Routes);

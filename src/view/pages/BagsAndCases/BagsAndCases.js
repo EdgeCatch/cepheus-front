@@ -3,7 +3,7 @@ import React from 'react';
 import CardDeck from 'react-bootstrap/esm/CardDeck';
 import axios from 'axios';
 import _ from 'lodash';
-import BagItem from '../../components/BagItem';
+import BagItem from '../../containers/BagItem';
 import './bagsAndCases.scss';
 
 type Props = {
@@ -22,12 +22,15 @@ class BagsAndCases extends React.Component<Props> {
     }
 
     render() {
-        const { bags, isReady } = this.props;
+        const { bags, isReady, totalPrice } = this.props;
 
         return (
             <div id="bag-page" className="cart-page__wrapper">
+                {totalPrice}
                 <CardDeck id="card-items">
-                    {!isReady ? 'Downloading...' : bags.map((id: string = _.uniqueId()) => <BagItem key={id} />)}
+                    {!isReady
+                        ? 'Downloading...'
+                        : bags.map((bag, id: string = () => _.uniqueId()) => <BagItem key={id} {...bag} />)}
                 </CardDeck>
             </div>
         );
