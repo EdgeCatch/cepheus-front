@@ -5,6 +5,7 @@ import * as bagsActions from '../../store/actions/bags';
 
 const mapStateToProps = ({ cart }) => ({
     totalPrice: cart.items.reduce((total, book) => total + book.price, 0),
+    cartItemsCount: cart.items.length,
 });
 
 const mapDispatchToProps = dispatch => ({
