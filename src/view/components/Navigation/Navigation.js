@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import HeaderLogo from '../pageComponents/HomePage/HeaderLogo';
 import iconsCollection from './icons/index';
 import './navigation.scss';
@@ -9,24 +10,24 @@ const Navigation = () => (
     <Navbar className="header d-flex d-flex justify-content-between">
         <HeaderLogo />
         <Nav id="header__nav">
-            <Nav.Link href="/" className="header__nav_items">
+            <Link to="/" className="header__nav_items">
                 Home
-            </Nav.Link>
-            <Nav.Link href="#features" className="header__nav_items">
+            </Link>
+            <Link to="#features" className="header__nav_items">
                 Market
-            </Nav.Link>
-            <Nav.Link href="#pricing" className="header__nav_items">
+            </Link>
+            <Link to="#pricing" className="header__nav_items">
                 Help
-            </Nav.Link>
-            <Nav.Link href="/wish-list" className="header__nav_items">
+            </Link>
+            <Link to="/wish-list" className="header__nav_items">
                 <img className="wishlist" src={iconsCollection.heart} alt="" />
-            </Nav.Link>
-            <Nav.Link href="/cart">
+            </Link>
+            <Link to="/cart">
                 <img className="header__nav_icons" src={iconsCollection.cart} alt="" />
-            </Nav.Link>
-            <Nav.Link href="/profile">
+            </Link>
+            <Link toef="/profile">
                 <img className="header__nav_icons" src={iconsCollection.user} alt="" />
-            </Nav.Link>
+            </Link>
         </Nav>
     </Navbar>
 );
