@@ -2,7 +2,6 @@
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router-dom';
 import BagItem from '../components/BagItem';
 import * as cartActions from '../../store/actions/cart';
 
@@ -14,4 +13,4 @@ const mapDispatchToProps = dispatch => ({
     ...bindActionCreators(cartActions, dispatch),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BagItem));
+export default connect(mapStateToProps, mapDispatchToProps)(BagItem);

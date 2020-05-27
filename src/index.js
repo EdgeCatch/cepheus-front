@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import store from './store/index';
 import { AppRoot, ErrorBoundary } from './view/components';
 import './view/styles/index.scss';
+import { saveState } from './localStorage';
 
 /* eslint-disable import/prefer-default-export */
 export const history = createBrowserHistory();
@@ -19,6 +20,10 @@ const renderApp = Component => {
     // $FlowFixMe
     ReactDOM.render(Component, rootElement);
 };
+
+store.subscribe(() => {
+    saveState(store.getState());
+});
 
 renderApp(
     <ErrorBoundary>

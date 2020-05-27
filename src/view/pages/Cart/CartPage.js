@@ -52,7 +52,8 @@ class CartPage extends React.Component<CartPageProps, CartPageState> {
     }
 
     render() {
-        const { isOpenModalPurchase, items, totalPrice } = this.state;
+        const { isOpenModalPurchase, items } = this.state;
+        const { totalPrice } = this.props;
         const renderedItems = () =>
             items.map(item => <CartItem key={item.id} id={item.id} remove={() => this.delete(item)} />);
 
@@ -68,7 +69,7 @@ class CartPage extends React.Component<CartPageProps, CartPageState> {
                         <p className="summary__article">Summary</p>
                         <div className="summary__block">
                             <p>Items count:</p>
-                            <p>Total price{totalPrice}</p>
+                            <p>Total price : {totalPrice}</p>
                             <button id="make-order" type="submit" onClick={() => this.openPurchaseModal()}>
                                 Make an Order
                             </button>

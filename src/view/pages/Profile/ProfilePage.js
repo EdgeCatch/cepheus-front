@@ -19,7 +19,7 @@ class ProfilePage extends React.Component {
                 <div className="cart-page__wrapper">
                     <ProfileNavbar />
                     <div className="profile__main_column">
-                        <Route component={ProfilePageRoutes} />
+                        <Route render={ProfilePageRoutes} />
                     </div>
                 </div>
             </Router>
