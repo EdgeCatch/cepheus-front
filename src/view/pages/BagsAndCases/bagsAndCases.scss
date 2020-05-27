@@ -1,18 +1,10 @@
 #bag-page {
-    width: 70%;
     display: flex;
     justify-content: flex-end;
 }
 
-.card {
-    margin: 10px 0;
-}
-
 #card-items {
+    width: 70%;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
-    width: 500px;
-    height: 800px;
-    align-content: space-between;
 }

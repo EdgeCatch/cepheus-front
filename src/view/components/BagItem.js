@@ -1,26 +1,30 @@
 // @flow
 import * as React from 'react';
 import Card from 'react-bootstrap/esm/Card';
-import Button from 'react-bootstrap/Button';
+import './bagItem.scss';
 
 const BagItem = bag => {
     const { title, price, addToCart, addedCount } = bag;
 
     return (
-        <Card style={{ width: 'auto', height: '19rem' }}>
-            <Card.Img style={{ width: '12rem', margin: '10px auto', height: '10rem' }} variant="top" src="/bag.jpg" />
-            <Card.Body />
-            <Card.Body>
-                <Card.Title>{title}</Card.Title>
-                <Card.Link className="purple" href="#">
-                    <Button onClick={addToCart.bind(this, bag)} variant="dark">
-                        Добавить в корзину {addedCount > 0 && `(${addedCount}`}
-                    </Button>
-                    <p>{price}</p>
-                </Card.Link>
-            </Card.Body>
-        </Card>
+        <div className="goods-tile" style={{ width: 'calc( ( 100% - 40px ) / 3 );', margin: '15px' }}>
+            <Card style={{ border: 'none' }}>
+                <Card.Body className="item__body">
+                    <Card.Img
+                        style={{ width: '11rem', margin: '10px auto', height: '11rem' }}
+                        variant="top"
+                        src="/bag.jpg"
+                    />
+                    <p>{title}</p>
+                    <p>${price}</p>
+                </Card.Body>
+            </Card>
+            <div className="add-to-card_btn purple" onClick={addToCart.bind(this, bag)}>
+                Add to cart
+            </div>
+        </div>
     );
 };
 
+// {addedCount > 0 && `${addedCount}`}
 export default BagItem;
