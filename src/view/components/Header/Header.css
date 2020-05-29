@@ -1,0 +1,14 @@
+/* <Header> */
+.header {
+  background: #31323b;
+  position: absolute;
+  font-size: 12px;
+}
+
+.header a,
+.header span {
+  color: #fff;
+}
+
+/* </Header> */
+/*# sourceMappingURL=Header.css.map */
