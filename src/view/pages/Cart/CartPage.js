@@ -7,7 +7,6 @@ import CartModalForm from '../../components/CartModalForm';
 
 type CartPageState = {
     isOpenModalPurchase: boolean,
-    // items: Array<Object>,
 };
 
 type CartPageProps = {
@@ -39,27 +38,10 @@ class CartPage extends React.Component<CartPageProps, CartPageState> {
         this.setState({ isOpenModalPurchase: false });
     };
 
-    // addItem = () => {
-    //     const item = {
-    //         id: _.uniqueId(),
-    //     };
-
-    //     this.setState(prevState => ({
-    //         items: [...prevState.items, item],
-    //     }));
-    // };
-
-    // delete(id) {
-    //     this.setState(prevState => ({
-    //         items: prevState.items.filter(el => el !== id),
-    //     }));
-    // }
-
     render() {
         const { isOpenModalPurchase } = this.state;
         const { totalPrice, cartItemsCount, removeFromCart, items, addedCount } = this.props;
 
-        // console.log(typeof items);
         const renderedItems = () =>
             items.map(item => (
                 <CartItem key={item.id} id={item.id} count={item.addedCount} remove={() => removeFromCart(item.id)} />
@@ -69,9 +51,6 @@ class CartPage extends React.Component<CartPageProps, CartPageState> {
             <div className="cart-page__wrapper">
                 <h4 className="cart-page__headline">Cart</h4>
                 <div className="cart-page">
-                    {/* <button type="button" className="add-cart" onClick={this.addItem}>
-                        Add <TestItem></TestItem>
-                    </button> */}
                     {addedCount > 0 && `(${addedCount})`}
                     <div className="cart-items">{renderedItems()}</div>
                     <div className="purchases_total">

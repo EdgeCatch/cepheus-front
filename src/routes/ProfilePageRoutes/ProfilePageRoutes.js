@@ -1,8 +1,8 @@
 // @flow
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import routePaths from './profileRoutes/profileRoutePaths';
-import * as Components from './profileRoutes';
+import routePaths from './profileRoutePaths';
+import * as Components from './profileComponents';
 
 const ProfilePageRoutes = () => (
     <Switch>

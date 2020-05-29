@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, HashRouter as Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import ProfilePageRoutes from '../../../routes/ProfilePageRoutes/ProfilePageRoutes';
-import ProfileNavbar from '../../components/ProfileNavbar';
+import ProfileNavbar from '../../components/ProfileNavbar/ProfileNavbar';
 import './profilePage.scss';
 
 class ProfilePage extends React.Component {
