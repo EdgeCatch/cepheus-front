@@ -1,59 +1,11 @@
-/* <Header STYLES> */
+/* <Header> */
 .header {
     background: #31323b;
     position: absolute;
     font-size: 12px;
     a,
     span {
-        color: #fff !important;
+        color: #fff ;
     }
 }
-/* </Header STYLES> */
-
-.header__logo {
-    width:auto;
-    display: flex;
-    align-items: center;
-}
-.header__logo_item {
-    margin-right: 100px;
-    margin: 0 auto;
-}
-.header__logo_img {
-    width: 30px;
-    height: 30px;
-    box-shadow: 10px 10px 7px #000000, -5px -5px 10px #31323b;
-}
-
-.logo_item-text {
-    text-shadow: 10px 10px 7px #000000, -5px -5px 7px rgba(0, 0, 0, 0.25);
-    line-height: 19px;
-    margin: 0 5px!important;
-    vertical-align: middle;
-    padding: 0 5px  
-}
-    
-.header__input {
-    background-color: #1e1e1f !important;
-    color: #fff !important;
-    border-color: #1e1e1f !important;
-    border-radius: 20px;
-    padding: 7.5px 30px !important;
-    height: 34px!important;
-    margin-left:100px;
-}
-.header__input::placeholder {
-    color: #fff !important;
-}
-
-.nav-link {
-    padding: 0 1.2rem !important;
-}
-.nav-link:nth-child(n + 3) {
-    padding: 0 0.5rem !important;
-}
-
-.header__nav_icons {
-    width: 30px;
-    height: 30px;
-}
+/* </Header> */
