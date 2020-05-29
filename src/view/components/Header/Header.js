@@ -1,8 +1,8 @@
 // @flow
 import React from 'react';
-import Navigation from '../Navigation/Navigation';
+import Navigation from '../Navigation';
 
-import './Header.scss';
+import './header.scss';
 
 const Header = () => <Navigation />;
 

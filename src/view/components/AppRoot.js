@@ -3,15 +3,17 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import withStyles from 'react-jss';
 import { Routes } from '../../routes';
-import './AppRoot.scss';
-import Header from './Header/Header';
-import Footer from './Footer/Footer';
+import Divider from './Divider';
+import Header from './Header';
+import Footer from './Footer';
+import './appRoot.scss';
 
 const AppRoot = () => {
     return (
         <div id="wrapper">
             <Header />
             <Route component={Routes} />
+            <Divider />
             <Footer />
         </div>
     );

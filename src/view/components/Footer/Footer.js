@@ -1,13 +1,12 @@
 // @flow
 import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
+import { Container, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './footer.scss';
 
 const Footer = () => {
     return (
-        <Container className="d-flex justify-content-between">
+        <Container id="footer" className="d-flex justify-content-between">
             <Col className="d-flex flex-column">
                 <Link> Learn more</Link>
                 <Link>About Us </Link>
