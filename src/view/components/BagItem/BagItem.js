@@ -3,8 +3,14 @@ import * as React from 'react';
 import Card from 'react-bootstrap/esm/Card';
 import './bagItem.scss';
 
-const BagItem = bag => {
-    const { title, price, addToCart, addedCount } = bag;
+type Props = {
+    title: String,
+    price: String,
+    addToCart: Function,
+};
+
+const BagItem = (bag: Props) => {
+    const { title, price, addToCart } = bag;
 
     return (
         <div className="goods-tile" style={{ width: 'calc( ( 100% - 40px ) / 3 );', margin: '15px' }}>
@@ -15,6 +21,7 @@ const BagItem = bag => {
                         variant="top"
                         src="/bag.jpg"
                     />
+                    <img src="" alt="" />
                     <p>{title}</p>
                     <p>${price}</p>
                 </Card.Body>
@@ -26,5 +33,4 @@ const BagItem = bag => {
     );
 };
 
-// {addedCount > 0 && `${addedCount}`}
 export default BagItem;

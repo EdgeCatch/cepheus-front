@@ -6,28 +6,42 @@ import Icon from '../Icon/Icon';
 import Button from '../Button';
 import './modal.scss';
 
-const Modal = ({ title, isOpen, onCancel, onSubmit, children, buttonText }) => (
-    <>
-        {isOpen && (
-            <Portal>
-                <div className="modal-overlay">
-                    <div className="modal-window">
-                        <div className="modal-header">
-                            <div className="modal-title ">{title}</div>
-                            <Icon name="times" onClick={onCancel} />
-                        </div>
-                        <div className="modal-body">{children}</div>
-                        <div className="modal-footer">
-                            <Button className="buy-btn purple" onClick={onSubmit}>
-                                {buttonText}
-                            </Button>
+type ModalProps = {
+    title: string,
+    onCancel: Function,
+    onSubmit: Function,
+    children: Array<Object>,
+    buttonText: string,
+    children: Object,
+    isOpen: boolean,
+};
+
+const Modal = (props: ModalProps) => {
+    const { title, isOpen, onCancel, onSubmit, children, buttonText } = props;
+
+    return (
+        <>
+            {isOpen && (
+                <Portal>
+                    <div className="modal-overlay">
+                        <div className="modal-window">
+                            <div className="modal-header">
+                                <div className="modal-title ">{title}</div>
+                                <Icon name="times" onClick={onCancel} />
+                            </div>
+                            <div className="modal-body">{children}</div>
+                            <div className="modal-footer">
+                                <Button className="buy-btn purple" onClick={onSubmit}>
+                                    {buttonText}
+                                </Button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </Portal>
-        )}
-    </>
-);
+                </Portal>
+            )}
+        </>
+    );
+};
 
 Modal.propTypes = {
     title: PropTypes.string,

@@ -1,14 +1,13 @@
 import React from 'react';
 import { Route, HashRouter as Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import ProfilePageRoutes from '../../components/pageComponents/ProfilePage/ProfilePageRoutes';
-import ProfileNavbar from '../../components/pageComponents/ProfilePage/ProfileNavbar';
+import ProfilePageRoutes from '../../../routes/ProfilePageRoutes/ProfilePageRoutes';
+import ProfileNavbar from '../../components/ProfileNavbar';
 import './profilePage.scss';
 
 class ProfilePage extends React.Component {
     state = {
         // eslint-disable-next-line react/no-unused-state
-        mockUp: true,
     };
 
     render() {

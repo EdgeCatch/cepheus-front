@@ -3,7 +3,7 @@ import * as React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import imgHomeArray from './img/index';
-import HomeImgBlock from '../../components/pageComponents/CartPage/HomeImgBlock';
+import HomeImgBlock from '../../components/HomeImgBlock';
 import './homePage.scss';
 
 type AppProps = {};

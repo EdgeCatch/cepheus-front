@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../../../Button';
+import Button from '../../Button';
 import './sellerSetup.scss';
 
 const privateKey = 'textarea__item setup-seller__key private-key';

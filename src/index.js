@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import store from './store/index';
 import { AppRoot, ErrorBoundary } from './view/components';
 import './view/styles/index.scss';
-import { saveState } from './localStorage';
+import { saveState } from './store/localStorage';
 
 /* eslint-disable import/prefer-default-export */
 export const history = createBrowserHistory();

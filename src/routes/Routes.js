@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import routePaths from './routePaths';
+import routePaths from './ProfilePageRoutes/routePaths';
 import * as Pages from '../view/pages';
 
 const Routes = () => (

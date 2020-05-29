@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
+import Form from 'react-bootstrap/cjs/Form';
+import FormControl from 'react-bootstrap/esm/FormControl';
 import iconsCollection from './icons/index';
 
 const HeaderLogo = () => (

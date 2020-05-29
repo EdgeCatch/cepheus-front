@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import HeaderLogo from '../pageComponents/HomePage/HeaderLogo';
+import HeaderLogo from '../HeaderLogo';
 import iconsCollection from './icons/index';
 import './navigation.scss';
 
@@ -25,7 +25,7 @@ const Navigation = () => (
             <Link to="/cart">
                 <img className="header__nav_icons" src={iconsCollection.cart} alt="" />
             </Link>
-            <Link toef="/profile">
+            <Link to="/profile">
                 <img className="header__nav_icons" src={iconsCollection.user} alt="" />
             </Link>
         </Nav>
