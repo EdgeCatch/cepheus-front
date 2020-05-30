@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/cepheus-front/precache-manifest.ac34d33712a4eb4c736493495311ab9c.js"
+  "/cepheus-front/precache-manifest.d9772c347511d08ee4c0cbdccbad0333.js"
 );
 
 self.addEventListener('message', (event) => {

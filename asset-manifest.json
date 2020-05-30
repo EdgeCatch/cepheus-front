@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/cepheus-front/static/css/main.8857b80f.chunk.css",
-    "main.js": "/cepheus-front/static/js/main.990afbb5.chunk.js",
-    "main.js.map": "/cepheus-front/static/js/main.990afbb5.chunk.js.map",
+    "main.js": "/cepheus-front/static/js/main.958014c5.chunk.js",
+    "main.js.map": "/cepheus-front/static/js/main.958014c5.chunk.js.map",
     "runtime-main.js": "/cepheus-front/static/js/runtime-main.7a3b057b.js",
     "runtime-main.js.map": "/cepheus-front/static/js/runtime-main.7a3b057b.js.map",
     "static/js/2.c6966bc8.chunk.js": "/cepheus-front/static/js/2.c6966bc8.chunk.js",
     "static/js/2.c6966bc8.chunk.js.map": "/cepheus-front/static/js/2.c6966bc8.chunk.js.map",
     "index.html": "/cepheus-front/index.html",
-    "precache-manifest.ac34d33712a4eb4c736493495311ab9c.js": "/cepheus-front/precache-manifest.ac34d33712a4eb4c736493495311ab9c.js",
+    "precache-manifest.d9772c347511d08ee4c0cbdccbad0333.js": "/cepheus-front/precache-manifest.d9772c347511d08ee4c0cbdccbad0333.js",
     "service-worker.js": "/cepheus-front/service-worker.js",
     "static/css/main.8857b80f.chunk.css.map": "/cepheus-front/static/css/main.8857b80f.chunk.css.map",
     "static/media/base.svg": "/cepheus-front/static/media/base.8ce33750.svg",
@@ -27,6 +27,6 @@
     "static/js/runtime-main.7a3b057b.js",
     "static/js/2.c6966bc8.chunk.js",
     "static/css/main.8857b80f.chunk.css",
-    "static/js/main.990afbb5.chunk.js"
+    "static/js/main.958014c5.chunk.js"
   ]
 }

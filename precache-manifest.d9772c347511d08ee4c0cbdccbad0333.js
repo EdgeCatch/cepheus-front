@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0bc596cdbd02fd945de49215c74e4e4c",
+    "revision": "c668a3ec908b1e63c537abd0c399d182",
     "url": "/cepheus-front/index.html"
   },
   {
-    "revision": "db8e8f9a31261bcd445f",
+    "revision": "efc89045682f97387c85",
     "url": "/cepheus-front/static/css/main.8857b80f.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/cepheus-front/static/js/2.c6966bc8.chunk.js"
   },
   {
-    "revision": "db8e8f9a31261bcd445f",
-    "url": "/cepheus-front/static/js/main.990afbb5.chunk.js"
+    "revision": "efc89045682f97387c85",
+    "url": "/cepheus-front/static/js/main.958014c5.chunk.js"
   },
   {
     "revision": "1c565203b19c16aff5b7",
