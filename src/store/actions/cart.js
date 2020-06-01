@@ -1,6 +1,11 @@
+import _ from 'lodash';
+
 export const addToCart = obj => ({
     type: 'ADD_TO_CART',
-    payload: obj,
+    payload: obj = {
+        ...obj,
+        id: _.uniqueId(),
+    },
 });
 
 export const removeFromCart = id => ({
