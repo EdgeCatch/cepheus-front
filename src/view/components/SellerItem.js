@@ -1,8 +1,7 @@
 // @flow
 import React from 'react';
-import './infoItem.scss';
 
-const bag = require('./img/bag.jpg');
+const bag = require('./InfoItem/img/bag.jpg');
 
 type Props = {
     itemNameClass: any,
@@ -10,7 +9,7 @@ type Props = {
     onRemove: Function,
 };
 
-const InfoItem = (props: Props) => {
+const SellerItem = (props: Props) => {
     const { itemNameClass, onRemove, count } = props;
 
     return (
@@ -21,15 +20,19 @@ const InfoItem = (props: Props) => {
             <div className="item__info">
                 <div className="info-elements">
                     <h4 className="item__info_article">Blue bag champion </h4>
+                    <p className="item__info_exact">expire</p>
+                </div>
+                <div className="info-elements">
+                    <h4 className="item__info_article">Category</h4>
                     <p className="item__info_exact">$109</p>
                 </div>
                 <div className="info-elements">
-                    <h4 className="item__info_article">Price</h4>
-                    <p className="item__info_exact">$109</p>
+                    <h4 className="item__info_article">Type </h4>
+                    <p className="item__info_exact">Suitcase</p>
                 </div>
                 <div className="info-elements">
                     <h4 className="item__info_article">Count </h4>
-                    <p className="item__info_exact">{count}</p>
+                    <p className="item__info_exact">1</p>
                 </div>
                 <div className="info-elements">
                     <h4 className="item__info_article">Total </h4>
@@ -43,4 +46,4 @@ const InfoItem = (props: Props) => {
     );
 };
 
-export default InfoItem;
+export default SellerItem;

@@ -1,18 +1,23 @@
 .buyer-setup {
     border-radius: 20px;
-    box-shadow: 17.1981px 17.1981px 34.3963px #020303, -17.1981px -17.1981px 34.3963px rgba(39, 42, 47, 0.29);
+    
     color:#fff;
     padding: 45px 55px;
     display: flex;
-    background: linear-gradient(152.47deg, rgba(0, 0, 0, 0.4) -9.69%, rgba(43, 43, 43, 0.4) 115.55%), #2F3338;
     width: 55em;
 }
 
 
 .setup-buyer__block {
-    width: max-content;
+    width: 50%;
     margin-right: 84px;
 }
+
+
+.setup-buyer__block h3 {
+   text-align: center;
+}
+
 .setup-buyer__key {
     height:5rem;
 }

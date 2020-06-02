@@ -2,7 +2,7 @@
 import * as React from 'react';
 import Modal from '../../components/Modal/Modal';
 import './cartPage.scss';
-import CartItem from '../../components/CartItem';
+import CartItem from '../../containers/CartItem';
 import CartModalForm from '../../components/CartModalForm';
 
 type CartPageState = {

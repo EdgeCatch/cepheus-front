@@ -1,24 +1,27 @@
 import React from 'react';
 import { Route, HashRouter as Router } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
 import ProfilePageRoutes from '../../../routes/ProfilePageRoutes/ProfilePageRoutes';
 import ProfileNavbar from '../../components/ProfileNavbar/ProfileNavbar';
 import './profilePage.scss';
 
 class ProfilePage extends React.Component {
-    state = {
-        // eslint-disable-next-line react/no-unused-state
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            // isRegistered: false,
+            // isBuyer: false,
+        };
+    }
 
     render() {
-        const hs = createBrowserHistory();
-
         return (
-            <Router history={hs}>
+            <Router>
                 <div className="cart-page__wrapper">
                     <ProfileNavbar />
                     <div className="profile__main_column">
-                        <Route render={ProfilePageRoutes} />
+                        <div className="profile__main_column-inher">
+                            <Route render={ProfilePageRoutes} />
+                        </div>
                     </div>
                 </div>
             </Router>

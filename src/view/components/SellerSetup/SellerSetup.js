@@ -6,7 +6,7 @@ const privateKey = 'textarea__item setup-seller__key private-key';
 const publicKey = 'textarea__item setup-seller__key public-key';
 
 const SellerSetup = () => (
-    <div className="buyer-setup">
+    <div className="seller-setup">
         <div className="setup-buyer__block">
             <h3>Setup Your Seller Account</h3>
             <form className="buyer-setup__form">

@@ -13,20 +13,22 @@
 }
 
 .item__info {
-    width: 28rem;
     display: flex;
+}
+
+.info-elements {
+    width: fit-content
 }
 
 .info-elements:first-child {
     padding: 0 40px 0 0;
-    width: 10rem;
 }
 .info-elements {
     display: flex;
     height: 2rem;
     width: max-content;
     flex-direction: column;
-    padding: 0 40px;
+    padding: 0 20px;
 }
 
 .info-elements:last-child {

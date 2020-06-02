@@ -6,12 +6,12 @@ import * as Components from './profileComponents';
 
 const ProfilePageRoutes = () => (
     <Switch>
-        <Route path={routePaths.buyerSetup()} component={Components.BuyerSetup} />
-        <Route path={routePaths.sellerSetup()} component={Components.SellerSetup} />
+        <Route path={routePaths.buyerSetup()} component={Components.SellerSetup} />
+        <Route path={routePaths.profileOrderItems()} component={Components.OrderTestItem} />
+        <Route path={routePaths.profileRefundRequest()} component={Components.refundItem} />
+        <Route path={routePaths.sellerItems()} component={Components.sellerItems} />
         <Route path={routePaths.TestItem()} component={Components.TestItem} />
-        <Route path={routePaths.TestItem()} component={Components.TestItem} />
-        <Route path={routePaths.TestItem()} component={Components.TestItem} />
-        <Route path={routePaths.TestItem()} component={Components.TestItem} />
+        <Route path={routePaths.buyerSetupRegistered()} component={Components.registeredAccount} />
     </Switch>
 );
 
