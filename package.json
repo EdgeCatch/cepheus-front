@@ -6,9 +6,13 @@
     "@babel/polyfill": "^7.4.4",
     "@babel/runtime-corejs2": "^7.4.4",
     "@inlet/react-pixi": "^1.1.2",
+    "@taquito/signer": "^6.3.0-wallet.3",
+    "@taquito/taquito": "^6.3.0-wallet.4",
     "axios": "^0.19.2",
+    "bip39": "^3.0.2",
     "bootstrap": "^4.4.1",
     "classnames": "^2.2.6",
+    "ed25519-hd-key": "^1.1.2",
     "history": "^4.10.1",
     "jss": "^10.0.0",
     "lodash": "^4.17.15",
@@ -18,11 +22,13 @@
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.12.0",
+    "react-hook-form": "^5.7.2",
     "react-jss": "^10.0.3",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "taquito": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
