@@ -11,10 +11,12 @@
     justify-content: space-around;
 }
 
-.test-item__info {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    align-items: center;
+.item__info_button {
     height: 100%;
 }
+
+.seller-refund {
+    font-weight: bold;
+    padding: px;
+}
+

@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 
-const bag = require('./InfoItem/img/bag.jpg');
+const bag = require('../InfoItem/img/bag.jpg');
 
 type Props = {
     itemNameClass: any,

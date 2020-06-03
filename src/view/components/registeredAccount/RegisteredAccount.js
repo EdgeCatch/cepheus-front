@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from './Button/Button';
+import Button from '../Button/Button';
 import './registeredAccount.scss';
 
 const privateKey = 'textarea__item setup-seller__key private-key';
@@ -7,7 +7,7 @@ const publicKey = 'textarea__item setup-seller__key public-key';
 const withdraw = 'textarea__item  withdraw';
 const receiver = 'textarea__item  receiver';
 
-const registeredAccount = () => (
+const RegisteredAccount = () => (
     <>
         <div className="seller-setup">
             <div className="setup-buyer__block">
@@ -113,4 +113,4 @@ const registeredAccount = () => (
     </>
 );
 
-export default registeredAccount;
+export default RegisteredAccount;

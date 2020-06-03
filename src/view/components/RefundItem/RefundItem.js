@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './refundItem.scss';
 
-const refundItem = () => {
+const RefundItem = () => {
     return (
         <div className="refund-list_item">
             <div className="test-item__info">
@@ -26,13 +26,14 @@ const refundItem = () => {
                     <h4 className="item__info_article">Status </h4>
                     <p className="item__info_exact">Requsted</p>
                 </div>
+                <div className="item__info_button">
+                    <button type="submit" className="seller-refund purple">
+                        Accept refund
+                    </button>
+                </div>
             </div>
         </div>
     );
 };
 
-refundItem.propTypes = {
-    itemNameClass: PropTypes.string.isRequired,
-};
-
-export default refundItem;
+export default RefundItem;

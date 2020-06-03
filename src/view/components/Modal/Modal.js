@@ -31,7 +31,7 @@ const Modal = (props: ModalProps) => {
                             </div>
                             <div className="modal-body">{children}</div>
                             <div className="modal-footer">
-                                <Button className="buy-btn purple" onClick={onSubmit}>
+                                <Button className=" purple buy-btn " onClick={onSubmit}>
                                     {buttonText}
                                 </Button>
                             </div>

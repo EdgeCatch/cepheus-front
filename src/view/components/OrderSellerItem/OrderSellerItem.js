@@ -1,18 +1,31 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import './orderTestItem.scss';
+import Modal from '../Modal/Modal';
+import SellerModalForm from '../SellerModalForm';
+import './orderSellerItem.scss';
 
 const orderEnchancer = require('./arrowEnhancer.png');
 
-const OrderTestItem = () => {
+const OrderSellerItem = () => {
     const [resolveOrder, setResolverOrder] = useState(false);
+
+    let [isModalDeliverOpen, setIsModalDeliverOpen] = useState(false);
+
+    // const openPurchaseModal = () => {
+    //     isModalDeliverOpen = true;
+    // };
+    const handleSubmit = () => {
+        isModalDeliverOpen = false;
+    };
+    const handleCancel = () => {
+        isModalDeliverOpen = false;
+    };
 
     const OrderButtons = () => {
         return resolveOrder ? (
             <div className="resolve-buttons">
                 {/* temporary button feature to change a state of bool */}
                 <button type="submit" className="purple" onClick={() => setResolverOrder(!resolveOrder)}>
-                    Confirm
+                    Delivery Info
                 </button>
                 <button type="submit" className="dark">
                     Request Refund
@@ -52,8 +65,18 @@ const OrderTestItem = () => {
 
                 <OrderButtons />
             </div>
+
+            <Modal
+                title="Your Delivery Details"
+                onCancel={() => handleCancel()}
+                onSubmit={() => handleSubmit()}
+                isOpen={isModalDeliverOpen}
+                buttonText="Add Item"
+            >
+                <SellerModalForm />
+            </Modal>
         </div>
     );
 };
 
-export default OrderTestItem;
+export default OrderSellerItem;

@@ -3,7 +3,9 @@ export default {
     TestItem: () => '/test',
     sellerSetup: () => '/seller',
     profileOrderItems: () => '/order',
-    profileRefundRequest: () => '/refund',
+    buyerRefundRequest: () => '/refund',
     sellerItems: () => '/seller-items',
     buyerSetupRegistered: () => '/buyer-registered',
+    orderSellerItem: () => '/seller-order',
+    sellerRefundRequest: () => '/seller-refund',
 };

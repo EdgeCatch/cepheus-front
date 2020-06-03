@@ -7,9 +7,6 @@ const BuyerNav = () => (
         <NavLink to="/buyer" className="profile-nav" activeClassName="profile-nav-active">
             Account
         </NavLink>
-        <NavLink to="/seller-items" className="profile-nav" activeClassName="profile-nav-active">
-            Items
-        </NavLink>
         <NavLink to="/order" className="profile-nav" activeClassName="profile-nav-active">
             Orders
         </NavLink>

@@ -11,12 +11,12 @@
     justify-content: space-around;
 }
 
-.test-item__info {
-    padding: 15px 0;
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-}
+// .test-item__info {
+//     display: flex;
+//     width: 100%;
+//     justify-content: space-around;
+//     align-items: center;    
+// }
 
 .order-detail__enhancer {
     cursor: pointer;
@@ -35,8 +35,8 @@
 }
 
 .resolve-buttons button{
+    width: 140px;
     margin: 0 auto;
-    width: fit-content;
     height: fit-content;
     padding: 5px;
     display: block;
