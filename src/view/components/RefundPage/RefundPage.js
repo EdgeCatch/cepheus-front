@@ -1,3 +1,4 @@
+import '../refundItem.scss';
 import React from 'react';
 import RefundItem from '../RefundItem/RefundItem';
 

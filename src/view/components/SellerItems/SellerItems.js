@@ -2,7 +2,7 @@ import React from 'react';
 import SellerItem from '../SellerItem/SellerItem';
 import Modal from '../Modal/Modal';
 import SellerModalForm from '../SellerModalForm';
-import '../refundItem.scss';
+import './sellerItems.scss';
 
 class SellerItems extends React.Component {
     constructor(props) {
@@ -29,10 +29,16 @@ class SellerItems extends React.Component {
 
         return (
             <>
-                <>
+                <div className="seller-items__block">
                     <SellerItem itemNameClass="cart" />
                     <SellerItem itemNameClass="cart" />
                     <SellerItem itemNameClass="cart" />
+
+                    <div className="seller-items_button">
+                        <button className="purple" type="submit" onClick={() => this.openPurchaseModal()}>
+                            addItem
+                        </button>
+                    </div>
 
                     <Modal
                         title="Your Delivery Details"
@@ -43,10 +49,7 @@ class SellerItems extends React.Component {
                     >
                         <SellerModalForm />
                     </Modal>
-                </>
-                <button className="purple" type="submit" onClick={() => this.openPurchaseModal()}>
-                    addItem
-                </button>
+                </div>
             </>
         );
     }
