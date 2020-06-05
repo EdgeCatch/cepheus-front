@@ -3,37 +3,28 @@ import classNames from 'classnames';
 import { useForm } from 'react-hook-form';
 import Button from '../Button/Button';
 import './buyerSetup.scss';
-import { getRandomWallet } from '../../../lib/account/random';
-import { saveAccount } from '../../../lib/account/storage';
+import { getRandomWallet } from '../../../contracts/account/random';
+import { saveAccount } from '../../../contracts/account/storage';
+import { setup } from '../../../contracts/account/setup';
+import { Market } from '../../../contracts/market/index';
+import store from '../../../store/index';
 
 const privateKey = 'textarea__item setup-seller__key private-key';
 const publicKey = 'textarea__item setup-seller__key public-key';
 
-const PLANS = {
-  free: {
-    name: 'Free',
-    price: 0,
-    fee: '1.5%'
-  },
-  standart: {
-    name: 'Standart',
-    price: 1000,
-    fee: '0.5%'
-  },
-  premium: {
-    name: 'Premium',
-    price: 2000,
-    fee: '0%'
-  }
-};
-
 function BuyerSetup() {
   const { handleSubmit, register, setValue, errors, getValues } = useForm();
+  const [isAccount, setAccount] = React.useState(false);
+  const [plans, setPlans] = React.useState({});
+  const [selectedPlanIndex, setPlanIndex] = React.useState(0);
 
-  const [selectedPlan, setPlan] = React.useState('standart');
   const onSubmit = values => console.log(values);
 
   React.useEffect(() => {
+    const {
+      market: { subscriptions }
+    } = store.getState();
+    setPlans(subscriptions);
     const account = JSON.parse(localStorage.getItem('buyerAccount'));
     if (account) {
       setValue([
@@ -44,7 +35,8 @@ function BuyerSetup() {
           publicKey: account.publicKey
         }
       ]);
-      setPlan(account.plan);
+      setPlanIndex(account.plan);
+      setAccount(true);
     }
   }, []);
 
@@ -58,9 +50,24 @@ function BuyerSetup() {
     ]);
   }
 
-  function handleSaveAccount() {
+  async function handleSaveAccount() {
     const accData = getValues();
-    saveAccount({ ...accData, plan: selectedPlan }, 'buyerAccount');
+    let Tezos = await setup(accData.privateKey);
+    let market = await Market.init(Tezos);
+    let pkh = await Tezos.signer.publicKeyHash();
+    let operation = await market.register(
+      `${selectedPlanIndex}`,
+      await Tezos.signer.publicKey()
+    );
+    saveAccount({ ...accData, plan: selectedPlanIndex }, 'buyerAccount');
+  }
+  async function handleChangePlan() {
+    const accData = getValues();
+    let Tezos = await setup(accData.privateKey);
+    let market = await Market.init(Tezos);
+    let pkh = await Tezos.signer.publicKeyHash();
+
+    let operation = await market.changeSubscription(selectedPlanIndex);
   }
   return (
     <div className="buyer-setup">
@@ -71,6 +78,7 @@ function BuyerSetup() {
             name="privateKey"
             className={privateKey}
             cols="30"
+            disabled={isAccount}
             rows="10"
             placeholder="Generated Seller Private Key"
             ref={register({ required: 'Required' })}
@@ -78,6 +86,7 @@ function BuyerSetup() {
           <textarea
             name="publicKey"
             className={publicKey}
+            disabled={isAccount}
             cols="30"
             rows="10"
             placeholder="Your Seller Public Key"
@@ -85,19 +94,19 @@ function BuyerSetup() {
           />
 
           <div className="sub-plans">
-            {Object.values(PLANS).map((plan, index) => (
+            {Object.values(plans).map((plan, index) => (
               <div
+                key={index}
                 className={classNames(
                   'subscription',
-                  plan.name.toLocaleLowerCase() === selectedPlan &&
-                    'sub-selected'
+                  index == selectedPlanIndex && 'sub-selected'
                 )}
-                onClick={() => setPlan(plan.name.toLocaleLowerCase())}
+                onClick={() => setPlanIndex(index)}
               >
-                <span>{plan.name}</span>
+                <span>{index}</span>
                 <div className="sub-details">
-                  <p>Price: {plan.price} </p>
-                  <p>Fee: {plan.fee}</p>
+                  <p>Price: {Number(plan.price)} </p>
+                  <p>Fee: {Number(plan.fee)}</p>
                 </div>
               </div>
             ))}
@@ -110,13 +119,29 @@ function BuyerSetup() {
             >
               Random
             </Button>
-            <Button
-              className="buyer-setup-btn purple setup-btn"
-              type="submit"
-              onClick={handleSaveAccount}
-            >
-              Setup
-            </Button>
+            {isAccount ? (
+              <Button
+                className={classNames(
+                  'buyer-setup-btn setup-btn',
+                  JSON.parse(localStorage.getItem('buyerAccount')).plan ===
+                    selectedPlanIndex
+                    ? 'dark'
+                    : 'purple'
+                )}
+                type="submit"
+                onClick={handleSaveAccount}
+              >
+                Change Plan
+              </Button>
+            ) : (
+              <Button
+                className="buyer-setup-btn purple setup-btn"
+                type="submit"
+                onClick={handleChangePlan}
+              >
+                Setup
+              </Button>
+            )}
           </div>
         </form>
       </div>
