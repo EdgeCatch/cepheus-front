@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from '../Modal/Modal';
-import SellerModalForm from '../SellerModalForm';
+import DeliveryModal from '../DeliveryModal/DeliveryModal';
 import './orderSellerItem.scss';
 
 const orderEnchancer = require('./arrowEnhancer.png');
@@ -11,11 +11,11 @@ const OrderSellerItem = () => {
     let [isModalDeliverOpen, setIsModalDeliverOpen] = useState(false);
 
     // const openPurchaseModal = () => {
-    //     isModalDeliverOpen = true;
+    //     setIsModalDeliverOpen(!isModalDeliverOpen);
     // };
-    const handleSubmit = () => {
-        isModalDeliverOpen = false;
-    };
+    // const handleSubmit = () => {
+    //     setIsModalDeliverOpen(!isModalDeliverOpen);
+    // };
     const handleCancel = () => {
         isModalDeliverOpen = false;
     };
@@ -24,7 +24,14 @@ const OrderSellerItem = () => {
         return resolveOrder ? (
             <div className="resolve-buttons">
                 {/* temporary button feature to change a state of bool */}
-                <button type="submit" className="purple" onClick={() => setResolverOrder(!resolveOrder)}>
+                <button
+                    type="submit"
+                    className="purple"
+                    onClick={() => {
+                        setIsModalDeliverOpen(!isModalDeliverOpen);
+                        console.log(isModalDeliverOpen);
+                    }}
+                >
                     Delivery Info
                 </button>
                 <button type="submit" className="dark">
@@ -68,12 +75,12 @@ const OrderSellerItem = () => {
 
             <Modal
                 title="Your Delivery Details"
-                onCancel={() => handleCancel()}
-                onSubmit={() => handleSubmit()}
+                onCancel={() => setIsModalDeliverOpen(!isModalDeliverOpen)}
+                onSubmit={() => setIsModalDeliverOpen(!isModalDeliverOpen)()}
                 isOpen={isModalDeliverOpen}
                 buttonText="Add Item"
             >
-                <SellerModalForm />
+                <DeliveryModal />
             </Modal>
         </div>
     );

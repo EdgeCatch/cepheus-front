@@ -37,6 +37,8 @@
 }
 .buyer-setup-buttons {
     margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
 }
 .buyer-setup-btn {
     padding:  8px 12px;
