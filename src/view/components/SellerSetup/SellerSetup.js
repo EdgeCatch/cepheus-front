@@ -2,8 +2,11 @@ import React from 'react';
 import classNames from 'classnames';
 import { useForm } from 'react-hook-form';
 import Button from '../Button/Button';
-import { getRandomWallet } from '../../../lib/account/random';
-import { saveAccount } from '../../../lib/account/storage';
+import { getRandomWallet } from '../../../contracts/account/random';
+import { saveAccount } from '../../../contracts/account/storage';
+import { setup } from '../../../contracts/account/setup';
+import { Market } from '../../../contracts/market/index';
+import store from '../../../store/index';
 
 import './sellerSetup.scss';
 
@@ -30,11 +33,16 @@ const PLANS = {
 
 function SellerSetup() {
   const { handleSubmit, register, setValue, errors, getValues } = useForm();
+  const [plans, setPlans] = React.useState({});
+  const [selectedPlanIndex, setPlanIndex] = React.useState(0);
 
-  const [selectedPlan, setPlan] = React.useState('standart');
   const onSubmit = values => console.log(values);
 
   React.useEffect(() => {
+    const {
+      market: { subscriptions }
+    } = store.getState();
+    setPlans(subscriptions);
     const account = JSON.parse(localStorage.getItem('sellerAccount'));
     if (account) {
       setValue([
@@ -45,7 +53,7 @@ function SellerSetup() {
           publicKey: account.publicKey
         }
       ]);
-      setPlan(account.plan);
+      setPlanIndex(account.plan);
     }
   }, []);
 
@@ -59,9 +67,17 @@ function SellerSetup() {
     ]);
   }
 
-  function handleSaveAccount() {
+  async function handleSaveAccount() {
     const accData = getValues();
-    saveAccount({ ...accData, plan: selectedPlan }, 'sellerAccount');
+    let Tezos = await setup();
+    let market = await Market.init(Tezos);
+    let pkh = await Tezos.signer.publicKeyHash();
+    let initialStorage = await market.getFullStorage({ accounts: [pkh] });
+    // assert.equal(initialStorage.accountsExtended[pkh], undefined);
+    let operation = await market.register('0', await Tezos.signer.publicKey());
+    // assert(operation.status === 'applied', 'Operation was not applied');
+    let updatedStorage = await market.getFullStorage({ accounts: [pkh] });
+    saveAccount({ ...accData, plan: selectedPlanIndex }, 'sellerAccount');
   }
 
   return (
@@ -87,19 +103,19 @@ function SellerSetup() {
           />
 
           <div className="sub-plans">
-            {Object.values(PLANS).map((plan, index) => (
+            {Object.values(plans).map((plan, index) => (
               <div
+                key={index}
                 className={classNames(
                   'subscription',
-                  plan.name.toLocaleLowerCase() === selectedPlan &&
-                    'sub-selected'
+                  index == selectedPlanIndex && 'sub-selected'
                 )}
-                onClick={() => setPlan(plan.name.toLocaleLowerCase())}
+                onClick={() => setPlanIndex(index)}
               >
-                <span>{plan.name}</span>
+                <span>{index}</span>
                 <div className="sub-details">
-                  <p>Price: {plan.price} </p>
-                  <p>Fee: {plan.fee}</p>
+                  <p>Price: {Number(plan.price)} </p>
+                  <p>Fee: {Number(plan.fee)}</p>
                 </div>
               </div>
             ))}
