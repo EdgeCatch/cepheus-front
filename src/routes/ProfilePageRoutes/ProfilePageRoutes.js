@@ -6,7 +6,7 @@ import * as Components from './profileComponents';
 
 const ProfilePageRoutes = () => (
     <Switch>
-        <Route path={routePaths.buyerSetup()} component={Components.SellerSetup} />
+        <Route path={routePaths.accountSetup()} component={Components.AccountSetup} />
         <Route path={routePaths.profileOrderItems()} component={Components.OrderTestItem} />
         <Route path={routePaths.buyerRefundRequest()} component={Components.RefundItem} />
         <Route path={routePaths.sellerItems()} component={Components.SellerItems} />

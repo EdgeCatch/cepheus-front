@@ -5,12 +5,12 @@ const bag = require('../InfoItem/img/bag.jpg');
 
 type Props = {
     itemNameClass: any,
-    count: String,
+    // count: String,
     onRemove: Function,
 };
 
 const SellerItem = (props: Props) => {
-    const { itemNameClass, onRemove, count } = props;
+    const { itemNameClass, onRemove } = props;
 
     return (
         <div className={`${itemNameClass} item`}>

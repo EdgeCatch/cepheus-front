@@ -1,5 +1,5 @@
 export default {
-    buyerSetup: () => '/buyer',
+    accountSetup: () => '/buyer',
     TestItem: () => '/test',
     sellerSetup: () => '/seller',
     profileOrderItems: () => '/order',

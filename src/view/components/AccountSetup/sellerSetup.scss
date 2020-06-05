@@ -10,12 +10,13 @@
 }
 
 .sub-plans {
-    margin: 80px 0;
     display: flex;
     justify-content: space-evenly;
     font-size: 12px;
     line-height: 17px;
-    color: #fff;
+    height: 35%;
+    align-content: space-around;
+    flex-wrap: wrap;
 }
 
 .setup-seller__key {

@@ -1,6 +1,6 @@
 import TestItem from '../../view/components/TestItem/TestItem';
 import BuyerSetup from '../../view/components/BuyerSetup/BuyerSetup';
-import SellerSetup from '../../view/components/SellerSetup/SellerSetup';
+import AccountSetup from '../../view/components/AccountSetup/AccountSetup';
 import OrderTestItem from '../../view/components/OrderTestItem/OrderTestItem';
 import RefundItem from '../../view/components/RefundItem/RefundItem';
 import SellerItems from '../../view/components/SellerItems/SellerItems';
@@ -11,7 +11,7 @@ import OrderSellerItem from '../../view/components/OrderSellerItem/OrderSellerIt
 export {
     TestItem,
     BuyerSetup,
-    SellerSetup,
+    AccountSetup,
     OrderTestItem,
     RefundItem,
     SellerItems,

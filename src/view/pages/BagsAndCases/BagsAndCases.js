@@ -19,10 +19,10 @@ class BagsAndCases extends React.Component<Props> {
     }
 
     render() {
-        const { bags, isReady } = this.props;
+        const { isReady } = this.props;
 
         return (
-            <div id="bag-page" className="cart-page__wrapper">
+            <div className="bag-page">
                 <div id="card-items">
                     {!isReady ? 'Downloading...' : bagItems.map(bag => <BagItem key={bag.id} {...bag} />)}
                 </div>

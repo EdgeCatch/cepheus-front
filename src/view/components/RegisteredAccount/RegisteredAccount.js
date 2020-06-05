@@ -1,11 +1,7 @@
 import React from 'react';
 import Button from '../Button/Button';
 import './registeredAccount.scss';
-
-const privateKey = 'textarea__item setup-seller__key private-key';
-const publicKey = 'textarea__item setup-seller__key public-key';
-const withdraw = 'textarea__item  withdraw';
-const receiver = 'textarea__item  receiver';
+import { privateKey, publicKey, withdraw, receiver } from '../../constants';
 
 const RegisteredAccount = () => (
     <>
@@ -23,7 +19,7 @@ const RegisteredAccount = () => (
                     <textarea name="" className={privateKey} cols="30" rows="10" placeholder="Your Seller Public Key" />
                 </form>
                 <div className="buyer-setup-buttons">
-                    <Button className="buyer-setup-btn purple setup-btn"> Use</Button>
+                    <Button className="buyer-setup-btn purple setup-btn"> Update Plan</Button>
                 </div>
             </div>
             <div className="info-buyer__block">
@@ -67,6 +63,9 @@ const RegisteredAccount = () => (
                             <p>Fee: </p>
                         </div>
                     </div>
+                </div>
+                <div className="buyer-setup-buttons">
+                    <Button className="buyer-setup-btn purple setup-btn"> Withdraw</Button>
                 </div>
             </div>
 

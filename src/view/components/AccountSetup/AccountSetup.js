@@ -1,11 +1,10 @@
 import React from 'react';
 import Button from '../Button/Button';
 import './sellerSetup.scss';
+import { publicKey, privateKey } from '../../constants';
+import { Link } from 'react-router-dom';
 
-const privateKey = 'textarea__item setup-seller__key private-key';
-const publicKey = 'textarea__item setup-seller__key public-key';
-
-const SellerSetup = () => (
+const AccountSetup = () => (
     <div className="seller-setup">
         <div className="setup-buyer__block">
             <h3>Setup Your Seller Account</h3>
@@ -42,11 +41,13 @@ const SellerSetup = () => (
                     </div>
                 </div>
             </div>
-            <div className="buyer-setup-buttons">
-                <Button content="Setup" className="buyer-setup-btn dark ">
-                    Random
+            <div className="profile-setup-buttons">
+                <Button content="Setup" className="buyer-setup-btn dark  ">
+                    Setup
                 </Button>
-                <Button className="buyer-setup-btn purple setup-btn"> Setup</Button>
+                <Link to="/buyer-registered">
+                    <Button className="buyer-setup-btn purple setup-btn">Setup</Button>
+                </Link>
             </div>
         </div>
         <div className="info-buyer__block">
@@ -77,4 +78,4 @@ const SellerSetup = () => (
     </div>
 );
 
-export default SellerSetup;
+export default AccountSetup;

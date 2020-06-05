@@ -8,17 +8,7 @@ const orderEnchancer = require('./arrowEnhancer.png');
 const OrderSellerItem = () => {
     const [resolveOrder, setResolverOrder] = useState(false);
 
-    let [isModalDeliverOpen, setIsModalDeliverOpen] = useState(false);
-
-    // const openPurchaseModal = () => {
-    //     setIsModalDeliverOpen(!isModalDeliverOpen);
-    // };
-    // const handleSubmit = () => {
-    //     setIsModalDeliverOpen(!isModalDeliverOpen);
-    // };
-    const handleCancel = () => {
-        isModalDeliverOpen = false;
-    };
+    const [isModalDeliverOpen, setIsModalDeliverOpen] = useState(false);
 
     const OrderButtons = () => {
         return resolveOrder ? (

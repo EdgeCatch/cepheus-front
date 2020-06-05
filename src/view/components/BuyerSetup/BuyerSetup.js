@@ -1,10 +1,7 @@
 import React from 'react';
-import SellerSetup from '../SellerSetup/SellerSetup';
 import Button from '../Button/Button';
 import './buyerSetup.scss';
-
-const privateKey = 'textarea__item setup-seller__key private-key';
-const publicKey = 'textarea__item setup-seller__key public-key';
+import { privateKey, publicKey } from '../../constants';
 
 class BuyerSetup extends React.Component {
     constructor(props) {
@@ -37,7 +34,7 @@ class BuyerSetup extends React.Component {
                                 placeholder="Your Buyer Public Key"
                             />
                         </form>
-                        <div className="buyer-setup-buttons">
+                        <div className="profile-setup-buttons">
                             <Button content="Setup" className="buyer-setup-btn dark ">
                                 Random
                             </Button>
@@ -58,7 +55,7 @@ class BuyerSetup extends React.Component {
                         </div>
                     </div>
                 </div>
-                <SellerSetup />
+                {/* <SellerSetup /> */}
             </>
         );
     }
