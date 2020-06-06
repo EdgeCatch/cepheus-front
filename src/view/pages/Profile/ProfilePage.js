@@ -2,6 +2,10 @@ import React from 'react';
 import { Route, HashRouter as Router } from 'react-router-dom';
 import ProfilePageRoutes from '../../../routes/ProfilePageRoutes/ProfilePageRoutes';
 import ProfileNavbar from '../../components/ProfileNavbar/ProfileNavbar';
+import { Market } from '../../../contracts/market/index';
+import { setup } from '../../../contracts/account/setup';
+import store from '../../../store/index';
+
 import './profilePage.scss';
 
 class ProfilePage extends React.Component {
@@ -11,6 +15,19 @@ class ProfilePage extends React.Component {
             // isRegistered: false,
             // isBuyer: false,
         };
+    }
+
+    async componentDidMount() {
+        const Tezos = await setup();
+        const market = await Market.init(Tezos);
+        const initialStorage = await market.getFullStorage({
+            subscriptions: ['0', '1', '2'],
+        });
+
+        store.dispatch({
+            type: 'SET_SUBSCRIPTIONS',
+            subscriptions: initialStorage.subscriptionsExtended,
+        });
     }
 
     render() {

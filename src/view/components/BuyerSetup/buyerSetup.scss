@@ -1,25 +1,23 @@
 .buyer-setup {
     border-radius: 20px;
-    
-    color:#fff;
+
+    color: #fff;
     padding: 45px 55px;
     display: flex;
     width: 55em;
 }
-
 
 .setup-buyer__block {
     width: 50%;
     margin-right: 84px;
 }
 
-
 .setup-buyer__block h3 {
-   text-align: center;
+    text-align: center;
 }
 
 .setup-buyer__key {
-    height:5rem;
+    height: 5rem;
 }
 
 .info-buyer__block {
@@ -38,18 +36,18 @@
 .profile-setup-buttons {
     margin-top: 30px;
     display: flex;
-    justify-content: space-evenly;}
+    justify-content: space-evenly;
+}
 
 .buyer-setup-buttons {
     margin: 50px 0;
     display: flex;
-    justify-content: flex-end;
-
+    justify-content: space-around;
 }
 .buyer-setup-btn {
-    padding:  8px 12px;
+    padding: 8px 12px;
 }
 
-.setup-btn  {
-    margin: 0 15px;
+.sub-details {
+    padding: 7px 0;
 }

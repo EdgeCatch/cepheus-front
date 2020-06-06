@@ -12,25 +12,26 @@ import { saveState } from './store/localStorage';
 /* eslint-disable import/prefer-default-export */
 export const history = createBrowserHistory();
 
-const getRootElement = (): HTMLElement => (document.getElementById('root'): any);
+const getRootElement = (): HTMLElement =>
+  (document.getElementById('root'): any);
 
 const rootElement: HTMLElement = getRootElement();
 
 const renderApp = Component => {
-    // $FlowFixMe
-    ReactDOM.render(Component, rootElement);
+  // $FlowFixMe
+  ReactDOM.render(Component, rootElement);
 };
 
 store.subscribe(() => {
-    saveState(store.getState());
+  saveState(store.getState());
 });
 
 renderApp(
-    <ErrorBoundary>
-        <Provider store={store}>
-            <Router history={history}>
-                <AppRoot />
-            </Router>
-        </Provider>
-    </ErrorBoundary>,
+  <ErrorBoundary>
+    <Provider store={store}>
+      <Router history={history}>
+        <AppRoot />
+      </Router>
+    </Provider>
+  </ErrorBoundary>
 );
