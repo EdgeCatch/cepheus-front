@@ -13,7 +13,7 @@ const BagItem = (bag: Props) => {
     const { title, price, addToCart } = bag;
 
     return (
-        <div className="goods-tile" style={{ width: 'calc( ( 100% - 40px ) / 3 );', margin: '15px' }}>
+        <div className="goods-tile" style={{ width: 'calc( ( 100% - 40px ) / 3 )', margin: '15px' }}>
             <Card style={{ border: 'none' }}>
                 <Card.Body className="item__body">
                     <Card.Img

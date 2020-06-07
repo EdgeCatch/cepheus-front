@@ -4,7 +4,7 @@ import BagItem from '../components/BagItem';
 import * as cartActions from '../../store/actions/cart';
 
 const mapStateToProps = ({ cart }, { id }) => ({
-    addedCount: cart.items.reduce((count, bag) => count + (bag.id === id ? 1 : 0), 0),
+    addedCount: cart.items.reduce((count, bag) => count + (bag.id === id ? 1 : 0), 1),
 });
 
 const mapDispatchToProps = dispatch => ({

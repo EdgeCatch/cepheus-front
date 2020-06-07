@@ -1,5 +1,10 @@
 .cart-page__wrapper {
     display: flex;
+    width: 100%;
+}
+
+.profile__main_column {
+    width: 100%;
 }
 
 /*
@@ -17,22 +22,21 @@
     width: 380px;
     padding: 30px;
     margin-bottom: 30px;
-
 }
 
 /*
 </seller and buyer-component styles>
 */
 .seller-component a,
-.buyer-component a  {
-padding :20px 0;
+.buyer-component a {
+    padding: 20px 0;
 }
 /*
 <nav and buyer styles>
 */
 
 .nav-components {
-  margin: 0 36px;
+    margin: 0 36px;
 }
 
 /*
@@ -40,7 +44,6 @@ padding :20px 0;
 */
 
 .purchases_total {
-    position: relative;
     padding: 20px 24px;
     background: linear-gradient(170.75deg, rgba(0, 0, 0, 0.4) -9.69%, rgba(43, 43, 43, 0.4) 115.55%), #2f3338;
     color: #fff;

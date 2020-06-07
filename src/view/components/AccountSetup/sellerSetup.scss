@@ -1,0 +1,54 @@
+.seller-setup {
+    border-radius: 20px;
+    box-shadow: 17.1981px 17.1981px 34.3963px #020303, -17.1981px -17.1981px 34.3963px rgba(39, 42, 47, 0.29);
+    color: #fff;
+    padding: 45px 55px;
+    display: flex;
+    background: linear-gradient(152.47deg, rgba(0, 0, 0, 0.4) -9.69%, rgba(43, 43, 43, 0.4) 115.55%), #2f3338;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.sub-plans {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 12px;
+    line-height: 17px;
+    height: 35%;
+    align-content: space-around;
+    flex-wrap: wrap;
+}
+
+.setup-seller__key {
+    width: 100%;
+}
+
+.subscription {
+    text-align: center;
+    cursor: pointer;
+    background: linear-gradient(136.47deg, rgba(0, 0, 0, 0.4) -9.69%, rgba(43, 43, 43, 0.4) 115.55%), #2f3338;
+    background-blend-mode: soft-light, normal;
+    box-shadow: 17.1981px 17.1981px 34.3963px #020303, -17.1981px -17.1981px 34.3963px rgba(39, 42, 47, 0.29);
+    border-radius: 20px;
+    width: 85px;
+    height: 80px;
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.subscription span {
+    display: inline-block;
+    width: 100%;
+    background: #2f3338;
+    box-shadow: 0px 10px 40px rgba(84, 88, 247, 0.2);
+    border-radius: 20px 20px 0 0;
+}
+
+.sub-selected span {
+    background: #5458f7;
+}
+
+.sub-details {
+    padding: 7px 0;
+}

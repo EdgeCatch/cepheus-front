@@ -5,12 +5,12 @@ import './buyerNav.scss';
 const BuyerNav = () => (
     <div className="buyer-component">
         <NavLink to="/buyer" className="profile-nav" activeClassName="profile-nav-active">
-            Buyer
+            Account
         </NavLink>
         <NavLink to="/order" className="profile-nav" activeClassName="profile-nav-active">
             Orders
         </NavLink>
-        <NavLink to="/test" className="profile-nav" activeClassName="profile-nav-active">
+        <NavLink to="/refund" className="profile-nav" activeClassName="profile-nav-active">
             Refund Requests
         </NavLink>
     </div>

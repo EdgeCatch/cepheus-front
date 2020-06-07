@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
-import axios from 'axios';
 import BagItem from '../../containers/BagItem';
+import bagItems from './bagItems';
 import './bagsAndCases.scss';
 
 type Props = {
@@ -15,18 +15,16 @@ class BagsAndCases extends React.Component<Props> {
     componentDidMount() {
         const { setBags } = this.props;
 
-        axios.get('/bags.json').then(({ data }): Object => {
-            setBags(data);
-        });
+        setBags(bagItems);
     }
 
     render() {
-        const { bags, isReady } = this.props;
+        const { isReady } = this.props;
 
         return (
-            <div id="bag-page" className="cart-page__wrapper">
+            <div className="bag-page">
                 <div id="card-items">
-                    {!isReady ? 'Downloading...' : bags.map(bag => <BagItem key={bag.id} {...bag} />)}
+                    {!isReady ? 'Downloading...' : bagItems.map(bag => <BagItem key={bag.id} {...bag} />)}
                 </div>
             </div>
         );

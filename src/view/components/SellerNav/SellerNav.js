@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom';
 
 const SellerNav = () => (
     <div className="seller-component">
-        <NavLink to="/seller" className="profile-nav" activeClassName="profile-nav-active">
+        {/* <NavLink to="/seller" className="profile-nav" activeClassName="profile-nav-active">
             Seller
-        </NavLink>
+        </NavLink> */}
         <NavLink to="/seller-order" className="profile-nav" activeClassName="profile-nav-active">
             Orders
         </NavLink>
