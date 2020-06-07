@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Route } from 'react-router-dom';
 import withStyles from 'react-jss';
 import { Routes } from '../../routes';
@@ -12,8 +12,10 @@ const AppRoot = () => {
     return (
         <div id="wrapper">
             <Header />
-            <Route component={Routes} />
-            <Divider />
+            <Suspense fallback={<div>Завантаження...</div>}>
+                <Route component={Routes} />
+                <Divider />
+            </Suspense>
             <Footer />
         </div>
     );

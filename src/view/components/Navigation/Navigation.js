@@ -1,5 +1,5 @@
 // @flow
-import * as React from 'react';
+import React, { Suspense } from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import HeaderLogo from '../HeaderLogo';
