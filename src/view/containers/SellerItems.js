@@ -6,6 +6,7 @@ import SellerItems from '../components/SellerItems/SellerItems';
 
 const mapStateToProps = state => ({
     sellItemsList: state.sellItems.sellItemsList,
+    ItemManager: state.ItemManagerClien,
 });
 
 const mapDispatchToProps = dispatch => ({

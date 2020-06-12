@@ -33,10 +33,11 @@ class SellerItems extends React.Component {
 
     render() {
         const { isModalAddItemOpen } = this.state;
-        const { sellItemsList } = this.props;
+        const { sellItemsList, ItemManager } = this.props;
 
         const goodsForSaleList = () => sellItemsList.map(item => item);
 
+        console.log(ItemManager);
         return (
             <>
                 <div className="seller-items__block">
