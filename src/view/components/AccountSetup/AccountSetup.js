@@ -69,8 +69,8 @@ function AccountSetup() {
     return (
         <div className="seller-setup">
             <div className="setup-buyer__block">
-                <h3>Setup Your Seller Account</h3>
-                <form className="buyer-setup__form" onSubmit={handleSubmit(onSubmit)}>
+                <h3>Setup Your Account</h3>
+                <form className="buyer-setup__form-unregistered" onSubmit={handleSubmit(onSubmit)}>
                     <textarea
                         name="privateKey"
                         className={privateKey}

@@ -1,6 +1,5 @@
 // @flow
-import React, { Suspense } from 'react';
-
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import routePaths from './ProfilePageRoutes/routePaths';
 import * as Pages from '../view/pages';

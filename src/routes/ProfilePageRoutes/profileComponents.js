@@ -3,7 +3,7 @@ import BuyerSetup from '../../view/components/BuyerSetup/BuyerSetup';
 import AccountSetup from '../../view/components/AccountSetup/AccountSetup';
 import OrderTestItem from '../../view/components/OrderTestItem/OrderTestItem';
 import RefundItem from '../../view/components/RefundItem/RefundItem';
-import SellerItems from '../../view/components/SellerItems/SellerItems';
+import SellerItems from '../../view/containers/SellerItems';
 import RegisteredAccount from '../../view/components/RegisteredAccount/RegisteredAccount';
 import RefundPage from '../../view/components/RefundPage/RefundPage';
 import OrderSellerItem from '../../view/components/OrderSellerItem/OrderSellerItem';

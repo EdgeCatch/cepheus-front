@@ -1,3 +1,10 @@
+@import '../AccountSetup/sellerSetup.scss';
 .withdraw {
     height: 4em!important;
+}
+
+
+.seller-setup-item {
+    @include seller-setup;
+    height: 35%;
 }

@@ -5,10 +5,10 @@ import { privateKey, publicKey, withdraw, receiver } from '../../constants';
 
 const RegisteredAccount = () => (
     <>
-        <div className="seller-setup">
+        <div className="seller-setup-item ">
             <div className="setup-buyer__block">
                 <h3>Setup Your Seller Account</h3>
-                <form className="buyer-setup__form">
+                <form className="buyer-setup__form-registered ">
                     <textarea
                         name=""
                         className={publicKey}
@@ -37,7 +37,7 @@ const RegisteredAccount = () => (
             </div>
         </div>
 
-        <div className="seller-setup">
+        <div className="seller-setup-item ">
             <div className="setup-buyer__block">
                 <h3>Chose Fee Plan</h3>
 
@@ -84,7 +84,7 @@ const RegisteredAccount = () => (
             </div>
         </div>
 
-        <div className="seller-setup">
+        <div className="seller-setup-item ">
             <div className="setup-buyer__block">
                 <h3>Withdraw Profit</h3>
                 <form className="buyer-setup__form">
