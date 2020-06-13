@@ -23,6 +23,9 @@ class BagsAndCases extends React.Component<Props> {
 
         return (
             <div className="bag-page">
+                <div className="bag-page__filter">
+                    
+                </div>
                 <div id="card-items">
                     {!isReady ? 'Downloading...' : bagItems.map(bag => <BagItem key={bag.id} {...bag} />)}
                 </div>

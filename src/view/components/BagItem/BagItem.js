@@ -13,7 +13,7 @@ const BagItem = (bag: Props) => {
     const { title, price, addToCart } = bag;
 
     return (
-        <div className="goods-tile" style={{ width: 'calc( ( 100% - 40px ) / 3 )', margin: '15px' }}>
+        <div className="goods-tile">
             <Card style={{ border: 'none' }}>
                 <Card.Body className="item__body">
                     <Card.Img
@@ -27,7 +27,7 @@ const BagItem = (bag: Props) => {
                 </Card.Body>
             </Card>
             <div className="add-to-card_btn purple" onClick={addToCart.bind(this, bag)}>
-                Add to cart
+               <p> Add to cart</p>
             </div>
         </div>
     );
