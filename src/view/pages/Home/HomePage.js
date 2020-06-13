@@ -18,27 +18,23 @@ class HomePage extends React.Component<AppProps, AppState> {
 
   render() {
     return (
-      <Container id="home-page">
+      <Container className="home-page flex">
         <h2 className="">What are you looking for?</h2>
-        <Row className="homePage__block  justify-content-center">
+        <div className="home-page__nav">
           <HomeImgBlock
             imgElement={imgHomeArray[0]}
             text="Bags And Cases"
             link="/bags-and-cases"
           />
           <HomeImgBlock imgElement={imgHomeArray[1]} text="Parfumes " />
-        </Row>
-        <Row className="homePage__block  justify-content-center">
           <HomeImgBlock imgElement={imgHomeArray[2]} text=" Ties And Belts" />
           <HomeImgBlock
             imgElement={imgHomeArray[3]}
             text="  Phone Accessories"
           />
-        </Row>
-        <Row className="homePage__block  justify-content-center">
           <HomeImgBlock imgElement={imgHomeArray[4]} text=" Alcohol" />
           <HomeImgBlock imgElement={imgHomeArray[5]} text=" E-cigarettes" />
-        </Row>
+        </div>
       </Container>
     );
   }
