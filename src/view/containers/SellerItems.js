@@ -5,12 +5,12 @@ import * as sellItems from '../../store/actions/sellItems';
 import SellerItems from '../components/SellerItems/SellerItems';
 
 const mapStateToProps = state => ({
-    sellItemsList: state.sellItems.sellItemsList,
-    ItemManager: state.ItemManagerClien,
+  sellItemsList: state.sellItems.sellItemsList,
+  ItemManagerClient: state.ipfs.ItemManagerClient
 });
 
 const mapDispatchToProps = dispatch => ({
-    ...bindActionCreators(sellItems, dispatch),
+  ...bindActionCreators(sellItems, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SellerItems);
