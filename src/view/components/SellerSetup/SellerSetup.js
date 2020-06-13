@@ -89,7 +89,7 @@ function SellerSetup() {
     return (
         <div className="buyer-setup">
             <div className="setup-buyer__block">
-                <h3>Setup Your Seller Account</h3>
+                <h3>Setup Your Seller kek</h3>
                 <form className="buyer-setup__form" onSubmit={handleSubmit(onSubmit)}>
                     <textarea
                         name="privateKey"

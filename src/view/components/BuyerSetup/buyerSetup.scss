@@ -1,3 +1,11 @@
+@mixin buyer-setup-buttons {
+    height: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+}
+
 .buyer-setup {
     border-radius: 20px;
 
@@ -8,6 +16,7 @@
 }
 
 .setup-buyer__block {
+    height: 100%;
     width: 50%;
     margin-right: 84px;
 }
@@ -24,8 +33,14 @@
     width: 40%;
 }
 
-.buyer-setup__form {
+.buyer-setup__form-unregistered {
     margin-top: 35px;
+    height: 40%;
+}
+
+.buyer-setup__form-registered {
+    margin-top: 35px;
+    height: auto;
 }
 
 .buyer-setup__form textarea {
@@ -36,18 +51,21 @@
 .profile-setup-buttons {
     margin-top: 30px;
     display: flex;
+
     justify-content: space-evenly;
 }
 
 .buyer-setup-buttons {
-    margin: 50px 0;
-    display: flex;
-    justify-content: space-around;
+ @include buyer-setup-buttons; 
+ margin: 50px 0;
 }
 .buyer-setup-btn {
     padding: 8px 12px;
 }
 
+.buyer-setup-buttons  button {
+    margin: 10px;
+}
 .sub-details {
     padding: 7px 0;
 }

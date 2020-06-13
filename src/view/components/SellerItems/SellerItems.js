@@ -12,6 +12,13 @@ class SellerItems extends React.Component {
         };
     }
 
+    onSubmit(e) {
+        this.props.sellItems();
+        console.log(e.target.value);
+        this.setState({ isModalAddItemOpen: false });
+        this.props.sellItemsList.push(<SellerItem itemNameClass="cart" />);
+    }
+
     openPurchaseModal = () => {
         return this.setState({ isModalAddItemOpen: true });
     };
@@ -26,24 +33,25 @@ class SellerItems extends React.Component {
 
     render() {
         const { isModalAddItemOpen } = this.state;
+        const { sellItemsList, ItemManager } = this.props;
 
+        const goodsForSaleList = () => sellItemsList.map(item => item);
+
+        console.log(ItemManager);
         return (
             <>
                 <div className="seller-items__block">
-                    <SellerItem itemNameClass="cart" />
-                    <SellerItem itemNameClass="cart" />
-                    <SellerItem itemNameClass="cart" />
-
+                    {goodsForSaleList()}
                     <div className="seller-items_button">
                         <button className="purple" type="submit" onClick={() => this.openPurchaseModal()}>
-                            addItem
+                            add Item
                         </button>
                     </div>
 
                     <Modal
                         title="Your Delivery Details"
                         onCancel={this.handleCancel}
-                        onSubmit={this.handleSubmit}
+                        onSubmit={this.onSubmit.bind(this)}
                         isOpen={isModalAddItemOpen}
                         buttonText="Add Item"
                     >

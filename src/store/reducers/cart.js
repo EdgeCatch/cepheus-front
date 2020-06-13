@@ -12,7 +12,6 @@ export default (state = initialState, action) => {
         case 'REMOVE_FROM_CART':
             return {
                 ...state,
-                // items: state.items.filter(o => o.id !== action.payload),
                 items: state.items.filter(o => o.id !== action.payload),
             };
         default:

@@ -66,7 +66,7 @@ const OrderSellerItem = () => {
             <Modal
                 title="Your Delivery Details"
                 onCancel={() => setIsModalDeliverOpen(!isModalDeliverOpen)}
-                onSubmit={() => setIsModalDeliverOpen(!isModalDeliverOpen)()}
+                onSubmit={() => setIsModalDeliverOpen(!isModalDeliverOpen)}
                 isOpen={isModalDeliverOpen}
                 buttonText="Add Item"
             >

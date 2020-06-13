@@ -11,7 +11,7 @@
   font-size: 14px;
   line-height: 21px;
   height: 35px;
-  width: 140px;;
+  width: 140px;
   box-shadow: -5px -5px 10px #292a2f, 7px 7px 10px #000000;
 }
 
@@ -34,7 +34,7 @@
 
 .purple {
   @include btn;
-  background-color: #5458f7;  
+  background-color: #5458f7;
 }
 
 .dark {
