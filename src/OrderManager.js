@@ -1,42 +1,15 @@
-import cryptico from 'cryptico';
+import IpfsManager from './IpfsManager';
 
-export default class OrderManager {
-  constructor(ipfs) {
-    this.ipfs = ipfs;
-  }
+export default class OrderManager extends IpfsManager {
+    async add(buyer, seller, encryptedForBuyer, encryptedForSeller) {
+        const order = {
+            buyer,
+            seller,
+            encryptedForBuyer,
+            encryptedForSeller,
+        };
 
-  static decrypt(privateKey, encryptedString) {
-    let decryptesString = cryptico.decrypt(encryptedString, privateKey)
-      .plaintext;
-    return JSON.parse(decryptesString);
-  }
-
-  static encrypt(publicKey, object) {
-    let buffer = JSON.stringify(object);
-    return cryptico.encrypt(buffer, publicKey).cipher;
-  }
-  async getByCid(cid) {
-    return await this.ipfs.dag.get(cid);
-  }
-
-  async add(
-    buyer,
-    seller,
-    name,
-    phone,
-    postOffice,
-    buyerPublicKey,
-    sellerPublicKey
-  ) {
-    let orderInfo = { name, phone, postOffice };
-    let encryptedForBuyer = OrderManager.encrypt(buyerPublicKey, orderInfo);
-    let encryptedForSeller = OrderManager.encrypt(sellerPublicKey, orderInfo);
-    let order = {
-      buyer,
-      seller,
-      encryptedForBuyer,
-      encryptedForSeller
-    };
-    return await this.ipfs.dag.put(order);
-  }
+        this.prevCid = await this.ipfs.dag.put(order);
+        return this.prevCid;
+    }
 }

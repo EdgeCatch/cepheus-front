@@ -2,6 +2,7 @@
 import React from 'react';
 import BagItem from '../../containers/BagItem';
 import bagItems from './bagItems';
+import Filter from '../../components/Filter';
 import './bagsAndCases.scss';
 
 type Props = {
@@ -23,10 +24,8 @@ class BagsAndCases extends React.Component<Props> {
 
         return (
             <div className="bag-page">
-                <div className="bag-page__filter">
-                    
-                </div>
-                <div id="card-items">
+                <Filter />
+                <div id="catalog-products">
                     {!isReady ? 'Downloading...' : bagItems.map(bag => <BagItem key={bag.id} {...bag} />)}
                 </div>
             </div>
