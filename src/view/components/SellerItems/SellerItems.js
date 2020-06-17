@@ -5,62 +5,64 @@ import SellerModalForm from '../SellerModalForm';
 import './sellerItems.scss';
 
 class SellerItems extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isModalAddItemOpen: false,
-        };
-    }
-
-    onSubmit(e) {
-        this.props.sellItems();
-        console.log(e.target.value);
-        this.setState({ isModalAddItemOpen: false });
-        this.props.sellItemsList.push(<SellerItem itemNameClass="cart" />);
-    }
-
-    openPurchaseModal = () => {
-        return this.setState({ isModalAddItemOpen: true });
+  constructor(props) {
+    super(props);
+    this.state = {
+      isModalAddItemOpen: false
     };
+  }
 
-    handleSubmit = () => {
-        this.setState({ isModalAddItemOpen: false });
-    };
+  onSubmit(e) {
+    this.props.sellItems();
+    console.log(e.target.value);
+    this.setState({ isModalAddItemOpen: false });
+    this.props.sellItemsList.push(<SellerItem itemNameClass="cart" />);
+  }
 
-    handleCancel = () => {
-        this.setState({ isModalAddItemOpen: false });
-    };
+  openPurchaseModal = () => {
+    return this.setState({ isModalAddItemOpen: true });
+  };
 
-    render() {
-        const { isModalAddItemOpen } = this.state;
-        const { sellItemsList, ItemManager } = this.props;
+  handleSubmit = () => {
+    this.setState({ isModalAddItemOpen: false });
+  };
 
-        const goodsForSaleList = () => sellItemsList.map(item => item);
+  handleCancel = () => {
+    this.setState({ isModalAddItemOpen: false });
+  };
 
-        console.log(ItemManager);
-        return (
-            <>
-                <div className="seller-items__block">
-                    {goodsForSaleList()}
-                    <div className="seller-items_button">
-                        <button className="purple" type="submit" onClick={() => this.openPurchaseModal()}>
-                            add Item
-                        </button>
-                    </div>
+  render() {
+    const { isModalAddItemOpen } = this.state;
+    const { sellItemsList, ItemManager } = this.props;
 
-                    <Modal
-                        title="Your Delivery Details"
-                        onCancel={this.handleCancel}
-                        onSubmit={this.onSubmit.bind(this)}
-                        isOpen={isModalAddItemOpen}
-                        buttonText="Add Item"
-                    >
-                        <SellerModalForm />
-                    </Modal>
-                </div>
-            </>
-        );
-    }
+    const goodsForSaleList = () => sellItemsList.map(item => item);
+
+    return (
+      <>
+        <div className="seller-items__block">
+          {goodsForSaleList()}
+          <div className="seller-items_button">
+            <button
+              className="purple"
+              type="submit"
+              onClick={() => this.openPurchaseModal()}
+            >
+              Add Item
+            </button>
+          </div>
+
+          <Modal
+            title="Add new item"
+            onCancel={this.handleCancel}
+            isOpen={isModalAddItemOpen}
+            buttonText=""
+          >
+            <SellerModalForm />
+          </Modal>
+        </div>
+      </>
+    );
+  }
 }
 
 export default SellerItems;

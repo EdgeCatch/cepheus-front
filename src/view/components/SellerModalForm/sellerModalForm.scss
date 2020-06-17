@@ -1,30 +1,70 @@
 .textarea__item {
-    background: #1e1e1f;
-    box-shadow: inset -5px -5px 10px #242529, inset 5px 5px 10px #0a0a0a;
-    border-radius: 8px;
-    border: 0;
-    font-size: 12px;
-    line-height: 16px;
+  background: #1e1e1f;
+  box-shadow: inset -5px -5px 10px #242529, inset 5px 5px 10px #0a0a0a;
+  border-radius: 8px;
+  border: 0;
+  font-size: 12px;
+  line-height: 16px;
 }
 
 .seller-modal__item {
-    padding: 7px;
-    width: 40%;
-    margin: 0 10px;
-    background: #1e1e1f;
-    box-shadow: inset -5px -5px 10px #242529, inset 5px 5px 10px #0a0a0a;
-    border-radius: 8px;
+  padding: 7px;
+  width: 40%;
+  margin: 5px 10px;
+  background: #1e1e1f;
+  box-shadow: inset -5px -5px 10px #242529, inset 5px 5px 10px #0a0a0a;
+  border-radius: 8px;
 }
 .seller-modal__item:active {
-    outline: none;
-    border: 0;
+  outline: none;
+  border: 0;
 }
 
 .seller-items__modal_form {
-    display: flex;
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    height: 100%;
-    justify-content: center;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: center;
+}
+
+#drop-area {
+  border: 2px dashed rgb(84, 88, 247);
+  border-radius: 20px;
+  width: 400px;
+  font-family: sans-serif;
+  padding: 20px;
+  margin: 20px;
+}
+#drop-area.highlight {
+  border-color: purple;
+}
+p {
+  margin-top: 0;
+}
+.my-form {
+  margin-bottom: 10px;
+}
+#gallery {
+  margin-top: 10px;
+}
+#gallery img {
+  width: 150px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.button {
+  display: inline-block;
+  padding: 5px 10px;
+  background: black;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.button:hover {
+  background: rgb(84, 88, 247);
+}
+#fileElem {
+  display: none;
 }
