@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Portal from '../Portal/Portal';
 import Icon from '../Icon/Icon';
 import Button from '../Button';
@@ -16,6 +17,14 @@ type ModalProps = {
     isOpen: boolean,
 };
 
+const ModalHeader = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    border-bottom: none;
+`;
+
 const Modal = (props: ModalProps) => {
     const { title, isOpen, onCancel, onSubmit, children, buttonText } = props;
 
@@ -25,10 +34,10 @@ const Modal = (props: ModalProps) => {
                 <Portal>
                     <div className="modal-overlay">
                         <div className="modal-window">
-                            <div className="modal-header">
+                            <ModalHeader>
                                 <div className="modal-title ">{title}</div>
                                 <Icon name="times" onClick={onCancel} />
-                            </div>
+                            </ModalHeader>
                             <div className="modal-body">{children}</div>
                             <div className="modal-footer">
                                 <Button className=" purple buy-btn " onClick={onSubmit}>

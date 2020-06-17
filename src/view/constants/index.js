@@ -52,6 +52,7 @@ export const FilterSizes = {
 };
 
 export const FilterColors = {
+    name: 'bruh',
     Black: 'Black',
     White: 'White',
     Red: 'Red',

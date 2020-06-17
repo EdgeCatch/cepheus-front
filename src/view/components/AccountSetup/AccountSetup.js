@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import _ from 'lodash';
 import Button from '../Button/Button';
 import { getRandomWallet } from '../../../contracts/account/random';
 import { saveAccount } from '../../../contracts/account/storage';
@@ -89,8 +90,9 @@ function AccountSetup() {
                     />
 
                     <div className="sub-plans">
-                        {Object.values(PLANS).map((plan, index) => (
+                        {Object.values(PLANS).map(plan => (
                             <div
+                                key={_.uniqueId()}
                                 className={classNames(
                                     'subscription',
                                     plan.name.toLocaleLowerCase() === selectedPlan && 'sub-selected',

@@ -2,8 +2,6 @@
 
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import setSellItemInfo from '../../../store/actions/sellModalForm';
 import './sellerModalForm.scss';
@@ -110,10 +108,9 @@ const SellerModalForm = props => {
 //     sellItemInfoList: state.sellItemInfoList,
 // });
 
-const mapDispatchToProps = dispatch => ({
-    ...bindActionCreators(setSellItemInfo, dispatch),
-});
-
+// const mapDispatchToProps = dispatch => ({
+//     ...bindActionCreators(setSellItemInfo, dispatch),
+// });
 
 export default reduxForm({
     form: 'sellModal',
