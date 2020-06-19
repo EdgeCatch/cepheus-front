@@ -6,9 +6,9 @@ import StarRating from '../StarRating/StarRating';
 import './bagItem.scss';
 
 type Props = {
-    title: String,
-    price: String,
-    addToCart: Function,
+  title: String,
+  price: String,
+  addToCart: Function
 };
 const GoodsTileStyle = styled.div`
     margin: 15px;
@@ -48,6 +48,34 @@ const BagItem = (bag: Props) => {
             </div>
         </GoodsTileStyle>
     );
+// =======
+//   const {
+//     value: {
+//       title,
+//       price,
+//       addToCart,
+//       images: [firstImage]
+//     }
+//   } = bag;
+//   console.log(bag);
+//   return (
+//     <div className="goods-tile" style={{ width: '420px', margin: '15px' }}>
+//       <Card style={{ border: 'none' }}>
+//         <Card.Body className="item__body">
+//           <Card.Img
+//             style={{ width: '11rem', margin: '10px auto', height: '11rem' }}
+//             variant="top"
+//             src={firstImage}
+//           />
+//           <img src="" alt="" />
+//           <p>{title}</p>
+//           <p>{price || 0}$</p>
+//         </Card.Body>
+//       </Card>
+//       <div className="add-to-card_btn purple">Add to cart</div>
+//     </div>
+//   );
+// >>>>>>> develop
 };
 
 export default BagItem;

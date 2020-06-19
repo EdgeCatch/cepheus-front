@@ -1,16 +1,23 @@
 const initialState = {
-    subscriptions: [],
+  subscriptions: [],
+  items: []
 };
 
 export default (state = initialState, action) => {
-    switch (action.type) {
-        case 'SET_SUBSCRIPTIONS':
-            return {
-                ...state,
-                subscriptions: action.subscriptions,
-            };
+  console.log(action);
+  switch (action.type) {
+    case 'SET_SUBSCRIPTIONS':
+      return {
+        ...state,
+        subscriptions: action.subscriptions
+      };
 
-        default:
-            return state;
-    }
+    case 'SET_ITEMS':
+      return {
+        ...state,
+        items: action.items
+      };
+    default:
+      return state;
+  }
 };

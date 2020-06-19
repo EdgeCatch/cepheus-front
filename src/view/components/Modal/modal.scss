@@ -12,10 +12,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: linear-gradient(139.47deg, rgba(0, 0, 0, 0.4) -9.69%, rgba(43, 43, 43, 0.4) 115.55%), #2f3338;
+  background: linear-gradient(
+      139.47deg,
+      rgba(0, 0, 0, 0.4) -9.69%,
+      rgba(43, 43, 43, 0.4) 115.55%
+    ),
+    #2f3338;
   border-radius: 20px;
   width: 500px;
-  height: 450px;
+  min-height: 450px;
   color: #fff;
   display: flex;
   flex-direction: column;
