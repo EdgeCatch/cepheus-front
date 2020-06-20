@@ -23,6 +23,7 @@ class ItemManager {
     const result = [];
     while (cid) {
       const current = await this.ipfs.dag.get(cid);
+      current.cid = cid;
       result.push(current);
       const prev = current.value.prev;
       if (prev != '') {
@@ -40,6 +41,11 @@ class ItemManager {
 
   async getAll() {
     await this.updatePrevCid();
+    console.log(
+      await this.getByCid(
+        'bafyreihh43c635qsbzzt7ihouvic7irtnd4guwcj4twmi4cyf7now6yqp4'
+      )
+    );
     return await this.traverse(this.prevCid);
   }
 

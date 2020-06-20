@@ -28,7 +28,6 @@ function BagsAndCases({ isReady, market, bags, ...props }) {
   }, []);
 
   React.useEffect(() => {
-    console.log('TRIGGER IT', bags);
     setBags(bags);
   }, [bags]);
 
