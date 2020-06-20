@@ -8,26 +8,26 @@ const Footer = () => {
     return (
         <Container id="footer" className="d-flex justify-content-between">
             <Col className="d-flex flex-column">
-                <Link> Learn more</Link>
-                <Link>About Us </Link>
-                <Link>About TON</Link>
-                <Link>Terms And</Link>
-                <Link>Conditions</Link>
-                <Link>FAQ</Link>
+                <Link to="#"> Learn more</Link>
+                <Link to="#">About Us </Link>
+                <Link to="#">About TON</Link>
+                <Link to="#">Terms And</Link>
+                <Link to="#">Conditions</Link>
+                <Link to="#">FAQ</Link>
             </Col>
             <Col className="d-flex flex-column">
-                <Link>Help</Link>
-                <Link>Subscriptions </Link>
-                <Link>Delivery</Link>
-                <Link>Withdraw And</Link>
-                <Link>Refund</Link>
+                <Link to="#">Help</Link>
+                <Link to="#">Subscriptions </Link>
+                <Link to="#">Delivery</Link>
+                <Link to="#">Withdraw And</Link>
+                <Link to="#">Refund</Link>
             </Col>
             <Col className="d-flex flex-column">
-                <Link>Contact us </Link>
-                <Link>Telegram</Link>
-                <Link>Instagram</Link>
-                <Link>Facebook</Link>
-                <Link>Twitter</Link>
+                <Link to="#">Contact us </Link>
+                <Link to="#">Telegram</Link>
+                <Link to="#">Instagram</Link>
+                <Link to="#">Facebook</Link>
+                <Link to="#">Twitter</Link>
             </Col>
         </Container>
     );

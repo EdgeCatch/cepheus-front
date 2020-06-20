@@ -1,12 +1,11 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getFormValues } from 'redux-form';
 import * as sellItems from '../../store/actions/sellItems';
 import SellerItems from '../components/SellerItems/SellerItems';
 
 const mapStateToProps = state => ({
     sellItemsList: state.sellItems.sellItemsList,
-    ItemManager: state.ItemManagerClien,
+    ItemManagerClient: state.ipfs.ItemManagerClient,
 });
 
 const mapDispatchToProps = dispatch => ({

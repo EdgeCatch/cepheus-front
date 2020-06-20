@@ -2,16 +2,16 @@
     border-radius: 20px;
     box-shadow: 17.1981px 17.1981px 34.3963px #020303, -17.1981px -17.1981px 34.3963px rgba(39, 42, 47, 0.29);
     color: #fff;
-    padding: 45px 55px;
     display: flex;
     background: linear-gradient(152.47deg, rgba(0, 0, 0, 0.4) -9.69%, rgba(43, 43, 43, 0.4) 115.55%), #2f3338;
     width: 100%;
     margin-bottom: 30px;
-    padding: 30px 35px;
+    padding: 35px 30px;
     height: auto;
 }
 .seller-setup {
     @include seller-setup;
+
   
 }
 

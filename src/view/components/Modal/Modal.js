@@ -1,6 +1,7 @@
 // @flow
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Portal from '../Portal/Portal';
 import Icon from '../Icon/Icon';
 import Button from '../Button';
@@ -16,6 +17,15 @@ type ModalProps = {
   children: Object,
   isOpen: boolean
 };
+
+
+const ModalHeader = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    border-bottom: none;
+`;
 
 export const ModalContext = React.createContext();
 
@@ -51,10 +61,10 @@ const Modal = (props: ModalProps) => {
                     : { filter: 'blur(0px)' }
                 }
               >
-                <div className="modal-header">
+                  <ModalHeader>
                   <div className="modal-title ">{title}</div>
                   <Icon name="times" onClick={onCancel} />
-                </div>
+                </ModalHeader>
                 <div className="modal-body">{children}</div>
                 {/* {onSubmit && buttonText.length && (
                 <div className="modal-footer">
