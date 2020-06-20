@@ -4,7 +4,6 @@
 }
 
 .profile__main_column {
-    width: 100%;
 }
 
 /*
@@ -19,7 +18,8 @@
     background: linear-gradient(345.46deg, #32383e -77.68%, #17191c 87.35%);
     box-shadow: 12.571px 12.571px 56.5696px rgba(0, 0, 0, 0.4), -12.571px -6.28551px 50.2841px rgba(195, 200, 205, 0.05);
     border-radius: 20px;
-    width: 380px;
+    width: max-content;
+    min-width: 200px;
     padding: 30px;
     margin-bottom: 30px;
 }
@@ -36,7 +36,8 @@
 */
 
 .nav-components {
-    margin: 0 36px;
+    margin: 0 7% 0 1%;
+    width: fit-content;
 }
 
 /*

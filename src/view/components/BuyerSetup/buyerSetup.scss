@@ -1,7 +1,6 @@
 @mixin buyer-setup-buttons {
     height: 20%;
     display: flex;
-    flex-wrap: wrap;
     align-content: space-around;
     justify-content: space-around;
 }
@@ -18,7 +17,7 @@
 .setup-buyer__block {
     height: 100%;
     width: 50%;
-    margin-right: 84px;
+    margin-right: 40px;
 }
 
 .setup-buyer__block h3 {

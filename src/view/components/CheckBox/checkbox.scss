@@ -1,0 +1,85 @@
+$color__back: #252224;
+$color__back--high: lighten($color__back, 20%);
+$color__text: #fff;
+$color__text--low: darken($color__text, 50%);
+$color__primary: #5458f7;
+
+$checkbox__size: 20px;
+$switch__size: $checkbox__size;
+
+$checkbox__border__size: 1px;
+$checkbox__border__color: black;
+$checkbox__border__color--disabled: $color__back--high;
+
+$checkbox__checkmark__size: $checkbox__size - (2 * $checkbox__border__size);
+$checkbox__checkmark__size--indeterminate: 2px;
+$checkbox__checkmark__color: $color__primary;
+$checkbox__checkmark__color--disabled: $color__back--high;
+
+$checkbox__label__color: $color__text;
+
+// CHECKBOXES
+
+.m-checkbox {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-evenly;
+    &__label {
+        width: 50%;
+        color: black;
+        cursor: pointer;
+        margin: 0;
+    }
+
+    &__input {
+        position: relative;
+        width: $checkbox__size;
+        height: $checkbox__size;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        outline: none;
+        cursor: pointer;
+        border: $checkbox__border__size solid $checkbox__border__color;
+
+        &::before {
+            content: " ";
+            position: absolute;
+            top: 50%;
+            right: 50%;
+            left: 50%;
+            transition: all 0.1s;
+            background: $checkbox__checkmark__color;
+        }
+
+        &:checked,
+        &:indeterminate {
+            &::before {
+                top: $checkbox__border__size;
+                right: $checkbox__border__size;
+                bottom: $checkbox__border__size;
+                left: $checkbox__border__size;
+            }
+        }
+
+        &:indeterminate {
+            &::before {
+                top: ($checkbox__checkmark__size / 2) - ($checkbox__checkmark__size--indeterminate / 2);
+                bottom: ($checkbox__checkmark__size / 2) - ($checkbox__checkmark__size--indeterminate / 2);
+            }
+        }
+    }
+
+    &--has-error {
+        &__input {
+            border-color: red;
+            background-color: rgba(red, 0.2);
+
+            &::before {
+                background-color: red;
+            }
+        }
+    }
+}

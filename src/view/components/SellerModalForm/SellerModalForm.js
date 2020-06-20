@@ -2,6 +2,22 @@
 
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+// <<<<<<< ipfs
+
+// import setSellItemInfo from '../../../store/actions/sellModalForm';
+// import './sellerModalForm.scss';
+
+// const SellerModalForm = props => {
+//     const [state, setState] = React.useState({
+//         name: '',
+//         price: '',
+//         count: '',
+//         size: '',
+//         style: '',
+//         color: '',
+//         category: '',
+//         type: '',
+// =======
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ThanosWallet } from '@thanos-wallet/dapp';
@@ -45,6 +61,7 @@ function SellerModalForm(...props) {
         },
         false
       );
+// >>>>>>> develop
     });
   }, []);
   function handleDrop(e) {
@@ -251,11 +268,17 @@ function SellerModalForm(...props) {
 //     sellItemInfoList: item.sellItemInfoList,
 //
 
+// <<<<<<< ipfs
+// const mapDispatchToProps = dispatch => ({
+//     ...bindActionCreators(setSellItemInfo, dispatch),
+// });
+// =======
 const mapDispatchToProps = dispatch => ({
   ...bindActionCreators(setSellItemInfo, dispatch)
 });
 
 SellerModalForm = connect(null, mapDispatchToProps)(SellerModalForm);
+// >>>>>>> develop
 
 export default reduxForm({
   form: 'sellModal',

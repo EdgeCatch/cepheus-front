@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import { createStore, compose } from 'redux';
 import rootReducer from './reducers/index';
-import { loadState } from './localStorage';
+// import { loadState } from './localStorage';
 
 // const persistedState = loadState();
 

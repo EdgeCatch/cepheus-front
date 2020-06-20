@@ -1,11 +1,16 @@
-#card-items {
-    width: 70%;
+#catalog-products {
+    width: 60%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: flex-start;
 }
 
 .bag-page {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
 }
-    
+
+.bag-page__filter {
+    width: 30%;
+}
