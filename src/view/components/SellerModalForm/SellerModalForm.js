@@ -104,9 +104,10 @@ function SellerModalForm(...props) {
   }
   async function handleAddItem() {
     useModalContext.setLoading(true);
-    const { itemManager, orderManager, publicKey } = await getManagers();
+    const { publicKey } = JSON.parse(localStorage.getItem('account'));
+    const { itemManager, orderManager } = await getManagers();
     const cid = await itemManager.add(
-      'seller',
+      publicKey,
       item.name,
       item.price,
       item.category,

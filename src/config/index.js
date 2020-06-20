@@ -1,2 +1,2 @@
-export const MARKET_ADDRESS = 'KT1Ss9PaAudkQi3MvBEkaEkyjf5Eh92Mk3LR';
-export const TOKEN_ADDRESS = 'KT1AhrAR3VsZqEY67Q48q6JpNShqoYd4qRxc';
+export const MARKET_ADDRESS = 'KT1K8LRb99WKCEtG2wjem21v1TqtUNR5edS9';
+export const TOKEN_ADDRESS = 'KT1DDSyDKneLB4orwypuHGYx9aMjvNG4B3KG';
