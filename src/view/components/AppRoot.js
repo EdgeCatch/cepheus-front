@@ -15,7 +15,6 @@ function AppRoot() {
     async function setManagers() {
       const { itemManager, orderManager, publicKey } = await getManagers();
       const items = await itemManager.getAll();
-      console.log(items, 'items');
       store.dispatch({
         type: 'SET_ITEMS',
         items

@@ -16,3 +16,9 @@ export async function getManagers(mnemonic) {
     console.log(e);
   }
 }
+
+export function getOrderManager() {
+  const ipfs = ipfsClient(nodeUrl);
+  const orderManager = new OrderManager(ipfs);
+  return orderManager;
+}

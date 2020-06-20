@@ -26,7 +26,8 @@ class OrderManager {
     phone,
     postOffice,
     buyerPublicKey,
-    sellerPublicKey
+    sellerPublicKey,
+    itemCid
   ) {
     let orderInfo = { name, phone, postOffice };
     let encryptedForBuyer = OrderManager.encrypt(buyerPublicKey, orderInfo);
@@ -34,6 +35,7 @@ class OrderManager {
     let order = {
       buyer,
       seller,
+      itemCid,
       encryptedForBuyer,
       encryptedForSeller
     };
