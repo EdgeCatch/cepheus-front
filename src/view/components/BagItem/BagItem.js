@@ -31,20 +31,21 @@ const CardBodyWrapper = styled(Card.Body)`
 `;
 
 const BagItem = (bag: Props) => {
-    const {
-        value: {
-            title,
-            price,
-            addToCart,
-            images: [firstImage],
-        },
-    } = bag;
+    //   const {
+    //     value: {
+    //       title,
+    //       price,
+    //       addToCart,
+    //       images: [firstImage]
+    //     }
+    //   } = bag;
 
     function handleAddToCart() {
         console.log(bag.cid);
 
         store.dispatch({ type: 'ADD_TO_CART', payload: bag.cid });
     }
+    const { title, price, addToCart } = bag;
 
     return (
         <GoodsTileStyle>
@@ -54,11 +55,11 @@ const BagItem = (bag: Props) => {
                     <img src="" alt="" />
                     <p>{title}</p>
                     <StarRating />
-                    <p>{price || 0}$</p>
+                    <p>${price}</p>
                 </CardBodyWrapper>
             </CardWrapper>
-            <div className="add-to-card_btn purple" onClick={() => handleAddToCart()}>
-                Add to cart
+            <div className="add-to-card_btn purple" onClick={addToCart.bind(this, bag)}>
+                <p> Add to cart</p>
             </div>
         </GoodsTileStyle>
     );
