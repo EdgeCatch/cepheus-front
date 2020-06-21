@@ -1,5 +1,4 @@
-const tokenAddress = 'KT1VkQSzjPhx5FGtrowtsRhsQyP7QuR3o9YK';
-const marketAddress = 'KT1DvB7iNXf2RS7sETMU4mE96534NuqBPA2g';
+import { MARKET_ADDRESS } from '../../config/index';
 
 export class Market {
   constructor(Tezos, contract) {
@@ -7,7 +6,7 @@ export class Market {
     this.contract = contract;
   }
   static async init(Tezos) {
-    return new Market(Tezos, await Tezos.contract.at(marketAddress));
+    return new Market(Tezos, await Tezos.contract.at(MARKET_ADDRESS));
   }
 
   async getFullStorage(
@@ -59,7 +58,7 @@ export class Market {
       let token = await this.tezos.contract.at(storage.token);
       let operation = await token.methods
         .approve(
-          marketAddress,
+          MARKET_ADDRESS,
           storage.subscriptionsExtended[subscription].price
         )
         .send();
@@ -78,7 +77,7 @@ export class Market {
       let token = await this.tezos.contract.at(storage.token);
       let operation = await token.methods
         .approve(
-          marketAddress,
+          MARKET_ADDRESS,
           storage.itemsExtended[itemId].price * parseInt(count)
         )
         .send();
@@ -109,7 +108,7 @@ export class Market {
       let token = await this.tezos.contract.at(storage.token);
       let operation = await token.methods
         .approve(
-          marketAddress,
+          MARKET_ADDRESS,
           storage.subscriptionsExtended[subscription].price
         )
         .send();

@@ -7,3 +7,9 @@ export function generateAccount() {
   const publicKey = cryptico.publicKeyString(rsa);
   return { mnemonic, publicKey };
 }
+
+export function getAccount(mnemonic) {
+  const rsa = cryptico.generateRSAKey(mnemonic, 2048);
+  const publicKey = cryptico.publicKeyString(rsa);
+  return { mnemonic, publicKey };
+}

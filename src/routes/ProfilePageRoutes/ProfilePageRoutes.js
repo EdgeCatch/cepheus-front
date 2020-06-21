@@ -26,11 +26,13 @@ function ProfilePageRoutes() {
         {Object.keys(account).length ? (
           <Route
             path={routePaths.buyerSetupRegistered()}
+            exact
             component={Components.RegisteredAccount}
           />
         ) : (
           <Route
             path={routePaths.accountSetup()}
+            exact
             component={Components.AccountSetup}
           />
         )}
