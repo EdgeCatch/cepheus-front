@@ -3,21 +3,26 @@ import './orderTestItem.scss';
 import { ThanosWallet } from '@thanos-wallet/dapp';
 import { MARKET_ADDRESS, TOKEN_ADDRESS } from '../../../config';
 import { getManagers } from '../../../ipfs';
+import { Market } from '../../../contracts/market/index';
+import { setup } from '../../../contracts/account/setup';
+import Loader from '../Loader/Loader';
 const orderEnchancer = require('./arrowEnhancer.png');
 
 const OrderTestItem = () => {
   const [resolveOrder, setResolverOrder] = useState(false);
+  const [ordersItems, setOrdersItems] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [isModalDeliveryOpen, setIsModalDeliveryOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   React.useEffect(() => {
     async function getOrders() {
+      setLoading(true);
       const { itemManager } = await getManagers();
-      const wallet = new ThanosWallet('Cepheus');
-      await wallet.connect('carthagenet', { forcePermission: true });
-      const tezos = wallet.toTezos();
-      const contractMarket = await tezos.wallet.at(MARKET_ADDRESS);
-      const contractToken = await tezos.wallet.at(TOKEN_ADDRESS);
-      const accountPkh = await tezos.wallet.pkh();
-      const contractStorage = await contractMarket.storage();
+
+      const accountPkh = localStorage.getItem('pkh');
+      const Tezos = await setup();
+      const market = await Market.init(Tezos);
+      const contractStorage = await market.getFullStorage({});
       const items = await contractStorage.buyer_orders.get(accountPkh);
       const orders = items.map(item => itemManager.getByCid(item));
       const ordersAll = await Promise.all(orders);
@@ -25,14 +30,15 @@ const OrderTestItem = () => {
         item.value.itemCid ? itemManager.getByCid(item.value.itemCid) : {}
       );
       const allOrdersItems = await Promise.all(ordersItems);
-      console.log(allOrdersItems);
-      setOrders(allOrdersItems);
-
+      setOrdersItems(allOrdersItems);
+      setOrders(items);
       //   console.log(await itemManager.getByCid(item.value.itemCid));
+      setLoading(false);
     }
 
     getOrders();
   }, []);
+
   const OrderButtons = () => {
     return resolveOrder ? (
       <div className="resolve-buttons">
@@ -40,9 +46,12 @@ const OrderTestItem = () => {
         <button
           type="submit"
           className="purple"
-          onClick={() => setResolverOrder(!resolveOrder)}
+          onClick={() => {
+            setIsModalDeliveryOpen(!isModalDeliveryOpen);
+            console.log(isModalDeliveryOpen);
+          }}
         >
-          Confirm
+          Delivery Info
         </button>
         <button type="submit" className="dark">
           Request Refund
@@ -62,40 +71,59 @@ const OrderTestItem = () => {
 
   return (
     <React.Fragment>
-      {orders.length ? (
-        orders.slice(0, 1).map(order => (
-          <div className="order-list_item">
-            <div className="test-item__info">
-              <div className="test-info-elements">
-                <img
-                  src={order.value.images[0]}
-                  alt="item images"
-                  width="64px"
-                />
-              </div>
-              <div className="test-info-elements">
-                <h4 className="item__info_article">Order:{order.value.name}</h4>
-                <p className="item__info_exact">${order.value.price}</p>
-              </div>
-              <div className="test-info-elements">
-                <h4 className="item__info_article">Size</h4>
-                <p className="item__info_exact">{order.value.size}</p>
-              </div>
-              <div className="test-info-elements">
-                <h4 className="item__info_article">Count </h4>
-                <p className="item__info_exact">${order.value.count}</p>
-              </div>
-              <div className="test-info-elements">
-                <h4 className="item__info_article">Tracking number </h4>
-                <p className="item__info_exact">$109</p>
-              </div>
+      {!loading ? (
+        orders.length ? (
+          orders.slice(0, 1).map((order, index) => (
+            <div className="order-list_item">
+              <div className="test-item__info">
+                <div className="test-info-elements">
+                  <img
+                    src={ordersItems[index].value.images[0]}
+                    alt="item images"
+                    width="64px"
+                  />
+                </div>
+                <div className="test-info-elements">
+                  <h4 className="item__info_article">
+                    Order:{ordersItems[index].value.name}
+                  </h4>
+                  <p className="item__info_exact">
+                    ${ordersItems[index].value.price}
+                  </p>
+                </div>
+                <div className="test-info-elements">
+                  <h4 className="item__info_article">Size</h4>
+                  <p className="item__info_exact">
+                    {ordersItems[index].value.size}
+                  </p>
+                </div>
+                <div className="test-info-elements">
+                  <h4 className="item__info_article">Count </h4>
+                  <p className="item__info_exact">
+                    ${ordersItems[index].value.count}
+                  </p>
+                </div>
+                <div className="test-info-elements">
+                  <h4 className="item__info_article">Tracking number </h4>
+                  <p className="item__info_exact">$109</p>
+                </div>
 
-              <OrderButtons />
+                <OrderButtons orderId={order} />
+              </div>
             </div>
-          </div>
-        ))
+          ))
+        ) : (
+          <span>No items found</span>
+        )
       ) : (
-        <span>Loading</span>
+        <Loader
+          style={{
+            transform: 'translate(-50%, -50%)',
+            position: 'absolute',
+            left: '60%',
+            top: '50%'
+          }}
+        />
       )}
     </React.Fragment>
   );

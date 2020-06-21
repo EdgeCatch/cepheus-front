@@ -2,3 +2,4 @@ import worker from 'workerize-loader!./crypto'; // eslint-disable-line import/no
 let instance = worker(); // `new` is optional
 
 export const generateAccount = async () => instance.generateAccount();
+export const getAccount = async mnemonic => instance.getAccount(mnemonic);

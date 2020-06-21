@@ -6,7 +6,7 @@ import _ from 'lodash';
 import Button from '../Button/Button';
 import Loader from '../Loader/Loader';
 import { ThanosWallet } from '@thanos-wallet/dapp';
-import { generateAccount } from '../../../workers';
+import { generateAccount, getAccount } from '../../../workers';
 import { saveAccount } from '../../../contracts/account/storage';
 import './sellerSetup.scss';
 import { MARKET_ADDRESS } from '../../../config';
@@ -66,6 +66,20 @@ function AccountSetup() {
       }
     ]);
     setLoading(false);
+  }
+
+  async function handleAuthAccount() {
+    const accData = getValues();
+    console.log(accData);
+    const { mnemonic, publicKey } = await getAccount(accData.mnemonic);
+    localStorage.setItem(
+      'account',
+      JSON.stringify({
+        mnemonic,
+        publicKey
+      })
+    );
+    document.location.reload();
   }
 
   async function handleSaveAccount() {
@@ -240,6 +254,13 @@ function AccountSetup() {
               onClick={handleSaveAccount}
             >
               Setup
+            </Button>
+            <Button
+              className="buyer-setup-btn purple setup-btn"
+              type="submit"
+              onClick={handleAuthAccount}
+            >
+              Auth
             </Button>
           </div>
         </form>

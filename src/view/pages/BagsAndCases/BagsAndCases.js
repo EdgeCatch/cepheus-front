@@ -17,7 +17,7 @@ type Props = {
 };
 
 function BagsAndCases({ isReady, market, bags, ...props }) {
-    const [bagsState, setBags] = React.useState([]);
+
 
     React.useEffect(() => {
         console.log(props, 'props');
