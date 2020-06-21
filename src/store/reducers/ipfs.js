@@ -1,18 +1,21 @@
-// import ItemManager from '../../CepheusIpfsV2/lib/ItemManager';
-// import OrderManager from '../../CepheusIpfsV2/lib/OrderManager';
+import ipfsClient from 'ipfs-http-client';
+import ItemManager from '../../ItemManager';
+import OrderManager from '../../OrderManager';
+// import cryptico from 'cryptico';
 
-// would be better to use was shown in an example but idk who to get insances from this async function
-// import { main } from '../../CepheusIpfsV2/client';
+const nodeUrl = '/ip4/127.0.0.1/tcp/5001';
 
-// just instances of following clients
-// const ItemManagerClient = new ItemManager();
-// const OrderManagerClient = new OrderManager();
+// const privateKey = cryptico.generateRSAKey('', 2048);
+// const publicKey = cryptico.publicKeyString(privateKey);
+const ipfs = ipfsClient(nodeUrl);
+const marketContractAddress = 'KT1N5h4c7kZ85DDjrYGqv6xmQRwufG2x2c5c';
 
-// main().then(() => console.log('Done!'));
+const ItemManagerClient = new ItemManager(ipfs, marketContractAddress);
+const OrderManagerClient = new OrderManager(ipfs);
 
 const Initstate = {
-    // ItemManagerClient,
-    // OrderManagerClient,
+    ItemManagerClient,
+    OrderManagerClient,
 };
 
 export default function reducer(state = Initstate, action) {

@@ -40,4 +40,5 @@
 .dark {
   @include btn;
   background: #2f3338;
+  min-width: 140px;
 }

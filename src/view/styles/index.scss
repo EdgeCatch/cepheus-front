@@ -1,7 +1,9 @@
+@import "~bootstrap/scss/bootstrap";
+
+
 @import url(fonts.scss);
 @import url(reset.scss);
 @import url(pages.scss);
-@import "~bootstrap/scss/bootstrap";
 
 #root {
     font-family: "Alef";
@@ -10,6 +12,6 @@
 
 a,
 p,
-span {
+span,label {
     color: #fff !important;
 }
