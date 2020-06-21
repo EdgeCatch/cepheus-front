@@ -18,10 +18,8 @@ type Props = {
 function BagsAndCases({ isReady, market, bags, ...props }) {
   const [bagsState, setBags] = React.useState([]);
   React.useEffect(() => {
-    console.log(props, 'props');
     async function handleGetManagers() {
       const { itemManager, orderManager, publicKey } = await getManagers();
-      console.log(itemManager, orderManager, publicKey);
       return { itemManager, orderManager, publicKey };
     }
     handleGetManagers();

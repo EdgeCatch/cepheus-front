@@ -14,7 +14,6 @@ class SellerItems extends React.Component {
 
   onSubmit(e) {
     this.props.sellItems();
-    console.log(e.target.value);
     this.setState({ isModalAddItemOpen: false });
     this.props.sellItemsList.push(<SellerItem itemNameClass="cart" />);
   }

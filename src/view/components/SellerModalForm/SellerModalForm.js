@@ -50,7 +50,6 @@ function SellerModalForm(...props) {
   function handleDrop(e) {
     let dt = e.dataTransfer;
     let files = dt.files;
-    console.log(dt, files);
     handleFiles(files);
     return false;
   }
@@ -64,10 +63,8 @@ function SellerModalForm(...props) {
     return false;
   }
   async function handleFiles(e) {
-    console.log(e.target.files);
     setFiles([...files, await getBase64(e.target.files[0])]);
     let dt = e.dataTransfer;
-    console.log(dt, files);
     files.forEach(uploadFile);
     return false;
   }
@@ -100,7 +97,6 @@ function SellerModalForm(...props) {
       item.colour,
       [files]
     );
-    console.log('Added', cid);
     const available = await ThanosWallet.isAvailable();
     if (!available) {
       console.log('Thanos Wallet not installed');
@@ -116,7 +112,6 @@ function SellerModalForm(...props) {
     useModalContext.setLoading(false);
   }
   function uploadFile(file) {
-    console.log(file);
     // var url = 'ВАШ URL ДЛЯ ЗАГРУЗКИ ФАЙЛОВ';
     // var xhr = new XMLHttpRequest();
     // var formData = new FormData();
