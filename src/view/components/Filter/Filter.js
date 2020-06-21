@@ -1,7 +1,9 @@
 import React from 'react';
 import FilterItem from '../FilterItem';
+import Divider from '../Divider';
 import './filter.scss';
 import { FilterTypes, FilterColors, FilterSizes, FilterStyles } from '../../constants';
+import PriceRangeSilder from '../PriceRangeSilder/PriceRangeSilder';
 
 export class Filter extends React.Component {
     constructor() {
@@ -15,11 +17,15 @@ export class Filter extends React.Component {
                 <div className={nameClass}>
                     <p>{title}</p>
                     <Component />
+                    <Divider />
                 </div>
             );
         };
 
         const FilterTypeTemplate = object => Object.keys(object).map(i => <FilterItem name={i} />);
+
+
+
 
         const FilterTypeComponent = () => FilterTypeTemplate(FilterTypes);
 
@@ -35,6 +41,7 @@ export class Filter extends React.Component {
                 {/*
                     PriceSlider should be different
                   */}
+              <PriceRangeSilder maxPrice = {1000} minPrice ={ 1 }  />
                 <FilterItemDecorator component={FilterColorComponent} title="Color" />
                 <FilterItemDecorator component={FilterSizeComponent} title="Size" />
                 <FilterItemDecorator component={FilterStyleComponent} title="Style" />

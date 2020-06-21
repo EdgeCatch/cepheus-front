@@ -1,10 +1,10 @@
 // @flow
 import React from 'react';
+import { ThanosWallet } from '@thanos-wallet/dapp';
 import BagItem from '../../containers/BagItem';
 import bagItems from './bagItems';
 import Filter from '../../components/Filter/Filter';
 import './bagsAndCases.scss';
-import { ThanosWallet } from '@thanos-wallet/dapp';
 import { MARKET_ADDRESS } from '../../../config';
 import store from '../../../store/index';
 import { getManagers } from '../../../ipfs';
@@ -17,8 +17,6 @@ type Props = {
 };
 
 function BagsAndCases({ isReady, market, bags, ...props }) {
-
-
     React.useEffect(() => {
         console.log(props, 'props');
         async function handleGetManagers() {
@@ -31,7 +29,7 @@ function BagsAndCases({ isReady, market, bags, ...props }) {
     }, []);
 
     React.useEffect(() => {
-        setBags(bags);
+        // setBags(bags);
     }, [bags]);
     // async componentDidMount() {
     //   // const { setBags } = this.props;
