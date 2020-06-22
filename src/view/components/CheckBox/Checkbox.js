@@ -20,7 +20,7 @@ export default class Checkbox extends React.Component {
     }
 
     render() {
-        const { id, label, type, indeterminate, hasError, ...inputProps } = this.props;
+        const { id, label, type, indeterminate, hasError, count, ...inputProps } = this.props;
         const checkboxClassname = `
         m-checkbox
         ${type === 'switch' && 'm-checkbox--switch'}
@@ -40,15 +40,20 @@ export default class Checkbox extends React.Component {
 
         return (
             <div className={checkboxClassname}>
-                <input
-                    type="checkbox"
-                    className={inputClassname}
-                    ref={el => (this.selector = el)}
-                    id={id}
-                    {...inputProps}
-                />
+                <div className="filter__label">
+                    <input
+                        type="checkbox"
+                        className={inputClassname}
+                        ref={el => (this.selector = el)}
+                        id={id}
+                        {...inputProps}
+                    />
+                    <label className={labelClassname} htmlFor={id}>
+                        <div className="filter__counter">{label}</div>
+                    </label>
+                </div>
                 <label className={labelClassname} htmlFor={id}>
-                    {label}
+                    <div className="filter__counter">{count} </div>
                 </label>
             </div>
         );

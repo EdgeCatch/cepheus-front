@@ -8,7 +8,7 @@ $checkbox__size: 20px;
 $switch__size: $checkbox__size;
 
 $checkbox__border__size: 1px;
-$checkbox__border__color: black;
+$checkbox__border__color: #fff;
 $checkbox__border__color--disabled: $color__back--high;
 
 $checkbox__checkmark__size: $checkbox__size - (2 * $checkbox__border__size);
@@ -25,12 +25,17 @@ $checkbox__label__color: $color__text;
     display: flex;
     align-items: center;
     width: 100%;
-    justify-content: space-evenly;
+    justify-content: space-between;
     &__label {
-        width: 50%;
+        height: 100%;
+        width: fit-content      ;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
         color: black;
         cursor: pointer;
         margin: 0;
+
     }
 
     &__input {
@@ -82,4 +87,21 @@ $checkbox__label__color: $color__text;
             }
         }
     }
+}
+
+
+.filter__count {
+    display: inline;
+
+}
+
+.filter__counter {
+  margin-left: 20px;
+}
+
+.filter__label {
+    align-items: center;
+    justify-content: space-evenly;
+    width: fit-content;
+    display: flex
 }
