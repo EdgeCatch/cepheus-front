@@ -9507,6 +9507,18 @@ normalize-url@^4.1.0:
   resolved "https://registry.npmjs.org/normalize-url/-/normalize-url-4.5.0.tgz#453354087e6ca96957bd8f5baf753f5982142129"
   integrity sha512-2s47yzUxdexf1OhyRi4Em83iQk0aPvwTddtFz4hnSSw9dCEsLEGf6SwIO8ss/19S9iBb5sJaOuTvTGDeZI00BQ==
 
+nouislider-react@^3.3.8:
+  version "3.3.8"
+  resolved "https://registry.npmjs.org/nouislider-react/-/nouislider-react-3.3.8.tgz#224540f39848e1a52070127f16460ef8f03152a7"
+  integrity sha512-Le0kUs29iaUEdaO3cdZcc7EXteFNpXVuasxz4F8Z520PUI17sJJAoggiScPu+Nz6vMx0o9SgK0v8bMXcePF20A==
+  dependencies:
+    nouislider "^14.5.0"
+
+nouislider@^14.5.0:
+  version "14.5.0"
+  resolved "https://registry.npmjs.org/nouislider/-/nouislider-14.5.0.tgz#36f9c30be39ff687deda42fd98ec36a5bfc45221"
+  integrity sha512-EzI2Y0pO+x20c8yHLvhmT9HXexkbncXHKcnNb6abN48a3F8QEGb73v2W6aPolQytoyjCalUrozSeHBTlpz2jfg==
+
 npm-run-path@^2.0.0:
   version "2.0.2"
   resolved "https://registry.npmjs.org/npm-run-path/-/npm-run-path-2.0.2.tgz#35a9232dfa35d7067b4cb2ddf2357b1871536c5f"

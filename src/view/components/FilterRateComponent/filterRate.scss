@@ -1,0 +1,11 @@
+.filter_rate__item {
+    display: flex;
+    justify-content: space-between;
+    &_block{
+        display: flex;
+        justify-content: space-between;
+    }
+    &_block:nth-child(odd){
+        width: 70%;
+    }
+}

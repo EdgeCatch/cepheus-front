@@ -1,12 +1,17 @@
 // @flow
 import React from 'react';
 import Container from 'react-bootstrap/Container';
+import styled from 'styled-components';
 import './divider.scss';
 
+const DividerWrapper = styled(Container)`
+    padding: 0;
+`;
+
 const Divider = () => (
-    <Container>
+    <DividerWrapper>
         <div className="page-divider" />
-    </Container>
+    </DividerWrapper>
 );
 
 export default Divider;
