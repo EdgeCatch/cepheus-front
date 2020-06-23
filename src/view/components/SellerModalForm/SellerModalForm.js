@@ -61,7 +61,7 @@ function SellerModalForm(...props) {
         },
         false
       );
-// >>>>>>> develop
+      // >>>>>>> develop
     });
   }, []);
   function handleDrop(e) {
@@ -102,30 +102,31 @@ function SellerModalForm(...props) {
   async function handleAddItem() {
     useModalContext.setLoading(true);
     const { publicKey } = JSON.parse(localStorage.getItem('account'));
-    const { itemManager, orderManager } = await getManagers();
-    const cid = await itemManager.add(
-      publicKey,
-      item.name,
-      item.price,
-      item.category,
-      item.type,
-      item.count,
-      item.size,
-      item.colour,
-      [files]
-    );
-    const available = await ThanosWallet.isAvailable();
-    if (!available) {
-      console.log('Thanos Wallet not installed');
+    try {
+      const { itemManager, orderManager } = await getManagers();
+      const cid = await itemManager.add(
+        publicKey,
+        item.name,
+        item.price,
+        item.category,
+        item.type,
+        item.count,
+        item.size,
+        item.colour,
+        [files]
+      );
+      const wallet = new ThanosWallet('Cepheus');
+      await wallet.connect('carthagenet', { forcePermission: true });
+      const tezos = wallet.toTezos();
+      const contract = await tezos.wallet.at(MARKET_ADDRESS);
+      const operation = await contract.methods
+        .addItem(cid.string, item.price)
+        .send();
+      await operation.confirmation();
+    } catch (e) {
+      alert(e);
+      console.log(e);
     }
-    const wallet = new ThanosWallet('Cepheus');
-    await wallet.connect('carthagenet', { forcePermission: true });
-    const tezos = wallet.toTezos();
-    const contract = await tezos.wallet.at(MARKET_ADDRESS);
-    const operation = await contract.methods
-      .addItem(cid.string, item.price)
-      .send();
-    await operation.confirmation();
     useModalContext.setLoading(false);
   }
   function uploadFile(file) {
@@ -178,8 +179,17 @@ function SellerModalForm(...props) {
           name="category"
           value={item.category}
           placeholder="Category"
-          component="input"
-        />
+          component="select"
+        >
+          <option value="">Category</option>
+          <option value="bags">Bags and Cases</option>
+          <option value="parfumes">Parfumes</option>
+          <option value="ties">Ties and Belts</option>
+          <option value="phone">Phone Accessories</option>
+
+          <option value="alchol">Alchol</option>
+          <option value="cigarettes">E-cigarettes</option>
+        </Field>
         <Field
           className=" seller-modal__item"
           type="text"
