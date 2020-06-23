@@ -18,7 +18,6 @@ type Props = {
 
 function BagsAndCases({ isReady, market, bags, ...props }) {
   React.useEffect(() => {
-    console.log(props, 'props');
     async function handleGetManagers() {
       const { itemManager, orderManager, publicKey } = await getManagers();
 
@@ -28,50 +27,7 @@ function BagsAndCases({ isReady, market, bags, ...props }) {
     handleGetManagers();
   }, []);
 
-  React.useEffect(() => {
-    console.log(bags);
-  }, [bags]);
-  // async componentDidMount() {
-  //   // const { setBags } = this.props;
-  //   const { itemManager, orderManager, publicKey } = await getManagers();
-  //   console.log(this.props, 'props');
-  //   // const cid = await itemManager.add(
-  //   //   'seller',
-  //   //   'name',
-  //   //   'price',
-  //   //   'category',
-  //   //   'type',
-  //   //   'count',
-  //   //   'size',
-  //   //   'colour',
-  //   //   [('image', 'image')]
-  //   // );
-  //   // console.log('Added', cid);
-  //   // const available = await ThanosWallet.isAvailable();
-  //   // if (!available) {
-  //   //   throw new Error('Thanos Wallet not installed');
-  //   // }
-  //   // const wallet = new ThanosWallet('Cepheus');
-  //   // await wallet.connect('carthagenet', { forcePermission: true });
-  //   // const tezos = wallet.toTezos();
-  //   // const contract = await tezos.wallet.at(MARKET_ADDRESS);
-  //   // const operation = await contract.methods.addItem(cid.string, '1000').send();
-  //   // await operation.confirmation();
 
-  //   // setBags(bagItems);
-  // }
-
-  // previous version
-  // return (
-  //     <div className="bag-page">
-  //       <div id="card-items">
-  //         {!true
-  //           ? 'Downloading...'
-  //           : bagsState.map(bag => <BagItem key={bag.id} {...bag} />)}
-  //       </div>
-  //     </div>
-  //   );
-  // }
 
   return (
     <div className="bag-page">
