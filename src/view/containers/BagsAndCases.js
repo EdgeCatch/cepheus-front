@@ -6,16 +6,14 @@ import * as bagsActions from '../../store/actions/bags';
 import * as marketActions from '../../store/actions/market';
 
 const mapStateToProps = ({ bags, cart, market }) => ({
-  bags: market.items,
-  isReady: bags.isReady,
-  market,
-  totalPrice: cart.items.reduce((total, book) => total + book.price, 0)
+    bags: market.items,
+    isReady: bags.isReady,
+    market,
+    totalPrice: cart.items.reduce((total, item) => total + item.price, 0),
 });
 
 const mapDispatchToProps = dispatch => ({
-  ...bindActionCreators([bagsActions, marketActions], dispatch)
+    ...bindActionCreators([bagsActions, marketActions], dispatch),
 });
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(BagsAndCases)
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BagsAndCases));

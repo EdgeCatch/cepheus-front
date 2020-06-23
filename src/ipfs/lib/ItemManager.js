@@ -71,5 +71,10 @@ class ItemManager {
     this.prevCid = await this.ipfs.dag.put(item);
     return this.prevCid;
   }
+  async addDeliveryInfo(parcelId, description) {
+    await this.updatePrevCid();
+    this.prevCid = await this.ipfs.dag.put({ parcelId, description });
+    return this.prevCid;
+  }
 }
 module.exports = ItemManager;

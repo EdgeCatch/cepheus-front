@@ -10,41 +10,18 @@ function ProfilePageRoutes() {
   return (
     <Suspense fallback={<div>Завантаження...</div>}>
       <Switch>
-        <Route
-          path={routePaths.profileOrderItems()}
-          component={Components.OrderTestItem}
-        />
-        <Route
-          path={routePaths.buyerRefundRequest()}
-          component={Components.RefundItem}
-        />
-        <Route
-          path={routePaths.sellerItems()}
-          component={Components.SellerItems}
-        />
+        <Route path={routePaths.profileOrderItems()} component={Components.OrderTestItem} />
+        <Route path={routePaths.buyerRefundRequest()} component={Components.RefundItem} />
+        <Route path={routePaths.sellerItems()} component={Components.SellerItems} />
         <Route path={routePaths.TestItem()} component={Components.TestItem} />
         {Object.keys(account).length ? (
-          <Route
-            path={routePaths.buyerSetupRegistered()}
-            exact
-            component={Components.RegisteredAccount}
-          />
+          <Route path={routePaths.buyerSetupRegistered()} exact component={Components.RegisteredAccount} />
         ) : (
-          <Route
-            path={routePaths.accountSetup()}
-            exact
-            component={Components.AccountSetup}
-          />
+          <Route path={routePaths.accountSetup()} exact component={Components.AccountSetup} />
         )}
 
-        <Route
-          path={routePaths.sellerRefundRequest()}
-          component={Components.RefundPage}
-        />
-        <Route
-          path={routePaths.orderSellerItem()}
-          component={Components.OrderSellerItem}
-        />
+        <Route path={routePaths.sellerRefundRequest()} component={Components.RefundPage} />
+        <Route path={routePaths.orderSellerItem()} component={Components.OrderSellerItem} />
       </Switch>
     </Suspense>
   );

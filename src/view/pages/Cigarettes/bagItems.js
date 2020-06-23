@@ -1,0 +1,40 @@
+const bagItems = [
+    {
+        id: 1,
+        title: 'Blue Bag Champion',
+        image: './bag.jpg',
+        price: 109,
+    },
+    {
+        id: 2,
+        title: 'Blue Bag Champion',
+        image: './bag.jpg',
+        price: 109,
+    },
+    {
+        id: 3,
+        title: 'Blue Bag Champion',
+        image: './bag.jpg',
+        price: 109,
+    },
+    {
+        id: 4,
+        title: 'Blue Bag Champion',
+        image: './bag.jpg',
+        price: 109,
+    },
+    {
+        id: 5,
+        title: 'Blue Bag Champion',
+        image: './bag.jpg',
+        price: 109,
+    },
+    {
+        id: 6,
+        title: 'Blue Bag Champion',
+        image: './bag.jpg',
+        price: 109,
+    },
+];
+
+export default bagItems;

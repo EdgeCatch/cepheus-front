@@ -1,22 +1,28 @@
 import React, { useState } from 'react';
+import { Field, reduxForm } from 'redux-form';
 import { ThanosWallet } from '@thanos-wallet/dapp';
 import { MARKET_ADDRESS, TOKEN_ADDRESS } from '../../../config';
 import Modal from '../Modal/Modal';
+import Button from '../Button';
+
 import DeliveryModal from '../DeliveryModal/DeliveryModal';
 import Loader from '../../components/Loader/Loader';
 import { Market } from '../../../contracts/market/index';
 import { setup } from '../../../contracts/account/setup';
 import './orderSellerItem.scss';
 import { getManagers } from '../../../ipfs';
+import { ModalContext } from '../Modal/Modal';
 
 const orderEnchancer = require('./arrowEnhancer.png');
 
-const OrderSellerItem = ({ orderId }) => {
+function OrderSellerItem({ orderId }) {
   const [resolveOrder, setResolverOrder] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [isModalDeliverOpen, setIsModalDeliverOpen] = useState(false);
+  const [isModalDeliveryOpen, setIsModalDeliveryOpen] = useState(false);
   const [ordersItems, setOrdersItems] = useState([]);
+  const [selectedOrderId, setSelectedOrderId] = React.useState(-1);
   const [orders, setOrders] = useState([]);
+  const useModalContext = React.useContext(ModalContext);
 
   React.useEffect(() => {
     getOrders();
@@ -26,12 +32,11 @@ const OrderSellerItem = ({ orderId }) => {
   async function getOrders() {
     setLoading(true);
     const { itemManager } = await getManagers();
-
     const accountPkh = localStorage.getItem('pkh');
     const Tezos = await setup();
     const market = await Market.init(Tezos);
     const contractStorage = await market.getFullStorage({});
-    const items = await contractStorage.seller_orders.get(accountPkh);
+    const items = (await contractStorage.seller_orders.get(accountPkh)) || [];
     const orders = items.map(item => itemManager.getByCid(item));
     const ordersAll = await Promise.all(orders);
     const ordersItems = ordersAll.map(async (item, index) => {
@@ -50,21 +55,30 @@ const OrderSellerItem = ({ orderId }) => {
     //   console.log(await itemManager.getByCid(item.value.itemCid));
     setLoading(false);
   }
-
-  const OrderButtons = ({ orderId, status }) => {
-    const [loading, setLoading] = useState(false);
-    async function handleAcceptOrder(ipfs) {
-      setLoading(true);
+  async function handleAcceptOrder(ipfs) {
+    try {
+      const { itemManager } = await getManagers();
+      const deliveryCid = await itemManager.addDeliveryInfo(
+        'NOVA123123',
+        'LOX EBAT TEBYA NAEBALI'
+      );
       const wallet = new ThanosWallet('Cepheus');
       await wallet.connect('carthagenet', { forcePermission: true });
       const tezos = wallet.toTezos();
       const contractMarket = await tezos.wallet.at(MARKET_ADDRESS);
-
-      const operation = await contractMarket.methods.acceptOrder(ipfs).send();
+      console.log(selectedOrderId, ipfs, deliveryCid);
+      const operation = await contractMarket.methods
+        .acceptOrder(selectedOrderId, deliveryCid.string)
+        .send();
       await operation.confirmation();
       console.log('Done!');
-      setLoading(false);
+    } catch (e) {
+      console.log(e);
     }
+  }
+
+  const OrderButtons = ({ orderId, status }) => {
+    const [loading, setLoading] = useState(false);
 
     return resolveOrder ? (
       <div className="resolve-buttons">
@@ -76,7 +90,10 @@ const OrderSellerItem = ({ orderId }) => {
                 <button
                   type="submit"
                   className="purple"
-                  onClick={() => handleAcceptOrder(orderId)}
+                  onClick={() => {
+                    setSelectedOrderId(orderId);
+                    setIsModalDeliveryOpen(true);
+                  }}
                 >
                   Confirm
                 </button>
@@ -140,7 +157,7 @@ const OrderSellerItem = ({ orderId }) => {
     <React.Fragment>
       {!loading ? (
         orders.length ? (
-          orders.slice(0, 1).map((order, index) => (
+          orders.map((order, index) => (
             <div className="order-list_item">
               <div className="test-item__info">
                 <div className="test-info-elements">
@@ -194,8 +211,68 @@ const OrderSellerItem = ({ orderId }) => {
           }}
         />
       )}
+
+      <Modal
+        title="Your Delivery Details"
+        // onCancel={this.handleCancel}
+        // onSubmit={this.handleSubmit}
+        isOpen={isModalDeliveryOpen}
+      >
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center'
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center'
+            }}
+          >
+            <Field
+              className=" seller-modal__item"
+              type="text"
+              name="type"
+              value={'1'}
+              placeholder="Track number"
+              component="input"
+            />
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center'
+            }}
+          >
+            <Field
+              className=" seller-modal__item"
+              type="text"
+              name="type"
+              value={'1'}
+              placeholder="Description information"
+              component="textarea"
+              props={{ rows: '10' }}
+            />
+          </div>
+        </div>
+        <div className="modal-footer">
+          <Button
+            className=" purple buy-btn "
+            onClick={() => handleAcceptOrder(orderId)}
+          >
+            Submit
+          </Button>
+        </div>
+      </Modal>
     </React.Fragment>
   );
-};
+}
 
-export default OrderSellerItem;
+export default reduxForm({
+  form: 'sellModal',
+  destroyOnUnmount: false
+})(OrderSellerItem);

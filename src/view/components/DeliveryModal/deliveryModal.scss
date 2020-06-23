@@ -1,55 +1,55 @@
 .textarea__item {
-    background: #1e1e1f;
-    box-shadow: inset -5px -5px 10px #242529, inset 5px 5px 10px #0a0a0a;
-    border-radius: 8px;
-    border: 0;
-    font-size: 12px;
-    line-height: 16px;
+  background: #1e1e1f;
+  box-shadow: inset -5px -5px 10px #242529, inset 5px 5px 10px #0a0a0a;
+  border-radius: 8px;
+  border: 0;
+  font-size: 12px;
+  line-height: 16px;
 }
 
 .seller-modal__item {
-    padding: 7px;
-    width: 40%;
-    font-size: 14px;
-    margin: 0 10px;
-    background: #1e1e1f;
-    box-shadow: inset -5px -5px 10px #242529, inset 5px 5px 10px #0a0a0a;
-    border-radius: 8px;
+  padding: 7px;
+  width: 40%;
+  font-size: 14px;
+  margin: 5px 10px;
+  background: #1e1e1f;
+  box-shadow: inset -5px -5px 10px #242529, inset 5px 5px 10px #0a0a0a;
+  border-radius: 8px;
 }
 .seller-modal__item:active {
-    outline: none;
-    border: 0;
+  outline: none;
+  border: 0;
 }
 
 .seller-items__modal_form {
-    display: flex;
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    height: 100%;
-    justify-content: center;
+  display: flex;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: center;
 }
 
 .delivery-items__modal_form {
-    padding: 0 80px;
+  padding: 0 80px;
 }
 
 .delivery__modal__form_block {
-    margin: 30px auto;
+  margin: 30px auto;
 }
 
 .delivery__modal__form_block p {
-    font-size: 14px;
-    display: block;
-    margin: 5px 0;
-    color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 14px;
+  display: block;
+  margin: 5px 0;
+  color: rgba(255, 255, 255, 0.7) !important;
 }
 .delivery-modal__form_input {
-    background: #1e1e1f;
-    box-shadow: inset -5px -5px 10px #242529, inset 5px 5px 10px #0a0a0a;
-    border-radius: 8px;
-    font-size: 14px;
-    line-height: 21px;
-    width: 100%;
-    padding: 5px 10px;
+  background: #1e1e1f;
+  box-shadow: inset -5px -5px 10px #242529, inset 5px 5px 10px #0a0a0a;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 21px;
+  width: 100%;
+  padding: 5px 10px;
 }

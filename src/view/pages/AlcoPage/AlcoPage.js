@@ -8,6 +8,7 @@ import { ThanosWallet } from '@thanos-wallet/dapp';
 import { MARKET_ADDRESS } from '../../../config';
 import store from '../../../store/index';
 import { getManagers } from '../../../ipfs';
+import BagsAndCases from '../BagsAndCases';
 
 type Props = {
   setBags: (data: Object) => void,
@@ -16,7 +17,7 @@ type Props = {
   totalPrice: string,
 };
 
-function BagsAndCases({ isReady, market, bags, ...props }) {
+function AlcoPage({ isReady, market, bags, ...props }) {
   //   React.useEffect(() => {
   //     async function handleGetManagers() {
   //       const { itemManager, orderManager, publicKey } = await getManagers();
@@ -28,15 +29,10 @@ function BagsAndCases({ isReady, market, bags, ...props }) {
   //   }, []);
 
   return (
-    <div className="bag-page">
-      <Filter />
-      <div id="catalog-products">
-        {bags.map(bag => (
-          <BagItem key={bag.id} {...bag} />
-        ))}
-      </div>
-    </div>
+    <>
+      <BagsAndCases bags={bags} />
+    </>
   );
 }
 
-export default BagsAndCases;
+export default AlcoPage;
