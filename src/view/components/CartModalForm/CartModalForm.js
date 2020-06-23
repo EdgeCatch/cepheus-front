@@ -5,13 +5,18 @@ import store from '../../../store/index';
 import { getOrderManager } from '../../../ipfs';
 import { ThanosWallet } from '@thanos-wallet/dapp';
 import { MARKET_ADDRESS, TOKEN_ADDRESS } from '../../../config';
+import { ModalContext } from '../Modal/Modal';
+
 function CartModalForm() {
+  const useModalContext = React.useContext(ModalContext);
+
   const [cridentials, setCridentails] = React.useState({
     name: '',
     phone: '',
     postOffice: ''
   });
   async function handleSubmitOrder(e) {
+    useModalContext.setLoading(true);
     e.preventDefault();
 
     const { publicKey } = JSON.parse(localStorage.getItem('account'));
@@ -20,7 +25,6 @@ function CartModalForm() {
       cart: { items: itemsCart },
       market: { items: allItems }
     } = store.getState();
-    console.log(itemsCart, allItems);
     const search = allItems.filter(item => item.cid === itemsCart[0]);
     try {
       const wallet = new ThanosWallet('Cepheus');
@@ -43,17 +47,19 @@ function CartModalForm() {
         search[0].cid
       );
 
-      const approve = await contractToken.methods
+      const approveS = await contractToken.methods
         .approve(MARKET_ADDRESS, search[0].value.price)
         .send();
-      await approve.confirmation();
-      console.log(cid, search[0].cid, search[0].value.price);
+      await approveS.confirmation();
+
+      console.log(cid.string, search[0]);
 
       const operation = await contractMarket.methods
-        .makeOrder(cid.string, search[0].cid, '1')
+        .makeOrder(cid.string, search[0].cid, `1`)
         .send();
       await operation.confirmation();
       console.log('DONE', operation);
+      useModalContext.setLoading(false);
     } catch (e) {
       console.error(e);
     }
