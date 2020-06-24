@@ -3,7 +3,7 @@ import ItemManager from './lib/ItemManager';
 import OrderManager from './lib/OrderManager';
 import cryptico from 'cryptico';
 import { MARKET_ADDRESS } from '../config';
-const nodeUrl = '/ip4/127.0.0.1/tcp/5001';
+const nodeUrl = '/ip4/198.211.108.129/tcp/5001';
 
 export async function getManagers(mnemonic) {
   try {

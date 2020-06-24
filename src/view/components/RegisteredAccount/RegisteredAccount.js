@@ -34,7 +34,7 @@ function RegisteredAccount() {
             />
           </form>
           <div className="sub-plans">
-            <div className="subscription sub-free">
+            <div className="subscription sub-free sub-selected">
               <span>Free</span>
               <div className="sub-details">
                 <p>Price: 0% </p>
@@ -57,7 +57,10 @@ function RegisteredAccount() {
             </div>
           </div>
           <div className="buyer-setup-buttons">
-            <Button className="buyer-setup-btn purple setup-btn">
+            <Button
+              className="buyer-setup-btn purple setup-btn"
+              onClick={() => alert('Coming soon')}
+            >
               {' '}
               Update Plan
             </Button>
@@ -107,7 +110,10 @@ function RegisteredAccount() {
             </div>
           </div>
           <div className="buyer-setup-buttons">
-            <Button className="buyer-setup-btn purple setup-btn">
+            <Button
+              className="buyer-setup-btn purple setup-btn"
+              onClick={() => alert('Coming soon')}
+            >
               {' '}
               Withdraw
             </Button>
@@ -150,7 +156,13 @@ function RegisteredAccount() {
             />
           </form>
           <div className="buyer-setup-buttons">
-            <Button className="buyer-setup-btn purple setup-btn"> Use</Button>
+            <Button
+              className="buyer-setup-btn purple setup-btn"
+              onClick={() => alert('Coming soon')}
+            >
+              {' '}
+              Use
+            </Button>
           </div>
         </div>
         <div className="info-buyer__block">

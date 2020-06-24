@@ -3,13 +3,16 @@ import styled from 'styled-components';
 import SellerItem from '../SellerItem/SellerItem';
 import Modal from '../Modal/Modal';
 import SellerModalForm from '../SellerModalForm';
+import { getManagers } from '../../../ipfs';
+
 import './sellerItems.scss';
 
 class SellerItems extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isModalAddItemOpen: false
+      isModalAddItemOpen: false,
+      items: []
     };
   }
 
@@ -31,47 +34,54 @@ class SellerItems extends React.Component {
     this.setState({ isModalAddItemOpen: false });
   };
 
-// <<<<<<< ipfs
-//     render() {
-//         const { isModalAddItemOpen } = this.state;
-//         const { sellItemsList, ItemManagerClient } = this.props;
-// =======
+  // <<<<<<< ipfs
+  //     render() {
+  //         const { isModalAddItemOpen } = this.state;
+  //         const { sellItemsList, ItemManagerClient } = this.props;
+  // =======
+  handleGetManagers = async () => {
+    const { itemManager } = await getManagers();
+    const { publicKey } = JSON.parse(localStorage.getItem('account'));
+    const allItems = await itemManager.getAll();
+    const myItems = allItems.filter(item => item.value.seller === publicKey);
+    console.log(myItems);
+    this.setState({ ...this.state, items: myItems });
+  };
   render() {
     const { isModalAddItemOpen } = this.state;
     const { sellItemsList, ItemManager } = this.props;
-// >>>>>>> develop
-
     const goodsForSaleList = () => sellItemsList.map(item => item);
 
-// <<<<<<< ipfs
-//         console.log(ItemManagerClient);
-//         // const fn = async () => {
-//         // const cid = await ItemManagerClient.ipfs.add(
-//         //     'dfda83b95889',
-//         //     '3233231',
-//         //     'amazing',
-//         //     'phone',
-//         //     'postOffice',
-//         //     1,
-//         //     2,)
-//         //     console.log(await ItemManagerClient.getByCid(cid));
-//         // }
-//         //  fn().then(() => console.log("test"))
-//         return (
-//             <>
-//                 <div className="seller-items__block">
-//                     {goodsForSaleList()}
-//                     <div className="seller-items_button">
-//                         <button className="purple" type="submit" onClick={() => this.openPurchaseModal()}>
-//                             add Item
-//                         </button>
-//                     </div>
-// =======
+    this.handleGetManagers();
+
+    // <<<<<<< ipfs
+    //         console.log(ItemManagerClient);
+    //         // const fn = async () => {
+    //         // const cid = await ItemManagerClient.ipfs.add(
+    //         //     'dfda83b95889',
+    //         //     '3233231',
+    //         //     'amazing',
+    //         //     'phone',
+    //         //     'postOffice',
+    //         //     1,
+    //         //     2,)
+    //         //     console.log(await ItemManagerClient.getByCid(cid));
+    //         // }
+    //         //  fn().then(() => console.log("test"))
+    //         return (
+    //             <>
+    //                 <div className="seller-items__block">
+    //                     {goodsForSaleList()}
+    //                     <div className="seller-items_button">
+    //                         <button className="purple" type="submit" onClick={() => this.openPurchaseModal()}>
+    //                             add Item
+    //                         </button>
+    //                     </div>
+    // =======
     return (
       <>
         <div className="seller-items__block">
-          {goodsForSaleList()}
-          <div className="seller-items_button">
+          <div style={{ display: 'block', padding: '10px 0' }}>
             <button
               className="purple"
               type="submit"
@@ -80,7 +90,38 @@ class SellerItems extends React.Component {
               Add Item
             </button>
           </div>
-// >>>>>>> develop
+          <div className="seller-items_button">
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              {this.state.items.length &&
+                this.state.items.map((order, index) => (
+                  <div className="order-list_item">
+                    <div className="test-item__info">
+                      <div className="test-info-elements">
+                        <img
+                          src={order.value.images[0]}
+                          alt="item images"
+                          width="64px"
+                        />
+                      </div>
+                      <div className="test-info-elements">
+                        <h4 className="item__info_article">
+                          {order.value.name}
+                        </h4>
+                        <p className="item__info_exact">${order.value.price}</p>
+                      </div>
+                      <div className="test-info-elements">
+                        <h4 className="item__info_article">Size</h4>
+                        <p className="item__info_exact">{order.value.size}</p>
+                      </div>
+                      <div className="test-info-elements">
+                        <h4 className="item__info_article">Count </h4>
+                        <p className="item__info_exact">{order.value.count}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
 
           <Modal
             title="Add new item"

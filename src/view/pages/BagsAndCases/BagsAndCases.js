@@ -17,15 +17,17 @@ type Props = {
 };
 
 function BagsAndCases({ isReady, market, bags, ...props }) {
-  //   React.useEffect(() => {
-  //     async function handleGetManagers() {
-  //       const { itemManager, orderManager, publicKey } = await getManagers();
 
-  //       console.log(itemManager, orderManager, publicKey);
-  //       return { itemManager, orderManager, publicKey };
-  //     }
-  //     handleGetManagers();
-  //   }, []);
+  React.useEffect(() => {
+    async function handleGetManagers() {
+      const { itemManager, orderManager, publicKey } = await getManagers();
+
+      console.log(itemManager, orderManager, publicKey);
+      return { itemManager, orderManager, publicKey };
+    }
+    handleGetManagers();
+  }, []);
+
 
   return (
     <div className="bag-page">

@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import _ from 'lodash';
+import store from '../../../store/index';
 import Button from '../Button/Button';
 import Loader from '../Loader/Loader';
 import { ThanosWallet } from '@thanos-wallet/dapp';
@@ -33,25 +34,17 @@ const PLANS = {
 function AccountSetup() {
   const { handleSubmit, register, setValue, errors, getValues } = useForm();
 
-  const [selectedPlan, setPlan] = React.useState('standart');
+  const [selectedPlan, setPlan] = React.useState('free');
   const [loading, setLoading] = React.useState(false);
+  const [subscriptions, setSubscription] = React.useState([]);
   const onSubmit = values => console.log(values);
 
   React.useEffect(() => {
-    // const mnemonic = Bip39.generateMnemonic(128);
-    // const rsa1 = cryptico.generateRSAKey(mnemonic);
-    // const account = JSON.parse(localStorage.getItem('sellerAccount'));
-    // if (account) {
-    //   setValue([
-    //     {
-    //       privateKey: account.privateKey
-    //     },
-    //     {
-    //       publicKey: account.publicKey
-    //     }
-    //   ]);
-    //   setPlan(account.plan);
-    // }
+    store.subscribe(() =>
+      setSubscription(store.getState().market.subscriptions)
+    );
+
+    console.log(subscriptions);
   }, []);
 
   async function handleGetAccount() {
@@ -69,7 +62,7 @@ function AccountSetup() {
   }
 
   async function handleAuthAccount() {
-        setLoading(true);
+    setLoading(true);
 
     const accData = getValues();
     const wallet = new ThanosWallet('Cepheus');
@@ -87,8 +80,7 @@ function AccountSetup() {
       })
     );
     document.location.reload();
-        setLoading(false);
-
+    setLoading(false);
   }
 
   async function handleSaveAccount() {
@@ -100,12 +92,12 @@ function AccountSetup() {
       await wallet.connect('carthagenet', { forcePermission: true });
       const tezos = wallet.toTezos();
       const contract = await tezos.wallet.at(MARKET_ADDRESS);
-
+      const plan = Object.keys(PLANS).indexOf(selectedPlan);
       const operation = await contract.methods
-        .register('0', accData.publicKey)
+        .register(`${plan}`, accData.publicKey)
         .send();
       await operation.confirmation();
-      localStorage.setItem('pkh', tezos.wallet.pkh());
+      localStorage.setItem('pkh', await tezos.wallet.pkh());
       localStorage.setItem(
         'account',
         JSON.stringify({
@@ -240,14 +232,13 @@ function AccountSetup() {
                 <div className="sub-details">
                   <p>Price: {plan.price} </p>
                   <p>Fee: {plan.fee}</p>
-                  // >>>>>>> develop
                 </div>
               </div>
             ))}
           </div>
           <div className="buyer-setup-buttons">
             <Button
-              content="Setup"
+              content="Random"
               className="buyer-setup-btn dark "
               onClick={handleGetAccount}
             >
@@ -259,7 +250,7 @@ function AccountSetup() {
               type="submit"
               onClick={handleSaveAccount}
             >
-              Setup
+              Register
             </Button>
             <Button
               className="buyer-setup-btn purple setup-btn"

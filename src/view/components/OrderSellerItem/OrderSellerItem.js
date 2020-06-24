@@ -4,6 +4,7 @@ import { ThanosWallet } from '@thanos-wallet/dapp';
 import { MARKET_ADDRESS, TOKEN_ADDRESS } from '../../../config';
 import Modal from '../Modal/Modal';
 import Button from '../Button';
+import { useForm } from 'react-hook-form';
 
 import DeliveryModal from '../DeliveryModal/DeliveryModal';
 import Loader from '../../components/Loader/Loader';
@@ -22,6 +23,9 @@ function OrderSellerItem({ orderId }) {
   const [ordersItems, setOrdersItems] = useState([]);
   const [selectedOrderId, setSelectedOrderId] = React.useState(-1);
   const [orders, setOrders] = useState([]);
+  const [isDetailsLoading, setIsDetailsLoading] = React.useState(false);
+  const { handleSubmit, register, setValue, errors, getValues } = useForm();
+
   const useModalContext = React.useContext(ModalContext);
 
   React.useEffect(() => {
@@ -33,48 +37,55 @@ function OrderSellerItem({ orderId }) {
     setLoading(true);
     const { itemManager } = await getManagers();
     const accountPkh = localStorage.getItem('pkh');
-    const Tezos = await setup();
-    const market = await Market.init(Tezos);
-    const contractStorage = await market.getFullStorage({});
-    const items = (await contractStorage.seller_orders.get(accountPkh)) || [];
-    const orders = items.map(item => itemManager.getByCid(item));
-    const ordersAll = await Promise.all(orders);
-    const ordersItems = ordersAll.map(async (item, index) => {
-      if (item.value.itemCid) {
-        const i = await contractStorage.orders.get(items[index]);
+    try {
+      const Tezos = await setup();
+      const market = await Market.init(Tezos);
+      const contractStorage = await market.getFullStorage();
+      const items = (await contractStorage.seller_orders.get(accountPkh)) || [];
+      const orders = items.map(item => itemManager.getByCid(item));
+      const ordersAll = await Promise.all(orders);
+      const ordersItems = ordersAll.map(async (item, index) => {
+        if (item.value.itemCid) {
+          const i = await contractStorage.orders.get(items[index]);
 
-        return {
-          ...(await itemManager.getByCid(item.value.itemCid)),
-          status: i.status.toNumber()
-        };
-      }
-    });
-    const allOrdersItems = await Promise.all(ordersItems);
-    setOrdersItems(allOrdersItems);
-    setOrders(items);
+          return {
+            ...(await itemManager.getByCid(item.value.itemCid)),
+            status: i.status.toNumber()
+          };
+        }
+      });
+      const allOrdersItems = await Promise.all(ordersItems);
+      setOrdersItems(allOrdersItems);
+      setOrders(items);
+    } catch (e) {
+      setOrdersItems([]);
+      setOrders([]);
+    }
     //   console.log(await itemManager.getByCid(item.value.itemCid));
     setLoading(false);
   }
   async function handleAcceptOrder(ipfs) {
+    setIsDetailsLoading(true);
+    const { track_number, description } = getValues();
     try {
       const { itemManager } = await getManagers();
       const deliveryCid = await itemManager.addDeliveryInfo(
-        'NOVA123123',
-        'LOX EBAT TEBYA NAEBALI'
+        track_number,
+        description
       );
       const wallet = new ThanosWallet('Cepheus');
       await wallet.connect('carthagenet', { forcePermission: true });
       const tezos = wallet.toTezos();
       const contractMarket = await tezos.wallet.at(MARKET_ADDRESS);
-      console.log(selectedOrderId, ipfs, deliveryCid);
       const operation = await contractMarket.methods
         .acceptOrder(selectedOrderId, deliveryCid.string)
         .send();
       await operation.confirmation();
-      console.log('Done!');
+      console.log('Done!', track_number, description);
     } catch (e) {
       console.log(e);
     }
+    setIsDetailsLoading(false);
   }
 
   const OrderButtons = ({ orderId, status }) => {
@@ -104,6 +115,7 @@ function OrderSellerItem({ orderId }) {
                   className="order-detail__enhancer"
                   src={orderEnchancer}
                   alt=""
+                  style={{ transform: 'rotate(180deg)' }}
                   onClick={() => {
                     setResolverOrder(!resolveOrder);
                   }}
@@ -117,6 +129,7 @@ function OrderSellerItem({ orderId }) {
                   className="order-detail__enhancer"
                   src={orderEnchancer}
                   alt=""
+                  style={{ transform: 'rotate(180deg)' }}
                   onClick={() => {
                     setResolverOrder(!resolveOrder);
                   }}
@@ -130,6 +143,7 @@ function OrderSellerItem({ orderId }) {
                   className="order-detail__enhancer"
                   src={orderEnchancer}
                   alt=""
+                  style={{ transform: 'rotate(180deg)' }}
                   onClick={() => {
                     setResolverOrder(!resolveOrder);
                   }}
@@ -213,60 +227,74 @@ function OrderSellerItem({ orderId }) {
       )}
 
       <Modal
-        title="Your Delivery Details"
-        // onCancel={this.handleCancel}
-        // onSubmit={this.handleSubmit}
+        title="Delivery Details"
+        onCancel={() => setIsModalDeliveryOpen(false)}
         isOpen={isModalDeliveryOpen}
       >
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center'
-          }}
-        >
+        {isDetailsLoading ? (
           <div
             style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center'
+              transform: 'translate(-50%, -50%)',
+              position: 'absolute',
+              left: ' 50%',
+              top: '40%'
             }}
           >
-            <Field
-              className=" seller-modal__item"
-              type="text"
-              name="type"
-              value={'1'}
-              placeholder="Track number"
-              component="input"
-            />
+            <Loader />
           </div>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center'
-            }}
-          >
-            <Field
-              className=" seller-modal__item"
-              type="text"
-              name="type"
-              value={'1'}
-              placeholder="Description information"
-              component="textarea"
-              props={{ rows: '10' }}
-            />
-          </div>
-        </div>
-        <div className="modal-footer">
-          <Button
-            className=" purple buy-btn "
-            onClick={() => handleAcceptOrder(orderId)}
-          >
-            Submit
-          </Button>
-        </div>
+        ) : (
+          <React.Fragment>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center'
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center'
+                }}
+              >
+                <input
+                  className=" seller-modal__item"
+                  type="text"
+                  name="track_number"
+                  ref={register({ required: 'Required' })}
+                  placeholder="Track number"
+                  component="input"
+                />
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center'
+                }}
+              >
+                <textarea
+                  className=" seller-modal__item"
+                  type="text"
+                  name="description"
+                  ref={register({ required: 'Required' })}
+                  placeholder="Description information"
+                  component="textarea"
+                  props={{ rows: '10' }}
+                />
+              </div>
+            </div>
+            <div className="modal-footer">
+              <Button
+                className=" purple buy-btn "
+                onClick={() => handleAcceptOrder(orderId)}
+              >
+                Submit
+              </Button>
+            </div>
+          </React.Fragment>
+        )}
       </Modal>
     </React.Fragment>
   );
