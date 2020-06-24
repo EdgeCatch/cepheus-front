@@ -7,7 +7,11 @@ const nodeUrl = '/ip4/ipfs/tcp/5001';
 
 export async function getManagers() {
   try {
-    let ipfs = ipfsClient(nodeUrl);
+    let ipfs = ipfsClient({
+      host: '198.211.108.129',
+      port: 5001,
+      protocol: 'http'
+    });
 
     let itemManager = await ItemManager.createInstance(ipfs, MARKET_ADDRESS);
     let orderManager = new OrderManager(ipfs);
