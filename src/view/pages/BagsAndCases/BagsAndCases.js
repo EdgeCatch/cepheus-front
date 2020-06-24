@@ -17,6 +17,7 @@ type Props = {
 };
 
 function BagsAndCases({ isReady, market, bags, ...props }) {
+
   React.useEffect(() => {
     async function handleGetManagers() {
       const { itemManager, orderManager, publicKey } = await getManagers();
@@ -26,6 +27,7 @@ function BagsAndCases({ isReady, market, bags, ...props }) {
     }
     handleGetManagers();
   }, []);
+
 
   return (
     <div className="bag-page">
