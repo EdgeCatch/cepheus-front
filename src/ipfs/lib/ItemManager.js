@@ -77,4 +77,4 @@ class ItemManager {
     return this.prevCid;
   }
 }
-module.exports = ItemManager;
+export default ItemManager;

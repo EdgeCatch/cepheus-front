@@ -43,4 +43,4 @@ class OrderManager {
   }
 }
 
-module.exports = OrderManager;
+export default OrderManager;
