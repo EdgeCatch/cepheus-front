@@ -27,8 +27,6 @@ function BagsAndCases({ isReady, market, bags, ...props }) {
     handleGetManagers();
   }, []);
 
-
-
   return (
     <div className="bag-page">
       <Filter />

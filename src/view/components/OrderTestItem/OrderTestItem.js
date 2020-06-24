@@ -26,19 +26,26 @@ const OrderTestItem = () => {
       const { itemManager } = await getManagers();
 
       const accountPkh = localStorage.getItem('pkh');
-      const Tezos = await setup();
-      const market = await Market.init(Tezos);
-      const contractStorage = await market.getFullStorage({});
-      console.log(contractStorage, 'ss', accountPkh);
-      const items = (await contractStorage.buyer_orders.get(accountPkh)) || [];
-      const orders = items.map(item => itemManager.getByCid(item));
-      const ordersAll = await Promise.all(orders);
-      const ordersItems = ordersAll.map(item =>
-        item.value.itemCid ? itemManager.getByCid(item.value.itemCid) : {}
-      );
-      const allOrdersItems = await Promise.all(ordersItems);
-      setOrdersItems(allOrdersItems);
-      setOrders(items);
+      try {
+        const Tezos = await setup();
+        const market = await Market.init(Tezos);
+        const contractStorage = await market.getFullStorage({});
+        console.log(contractStorage, 'ss', accountPkh);
+        const items =
+          (await contractStorage.buyer_orders.get(accountPkh)) || [];
+        const orders = items.map(item => itemManager.getByCid(item));
+        const ordersAll = await Promise.all(orders);
+        const ordersItems = ordersAll.map(item =>
+          item.value.itemCid ? itemManager.getByCid(item.value.itemCid) : {}
+        );
+        const allOrdersItems = await Promise.all(ordersItems);
+        setOrdersItems(allOrdersItems);
+        setOrders(items);
+      } catch (e) {
+        console.log(e);
+        setOrdersItems([]);
+        setOrders([]);
+      }
       setLoading(false);
     }
 
@@ -56,7 +63,6 @@ const OrderTestItem = () => {
     const items = await contractStorage.orders.get(orders[index]);
     if (items.delivery_ipfs.length) {
       const deliveryData = await itemManager.getByCid(items.delivery_ipfs);
-      console.log(deliveryData);
       setDeliveryDetails(deliveryData.value);
     } else {
       setDeliveryDetails({});

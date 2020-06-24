@@ -25,49 +25,55 @@ function CartModalForm() {
       cart: { items: itemsCart },
       market: { items: allItems }
     } = store.getState();
-    const search = allItems.filter(item => item.cid === itemsCart[0]);
-    try {
-      const wallet = new ThanosWallet('Cepheus');
-      await wallet.connect('carthagenet', { forcePermission: true });
-      const tezos = wallet.toTezos();
-      const contractMarket = await tezos.wallet.at(MARKET_ADDRESS);
-      const contractToken = await tezos.wallet.at(TOKEN_ADDRESS);
+    const wallet = new ThanosWallet('Cepheus');
+    await wallet.connect('carthagenet', { forcePermission: true });
+    const tezos = wallet.toTezos();
+    const contractMarket = await tezos.wallet.at(MARKET_ADDRESS);
+    const contractToken = await tezos.wallet.at(TOKEN_ADDRESS);
 
-      const accountPkh = await tezos.wallet.pkh();
-      const contractStorage = await contractMarket.storage();
-      const { seller_id } = await contractStorage.items.get(search[0].cid);
-      const cid = await orderManager.add(
-        accountPkh,
-        seller_id,
-        cridentials.name,
-        cridentials.phone,
-        cridentials.postOffice,
-        publicKey,
-        search[0].value.seller,
-        search[0].cid
-      );
+    const accountPkh = await tezos.wallet.pkh();
+    const contractStorage = await contractMarket.storage();
+    for (const cartItem in itemsCart) {
+      const search = allItems.find(item => item.cid == itemsCart[cartItem].cid);
+      console.log(search, allItems, cartItem);
+      try {
+        const { seller_id } = await contractStorage.items.get(search.cid);
+        const cid = await orderManager.add(
+          accountPkh,
+          seller_id,
+          cridentials.name,
+          cridentials.phone,
+          cridentials.postOffice,
+          publicKey,
+          search.value.seller,
+          search.cid
+        );
 
-      const approveS = await contractToken.methods
-        .approve(MARKET_ADDRESS, search[0].value.price)
-        .send();
-      await approveS.confirmation();
+        const approveS = await contractToken.methods
+          .approve(
+            MARKET_ADDRESS,
+            Number(search.value.price) * itemsCart[cartItem].count
+          )
+          .send();
+        await approveS.confirmation();
 
-      console.log(cid.string, search[0]);
+        console.log(cid.string, search);
 
-      const operation = await contractMarket.methods
-        .makeOrder(cid.string, search[0].cid, `1`)
-        .send();
-      await operation.confirmation();
-      console.log('DONE', operation);
-      useModalContext.setLoading(false);
-    } catch (e) {
-      console.error(e);
+        const operation = await contractMarket.methods
+          .makeOrder(cid.string, search.cid, `${itemsCart[cartItem].count}`)
+          .send();
+        await operation.confirmation();
+        console.log('DONE', operation);
+      } catch (e) {
+        console.error(e);
+      }
     }
+
+    useModalContext.setLoading(false);
   }
 
   function handleChangeField(e) {
     setCridentails({ ...cridentials, [e.target.name]: e.target.value });
-    console.log(cridentials);
   }
   return (
     <form action="" className="purchases__modal_form">
