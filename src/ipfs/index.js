@@ -5,7 +5,7 @@ import cryptico from 'cryptico';
 import { MARKET_ADDRESS } from '../config';
 const nodeUrl = '/ip4/ipfs/tcp/5001';
 
-export async function getManagers(mnemonic) {
+export async function getManagers() {
   try {
     let ipfs = ipfsClient({
       host: '198.211.108.129',

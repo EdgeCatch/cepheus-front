@@ -15,7 +15,10 @@ class ItemManager {
     let Tezos = new TezosToolkit();
     await Tezos.setProvider({ rpc: provider });
     let marketContract = await Tezos.contract.at(marketContractAddress);
+
     const storage = await marketContract.storage();
+    console.log(storage, storage.items_db);
+
     return new ItemManager(ipfs, marketContract, storage.items_db);
   }
 
@@ -41,11 +44,6 @@ class ItemManager {
 
   async getAll() {
     await this.updatePrevCid();
-    console.log(
-      await this.getByCid(
-        'bafyreihh43c635qsbzzt7ihouvic7irtnd4guwcj4twmi4cyf7now6yqp4'
-      )
-    );
     return await this.traverse(this.prevCid);
   }
 

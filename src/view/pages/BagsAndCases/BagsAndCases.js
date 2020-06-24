@@ -17,7 +17,6 @@ type Props = {
 };
 
 function BagsAndCases({ isReady, market, bags, ...props }) {
-
   React.useEffect(() => {
     async function handleGetManagers() {
       const { itemManager, orderManager, publicKey } = await getManagers();
@@ -28,13 +27,12 @@ function BagsAndCases({ isReady, market, bags, ...props }) {
     handleGetManagers();
   }, []);
 
-
   return (
     <div className="bag-page">
       <Filter />
       <div id="catalog-products">
-        {bags.map(bag => (
-          <BagItem key={bag.id} {...bag} />
+        {bags.map((bag, index) => (
+          <BagItem key={index} {...bag} />
         ))}
       </div>
     </div>
