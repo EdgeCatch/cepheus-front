@@ -17,18 +17,18 @@ const PLANS = {
   free: {
     name: 'Free',
     price: 0,
-    fee: '1.5%',
+    fee: '1.5%'
   },
   standart: {
     name: 'Standart',
     price: 1000,
-    fee: '0.5%',
+    fee: '0.5%'
   },
   premium: {
     name: 'Premium',
     price: 2000,
-    fee: '0%',
-  },
+    fee: '0%'
+  }
 };
 
 function AccountSetup() {
@@ -40,7 +40,9 @@ function AccountSetup() {
   const onSubmit = values => console.log(values);
 
   React.useEffect(() => {
-    store.subscribe(() => setSubscription(store.getState().market.subscriptions));
+    store.subscribe(() =>
+      setSubscription(store.getState().market.subscriptions)
+    );
 
     console.log(subscriptions);
   }, []);
@@ -51,11 +53,11 @@ function AccountSetup() {
 
     setValue([
       {
-        mnemonic,
+        mnemonic
       },
       {
-        publicKey,
-      },
+        publicKey
+      }
     ]);
     setLoading(false);
   }
@@ -78,8 +80,8 @@ function AccountSetup() {
       'account',
       JSON.stringify({
         mnemonic,
-        publicKey,
-      }),
+        publicKey
+      })
     );
     document.location.reload();
     setLoading(false);
@@ -96,7 +98,9 @@ function AccountSetup() {
       const tezos = wallet.toTezos();
       const contract = await tezos.wallet.at(MARKET_ADDRESS);
       const plan = Object.keys(PLANS).indexOf(selectedPlan);
-      const operation = await contract.methods.register(`${plan}`, accData.publicKey).send();
+      const operation = await contract.methods
+        .register(`${plan}`, accData.publicKey)
+        .send();
 
       await operation.confirmation();
       localStorage.setItem('pkh', await tezos.wallet.pkh());
@@ -104,8 +108,8 @@ function AccountSetup() {
         'account',
         JSON.stringify({
           mnemonic: accData.mnemonic,
-          publicKey: accData.publicKey,
-        }),
+          publicKey: accData.publicKey
+        })
       );
       document.location.reload();
     } catch (err) {
@@ -119,7 +123,7 @@ function AccountSetup() {
     <div
       className="seller-setup"
       style={{
-        position: 'relative',
+        position: 'relative'
       }}
     >
       {loading && (
@@ -128,15 +132,21 @@ function AccountSetup() {
             transform: 'translate(-50%, -50%)',
             position: 'absolute',
             left: ' 50%',
-            top: '50%',
+            top: '50%'
           }}
         >
           <Loader />
         </div>
       )}
-      <div className="setup-buyer__block" style={{ opacity: loading ? '0.5' : '1' }}>
+      <div
+        className="setup-buyer__block"
+        style={{ opacity: loading ? '0.5' : '1' }}
+      >
         <h3>Setup Your Account</h3>
-        <form className="buyer-setup__form-unregistered" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="buyer-setup__form-unregistered"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <textarea
             name="mnemonic"
             className={privateKey}
@@ -157,7 +167,11 @@ function AccountSetup() {
           <div className="sub-plans">
             {Object.values(PLANS).map((plan, index) => (
               <div
-                className={classNames('subscription', plan.name.toLocaleLowerCase() === selectedPlan && 'sub-selected')}
+                className={classNames(
+                  'subscription',
+                  plan.name.toLocaleLowerCase() === selectedPlan &&
+                    'sub-selected'
+                )}
                 onClick={() => setPlan(plan.name.toLocaleLowerCase())}
               >
                 <span>{plan.name}</span>
@@ -169,41 +183,61 @@ function AccountSetup() {
             ))}
           </div>
           <div className="buyer-setup-buttons">
-            <Button content="Random" className="buyer-setup-btn dark " onClick={handleGetAccount}>
+            <Button
+              content="Random"
+              className="buyer-setup-btn dark "
+              onClick={handleGetAccount}
+            >
               Random
             </Button>
 
-            <Button className="buyer-setup-btn purple setup-btn" type="submit" onClick={handleSaveAccount}>
+            <Button
+              className="buyer-setup-btn purple setup-btn"
+              type="submit"
+              onClick={handleSaveAccount}
+            >
               Register
             </Button>
-            <Button className="buyer-setup-btn purple setup-btn" type="submit" onClick={handleAuthAccount}>
+            <Button
+              className="buyer-setup-btn purple setup-btn"
+              type="submit"
+              onClick={handleAuthAccount}
+            >
               Auth
             </Button>
           </div>
         </form>
       </div>
-      <div className="info-buyer__block" style={{ opacity: loading ? '0.5' : '1' }}>
-        <h4>You are not registered as a Seller! </h4>
+      <div
+        className="info-buyer__block"
+        style={{ opacity: loading ? '0.5' : '1' }}
+      >
+        <h4>You are not registered yet! </h4>
         <div>
           <p>
-            In order to hide your identitity, the tracking number of the delivery is encrypted by buyer and seller RSA
-            public keys.
+            In order to hide your identitity, the tracking number of the
+            delivery is encrypted by buyer and seller RSA public keys.
           </p>
           <p>
-            You set up this public key before. In order to display tracking number of your orders your RSA private key
-            is needed
+            You set up this public key before. In order to display tracking
+            number of your orders your RSA private key is needed
           </p>
           <p>
-            <b>Note</b>: If you don’t need to see tracking numbers and delivery details you may skip filling this form.
+            <b>Note</b>: If you don’t need to see tracking numbers and delivery
+            details you may skip filling this form.
           </p>
         </div>
         <h4>Fees and Subscriptions </h4>
         <div>
           <p>There are few fees plans.</p>
-          <p>Fee is needed to incentivise community to solve possible issues and improve the platform.</p>
           <p>
-            The buyers pays fee of the earned profit. Subscription determines the fee rate and is payed monthly. If it
-            isn't rebilled in time the Free plan is set by default. You may update it in any tim
+            Fee is needed to incentivise community to solve possible issues and
+            improve the platform.
+          </p>
+          <p>
+            The buyers pays fee of the earned profit. Subscription determines
+            the fee rate and is payed monthly. If it isn't rebilled in time the
+            Free plan is set by default. You may update it in any tim
           </p>
         </div>
       </div>
