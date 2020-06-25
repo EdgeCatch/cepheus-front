@@ -13,7 +13,7 @@ function CartModalForm({ handleCancel }) {
   const [cridentials, setCridentails] = React.useState({
     name: '',
     phone: '',
-    postOffice: '',
+    postOffice: ''
   });
 
   async function handleSubmitOrder(e) {
@@ -23,7 +23,7 @@ function CartModalForm({ handleCancel }) {
     const { orderManager } = await getManagers();
     const {
       cart: { items: itemsCart },
-      market: { items: allItems },
+      market: { items: allItems }
     } = store.getState();
     const wallet = new ThanosWallet('Cepheus');
 
@@ -38,7 +38,6 @@ function CartModalForm({ handleCancel }) {
     for (const cartItem in itemsCart) {
       const search = allItems.find(item => item.cid == itemsCart[cartItem].cid);
 
-
       try {
         const { seller_id } = await contractStorage.items.get(search.cid);
         const cid = await orderManager.add(
@@ -49,10 +48,13 @@ function CartModalForm({ handleCancel }) {
           cridentials.postOffice,
           publicKey,
           search.value.seller,
-          search.cid,
+          search.cid
         );
         const approveS = await contractToken.methods
-          .approve(MARKET_ADDRESS, Number(search.value.price) * itemsCart[cartItem].count)
+          .approve(
+            MARKET_ADDRESS,
+            Number(search.value.price) * itemsCart[cartItem].count
+          )
           .send();
 
         await approveS.confirmation();
@@ -78,7 +80,7 @@ function CartModalForm({ handleCancel }) {
     setCridentails({ ...cridentials, [e.target.name]: e.target.value });
   }
   return (
-    <form action="" className="purchases__modal_form">
+    <form action="" className="purchases__modal_form" autocomplete="off">
       <input
         name="name"
         className="purchases__modal_item"

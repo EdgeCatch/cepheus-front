@@ -167,7 +167,7 @@ function SellerModalForm({ handleCancel, handleGetManagers, ...props }) {
         flexDirection: 'column'
       }}
     >
-      <form className="seller-items__modal_form">
+      <form className="seller-items__modal_form" autocomplete="off">
         <Field
           className=" seller-modal__item"
           type="text"
@@ -259,7 +259,7 @@ function SellerModalForm({ handleCancel, handleGetManagers, ...props }) {
         onDragLeave={unhighlight}
         onDragDrop={unhighlight}
       >
-        <form class="my-form">
+        <form class="my-form" autocomplete="off" autocomplete="off">
           <p>Drop your photos here</p>
           <input
             type="file"

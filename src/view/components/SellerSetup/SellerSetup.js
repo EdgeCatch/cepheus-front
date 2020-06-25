@@ -17,18 +17,18 @@ const PLANS = {
   free: {
     name: 'Free',
     price: 0,
-    fee: '1.5%',
+    fee: '1.5%'
   },
   standart: {
     name: 'Standart',
     price: 1000,
-    fee: '0.5%',
+    fee: '0.5%'
   },
   premium: {
     name: 'Premium',
     price: 2000,
-    fee: '0%',
-  },
+    fee: '0%'
+  }
 };
 
 function SellerSetup() {
@@ -40,7 +40,7 @@ function SellerSetup() {
 
   React.useEffect(() => {
     const {
-      market: { subscriptions },
+      market: { subscriptions }
     } = store.getState();
 
     setPlans(subscriptions);
@@ -49,11 +49,11 @@ function SellerSetup() {
     if (account) {
       setValue([
         {
-          privateKey: account.privateKey,
+          privateKey: account.privateKey
         },
         {
-          publicKey: account.publicKey,
-        },
+          publicKey: account.publicKey
+        }
       ]);
       setPlanIndex(account.plan);
     }
@@ -64,9 +64,9 @@ function SellerSetup() {
 
     setValue([
       {
-        privateKey,
+        privateKey
       },
-      { publicKey },
+      { publicKey }
     ]);
   }
 
@@ -79,7 +79,10 @@ function SellerSetup() {
 
     const initialStorage = await market.getFullStorage({ accounts: [pkh] });
     // assert.equal(initialStorage.accountsExtended[pkh], undefined);
-    const operation = await market.register('0', await Tezos.signer.publicKey());
+    const operation = await market.register(
+      '0',
+      await Tezos.signer.publicKey()
+    );
     // assert(operation.status === 'applied', 'Operation was not applied');
     const updatedStorage = await market.getFullStorage({ accounts: [pkh] });
 
@@ -112,7 +115,10 @@ function SellerSetup() {
             {Object.values(plans).map((plan, index) => (
               <div
                 key={index}
-                className={classNames('subscription', index == selectedPlanIndex && 'sub-selected')}
+                className={classNames(
+                  'subscription',
+                  index == selectedPlanIndex && 'sub-selected'
+                )}
                 onClick={() => setPlanIndex(index)}
               >
                 <span>{index}</span>
@@ -124,37 +130,48 @@ function SellerSetup() {
             ))}
           </div>
           <div className="buyer-setup-buttons">
-            <Button content="Setup" className="buyer-setup-btn dark " onClick={handleGetAccount}>
+            <Button
+              content="Setup"
+              className="buyer-setup-btn dark "
+              onClick={handleGetAccount}
+            >
               Random
             </Button>
-            <Button className="buyer-setup-btn purple setup-btn" type="submit" onClick={handleSaveAccount}>
+            <Button
+              className="buyer-setup-btn purple setup-btn"
+              type="submit"
+              onClick={handleSaveAccount}
+            >
               Setup
             </Button>
           </div>
         </form>
       </div>
       <div className="info-buyer__block">
-        <h4>You are not registered as a Seller! </h4>
+        <h4>You are not registered yet </h4>
         <div>
           <p>
-            In order to hide your identitity, the traking number of your delivery should be encrypted by the public key
-            you control.
+            In order to hide your identitity, the traking number of your
+            delivery should be encrypted by the public key you control.
           </p>
           <p>Register with your own or generated and store new keypair.</p>
           <p>
-            <b>Note</b>: If you loose your loose it your won’t be able to track your delivery.
+            <b>Note</b>: If you loose your loose it your won’t be able to track
+            your delivery.
           </p>
         </div>
         <h4>Fees and Subscriptions </h4>
         <div>
           <p>There are two type of fees: base and subscription.</p>
           <p>
-            Tezos storage isn’t free and is payed on per block basics so the basic fee is needed to store Buyers account
-            in Blockchain for some paid time.
+            Tezos storage isn’t free and is payed on per block basics so the
+            basic fee is needed to store Buyers account in Blockchain for some
+            paid time.
           </p>
           <p>
-            The buyers pays fee of the earned profit. Subscription determines the fee rate and is payed monthly. If it
-            wasn’t rebilled in time the Free plan is set by default.
+            The buyers pays fee of the earned profit. Subscription determines
+            the fee rate and is payed monthly. If it wasn’t rebilled in time the
+            Free plan is set by default.
           </p>
         </div>
       </div>
