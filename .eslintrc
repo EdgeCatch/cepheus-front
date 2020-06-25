@@ -60,7 +60,7 @@
             {
                 "singleQuote": true,
                 "parser": "flow",
-                "tabWidth": 4,
+                "tabWidth": 2,
                 "trailingComma": "all",
                 "printWidth": 120
             }
