@@ -6,9 +6,8 @@ import store from '../../../store/index';
 import { getManagers } from '../../../ipfs';
 import { MARKET_ADDRESS, TOKEN_ADDRESS } from '../../../config';
 import { ModalContext } from '../Modal/Modal';
-import './cartModalForm.scss';
 
-function CartModalForm() {
+function CartModalForm({ handleCancel }) {
   const useModalContext = React.useContext(ModalContext);
 
   const [cridentials, setCridentails] = React.useState({
@@ -20,7 +19,6 @@ function CartModalForm() {
   async function handleSubmitOrder(e) {
     useModalContext.setLoading(true);
     e.preventDefault();
-
     const { publicKey } = JSON.parse(localStorage.getItem('account'));
     const { orderManager } = await getManagers();
     const {
@@ -40,7 +38,7 @@ function CartModalForm() {
     for (const cartItem in itemsCart) {
       const search = allItems.find(item => item.cid == itemsCart[cartItem].cid);
 
-      console.log(search, allItems, cartItem);
+
       try {
         const { seller_id } = await contractStorage.items.get(search.cid);
         const cid = await orderManager.add(
@@ -53,14 +51,11 @@ function CartModalForm() {
           search.value.seller,
           search.cid,
         );
-
         const approveS = await contractToken.methods
           .approve(MARKET_ADDRESS, Number(search.value.price) * itemsCart[cartItem].count)
           .send();
 
         await approveS.confirmation();
-
-        console.log(cid.string, search);
 
         const operation = await contractMarket.methods
           .makeOrder(cid.string, search.cid, `${itemsCart[cartItem].count}`)
@@ -68,8 +63,11 @@ function CartModalForm() {
 
         await operation.confirmation();
         console.log('DONE', operation);
+        store.dispatch({ type: 'CLEAR_CART', payload: '' });
+        handleCancel();
       } catch (e) {
         console.error(e);
+        alert(e.message);
       }
     }
 

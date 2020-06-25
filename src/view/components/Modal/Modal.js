@@ -18,13 +18,12 @@ type ModalProps = {
   isOpen: boolean
 };
 
-
 const ModalHeader = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1rem;
-    border-bottom: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  border-bottom: none;
 `;
 
 export const ModalContext = React.createContext();
@@ -61,7 +60,7 @@ const Modal = (props: ModalProps) => {
                     : { filter: 'blur(0px)' }
                 }
               >
-                  <ModalHeader>
+                <ModalHeader>
                   <div className="modal-title ">{title}</div>
                   <Icon name="times" onClick={onCancel} />
                 </ModalHeader>

@@ -86,7 +86,7 @@ class CartPage extends React.Component<CartPageProps, CartPageState> {
             isOpen={isOpenModalPurchase}
             buttonText="Buy"
           >
-            <CartModalForm />
+            <CartModalForm handleCancel={() => this.handleCancel()} />
           </Modal>
         </div>
       </>

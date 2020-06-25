@@ -15,7 +15,9 @@ class SellerItems extends React.Component {
       items: [],
     };
   }
-
+  componentDidMount() {
+    this.handleGetManagers();
+  }
   onSubmit(e) {
     this.props.sellItems();
     this.setState({ isModalAddItemOpen: false });
@@ -37,10 +39,9 @@ class SellerItems extends React.Component {
   handleGetManagers = async () => {
     const { itemManager } = await getManagers();
     const { publicKey } = JSON.parse(localStorage.getItem('account'));
-    const allItems = await itemManager.getAll();
+    const allItems = (await itemManager.getAll()) || [];
     const myItems = allItems.filter(item => item.value.seller === publicKey);
 
-    console.log(myItems);
     this.setState({ ...this.state, items: myItems });
   };
 
@@ -49,20 +50,22 @@ class SellerItems extends React.Component {
     const { sellItemsList, ItemManager } = this.props;
     const goodsForSaleList = () => sellItemsList.map(item => item);
 
-    this.handleGetManagers();
-
     return (
       <>
         <div className="seller-items__block">
-          <div style={{ display: 'block', padding: '10px 0' }}>
-            <button className="purple" type="submit" onClick={() => this.openPurchaseModal()}>
+          <div style={{ display: 'block', padding: '10px 0px' }}>
+            <button
+              className="purple"
+              type="submit"
+              onClick={() => this.openPurchaseModal()}
+            >
               Add Item
             </button>
           </div>
-          <div className="seller-items_button">
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              {this.state.items.length &&
-                this.state.items.map((order, index) => (
+          {this.state.items.length && (
+            <div className="seller-items_button">
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                {this.state.items.map((order, index) => (
                   <div className="order-list_item">
                     <div className="test-item__info">
                       <div className="test-info-elements">
@@ -83,11 +86,20 @@ class SellerItems extends React.Component {
                     </div>
                   </div>
                 ))}
+              </div>
             </div>
-          </div>
 
-          <Modal title="Add new item" onCancel={this.handleCancel} isOpen={isModalAddItemOpen} buttonText="">
-            <SellerModalForm />
+          )}
+          <Modal
+            title="Add new item"
+            onCancel={this.handleCancel}
+            isOpen={isModalAddItemOpen}
+            buttonText=""
+          >
+            <SellerModalForm
+              handleCancel={() => this.handleCancel()}
+              handleGetManagers={() => this.handleGetManagers()}
+            />
           </Modal>
         </div>
       </>
