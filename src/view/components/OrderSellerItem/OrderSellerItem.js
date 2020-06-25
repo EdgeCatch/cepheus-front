@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { ThanosWallet } from '@thanos-wallet/dapp';
-import { MARKET_ADDRESS, TOKEN_ADDRESS } from '../../../config';
-import Modal from '../Modal/Modal';
-import Button from '../Button';
 import { useForm } from 'react-hook-form';
+import { MARKET_ADDRESS, TOKEN_ADDRESS } from '../../../config';
+import Modal, { ModalContext } from '../Modal/Modal';
+import Button from '../Button';
 
 import DeliveryModal from '../DeliveryModal/DeliveryModal';
 import Loader from '../../components/Loader/Loader';
@@ -12,7 +12,6 @@ import { Market } from '../../../contracts/market/index';
 import { setup } from '../../../contracts/account/setup';
 import './orderSellerItem.scss';
 import { getManagers } from '../../../ipfs';
-import { ModalContext } from '../Modal/Modal';
 
 const orderEnchancer = require('./arrowEnhancer.png');
 
@@ -37,11 +36,13 @@ function OrderSellerItem({ orderId }) {
     setLoading(true);
     const { itemManager } = await getManagers();
     const accountPkh = localStorage.getItem('pkh');
+
     try {
       const Tezos = await setup();
       const market = await Market.init(Tezos);
       const contractStorage = await market.getFullStorage();
       const items = (await contractStorage.seller_orders.get(accountPkh)) || [];
+
       const orders = items.map(item => itemManager.getByCid(item));
       const ordersAll = await Promise.all(orders);
       const ordersItems = ordersAll.map(async (item, index) => {
@@ -50,11 +51,12 @@ function OrderSellerItem({ orderId }) {
 
           return {
             ...(await itemManager.getByCid(item.value.itemCid)),
-            status: i.status.toNumber()
+            status: i.status.toNumber(),
           };
         }
       });
       const allOrdersItems = await Promise.all(ordersItems);
+
       setOrdersItems(allOrdersItems);
       setOrders(items);
     } catch (e) {
@@ -66,19 +68,17 @@ function OrderSellerItem({ orderId }) {
   async function handleAcceptOrder(ipfs) {
     setIsDetailsLoading(true);
     const { track_number, description } = getValues();
+
     try {
       const { itemManager } = await getManagers();
-      const deliveryCid = await itemManager.addDeliveryInfo(
-        track_number,
-        description
-      );
+      const deliveryCid = await itemManager.addDeliveryInfo(track_number, description);
       const wallet = new ThanosWallet('Cepheus');
+
       await wallet.connect('carthagenet', { forcePermission: true });
       const tezos = wallet.toTezos();
       const contractMarket = await tezos.wallet.at(MARKET_ADDRESS);
-      const operation = await contractMarket.methods
-        .acceptOrder(selectedOrderId, deliveryCid.string)
-        .send();
+      const operation = await contractMarket.methods.acceptOrder(selectedOrderId, deliveryCid.string).send();
+
       await operation.confirmation();
       console.log('Done!', track_number, description);
     } catch (e) {
@@ -94,9 +94,9 @@ function OrderSellerItem({ orderId }) {
       <div className="resolve-buttons">
         {/* temporary button feature to change a state of bool */}
         {!loading ? (
-          <React.Fragment>
+          <>
             {status === 1 && (
-              <React.Fragment>
+              <>
                 <button
                   type="submit"
                   className="purple"
@@ -119,10 +119,10 @@ function OrderSellerItem({ orderId }) {
                     setResolverOrder(!resolveOrder);
                   }}
                 />
-              </React.Fragment>
+              </>
             )}
             {status === 2 && (
-              <React.Fragment>
+              <>
                 <span>Confirmed</span>
                 <img
                   className="order-detail__enhancer"
@@ -133,10 +133,10 @@ function OrderSellerItem({ orderId }) {
                     setResolverOrder(!resolveOrder);
                   }}
                 />
-              </React.Fragment>
+              </>
             )}
             {status === 3 && (
-              <React.Fragment>
+              <>
                 <span>Requested refund</span>
                 <img
                   className="order-detail__enhancer"
@@ -147,9 +147,9 @@ function OrderSellerItem({ orderId }) {
                     setResolverOrder(!resolveOrder);
                   }}
                 />
-              </React.Fragment>
+              </>
             )}
-          </React.Fragment>
+          </>
         ) : (
           <Loader />
         )}
@@ -167,47 +167,32 @@ function OrderSellerItem({ orderId }) {
   };
 
   return (
-    <React.Fragment>
+    <>
       {!loading ? (
         orders.length ? (
           orders.map((order, index) => (
             <div className="order-list_item">
               <div className="test-item__info">
                 <div className="test-info-elements">
-                  <img
-                    src={ordersItems[index].value.images[0]}
-                    alt="item images"
-                    width="64px"
-                  />
+                  <img src={ordersItems[index].value.images[0]} alt="item images" width="64px" />
                 </div>
                 <div className="test-info-elements">
-                  <h4 className="item__info_article">
-                    Order:{ordersItems[index].value.name}
-                  </h4>
-                  <p className="item__info_exact">
-                    ${ordersItems[index].value.price}
-                  </p>
+                  <h4 className="item__info_article">Order:{ordersItems[index].value.name}</h4>
+                  <p className="item__info_exact">${ordersItems[index].value.price}</p>
                 </div>
                 <div className="test-info-elements">
                   <h4 className="item__info_article">Size</h4>
-                  <p className="item__info_exact">
-                    {ordersItems[index].value.size}
-                  </p>
+                  <p className="item__info_exact">{ordersItems[index].value.size}</p>
                 </div>
                 <div className="test-info-elements">
                   <h4 className="item__info_article">Count </h4>
-                  <p className="item__info_exact">
-                    ${ordersItems[index].value.count}
-                  </p>
+                  <p className="item__info_exact">${ordersItems[index].value.count}</p>
                 </div>
                 <div className="test-info-elements">
                   <h4 className="item__info_article">Tracking number </h4>
                   <p className="item__info_exact">$109</p>
                 </div>
-                <OrderButtons
-                  orderId={order}
-                  status={ordersItems[index].status}
-                />
+                <OrderButtons orderId={order} status={ordersItems[index].status} />
               </div>
             </div>
           ))
@@ -220,41 +205,37 @@ function OrderSellerItem({ orderId }) {
             transform: 'translate(-50%, -50%)',
             position: 'absolute',
             left: '60%',
-            top: '50%'
+            top: '50%',
           }}
         />
       )}
 
-      <Modal
-        title="Delivery Details"
-        onCancel={() => setIsModalDeliveryOpen(false)}
-        isOpen={isModalDeliveryOpen}
-      >
+      <Modal title="Delivery Details" onCancel={() => setIsModalDeliveryOpen(false)} isOpen={isModalDeliveryOpen}>
         {isDetailsLoading ? (
           <div
             style={{
               transform: 'translate(-50%, -50%)',
               position: 'absolute',
               left: ' 50%',
-              top: '40%'
+              top: '40%',
             }}
           >
             <Loader />
           </div>
         ) : (
-          <React.Fragment>
+          <>
             <div
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'center'
+                justifyContent: 'center',
               }}
             >
               <div
                 style={{
                   display: 'flex',
                   flexDirection: 'row',
-                  justifyContent: 'center'
+                  justifyContent: 'center',
                 }}
               >
                 <input
@@ -270,7 +251,7 @@ function OrderSellerItem({ orderId }) {
                 style={{
                   display: 'flex',
                   flexDirection: 'row',
-                  justifyContent: 'center'
+                  justifyContent: 'center',
                 }}
               >
                 <textarea
@@ -285,21 +266,18 @@ function OrderSellerItem({ orderId }) {
               </div>
             </div>
             <div className="modal-footer">
-              <Button
-                className=" purple buy-btn "
-                onClick={() => handleAcceptOrder(orderId)}
-              >
+              <Button className=" purple buy-btn " onClick={() => handleAcceptOrder(orderId)}>
                 Submit
               </Button>
             </div>
-          </React.Fragment>
+          </>
         )}
       </Modal>
-    </React.Fragment>
+    </>
   );
 }
 
 export default reduxForm({
   form: 'sellModal',
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
 })(OrderSellerItem);

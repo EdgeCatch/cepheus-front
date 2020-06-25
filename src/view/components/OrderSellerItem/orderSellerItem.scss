@@ -51,3 +51,15 @@
     border: none;
     color: #fff;
 }
+
+
+.test-info-elements {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: fit-content;
+    max-width: 40%;
+    img {
+       height: 70px;
+    }
+}

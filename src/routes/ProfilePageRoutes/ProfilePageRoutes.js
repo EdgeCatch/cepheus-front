@@ -16,10 +16,10 @@ function ProfilePageRoutes() {
               path={routePaths.profileOrderItems()}
               component={Components.OrderTestItem}
             />
-            <Route
+            {/* <Route
               path={routePaths.buyerRefundRequest()}
               component={Components.RefundItem}
-            />
+            /> */}
             <Route
               path={routePaths.sellerItems()}
               component={Components.SellerItems}

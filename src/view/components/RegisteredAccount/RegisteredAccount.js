@@ -110,7 +110,7 @@ function RegisteredAccount() {
           <div className="buyer-setup-buttons">
             <Button className="buyer-setup-btn purple setup-btn" onClick={() => alert('Coming soon')}>
               {' '}
-              Withdraw
+              Update Plan
             </Button>
           </div>
         </div>
