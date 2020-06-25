@@ -31,6 +31,12 @@ export default (state = initialState, action) => {
         ...state,
         items: state.items.filter(o => o.cid !== action.payload)
       };
+
+    case 'CLEAR_CART':
+      return {
+        ...state,
+        items: []
+      };
     default:
       return state;
   }

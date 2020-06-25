@@ -1,9 +1,8 @@
 // @flow
 import React from 'react';
 import BagItem from '../../containers/BagItem';
-import bagItems from './bagItems';
 import Filter from '../../components/Filter/Filter';
-import './bagsAndCases.scss';
+import './phones.scss';
 import { ThanosWallet } from '@thanos-wallet/dapp';
 import { MARKET_ADDRESS } from '../../../config';
 import store from '../../../store/index';
@@ -40,7 +39,6 @@ function BagsAndCases({ isReady, market, bags, ...props }) {
         ) : (
           <span>No items found</span>
         )}
-
       </div>
     </div>
   );

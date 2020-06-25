@@ -24,7 +24,8 @@ function AppRoot() {
     }
     async function setManagers() {
       const { itemManager } = await getManagers();
-      const items = await itemManager.getAll();
+      const items = (await itemManager.getAll()) || [];
+
       store.dispatch({
         type: 'SET_ITEMS',
         items
