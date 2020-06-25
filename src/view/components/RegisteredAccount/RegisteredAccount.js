@@ -10,11 +10,12 @@ function RegisteredAccount() {
 
   React.useEffect(() => {
     const { mnemonic, publicKey } = JSON.parse(localStorage.getItem('account'));
+
     setValue([
       {
-        mnemonic
+        mnemonic,
       },
-      { publicKey }
+      { publicKey },
     ]);
   }, []);
 
@@ -57,10 +58,7 @@ function RegisteredAccount() {
             </div>
           </div>
           <div className="buyer-setup-buttons">
-            <Button
-              className="buyer-setup-btn purple setup-btn"
-              onClick={() => alert('Coming soon')}
-            >
+            <Button className="buyer-setup-btn purple setup-btn" onClick={() => alert('Coming soon')}>
               {' '}
               Update Plan
             </Button>
@@ -70,14 +68,14 @@ function RegisteredAccount() {
           <h4>Note! </h4>
           <div>
             <p>
-              In order to hide your identitity, the traking number of your
-              delivery should be encrypted by the public key you control.
+              In order to hide your identitity, the tracking number of the delivery is encrypted by buyer and seller RSA
+              public keys
             </p>
-            <p>Register with your own or generated and store new keypair.</p>
             <p>
-              <b>Note</b>: If you loose your loose it your won’t be able to
-              track your delivery.
+              You set up this public key before. In order to display tracking number of your orders your RSA private key
+              is needed.
             </p>
+            <p>If you don’t need to see tracking numbers and delivery details you may skip filling this form.</p>
           </div>
         </div>
       </div>
@@ -110,10 +108,7 @@ function RegisteredAccount() {
             </div>
           </div>
           <div className="buyer-setup-buttons">
-            <Button
-              className="buyer-setup-btn purple setup-btn"
-              onClick={() => alert('Coming soon')}
-            >
+            <Button className="buyer-setup-btn purple setup-btn" onClick={() => alert('Coming soon')}>
               {' '}
               Withdraw
             </Button>
@@ -121,16 +116,15 @@ function RegisteredAccount() {
         </div>
 
         <div className="info-buyer__block">
-          <h4>Withdraw process</h4>
+          <h4>Fees and Subscriptions </h4>
           <div>
             <p>
-              In order to hide your identitity, the traking number of your
-              delivery should be encrypted by the public key you control.
+              There are few fees planes. Fee is needed to incentivise comunity to solve possible issues and improve the
+              platform..
             </p>
-            <p>Register with your own or generated and store new keypair.</p>
             <p>
-              <b>Note</b>: If you loose your loose it your won’t be able to
-              track your delivery.
+              The buyers pays fee of the earned profit. Subscription determines the fee rate and is payed monthly. If it
+              isn't rebilled in time the Free plan is set by default. You may update it in any time.
             </p>
           </div>
         </div>
@@ -140,43 +134,19 @@ function RegisteredAccount() {
         <div className="setup-buyer__block">
           <h3>Withdraw Profit</h3>
           <form className="buyer-setup__form">
-            <textarea
-              name=""
-              className={receiver}
-              cols="30"
-              rows="10"
-              placeholder="Receiver Address"
-            />
-            <textarea
-              name=""
-              className={withdraw}
-              cols="1"
-              rows="1"
-              placeholder="Amount"
-            />
+            <textarea name="" className={receiver} cols="30" rows="10" placeholder="Receiver Address" />
+            <textarea name="" className={withdraw} cols="1" rows="1" placeholder="Amount" />
           </form>
           <div className="buyer-setup-buttons">
-            <Button
-              className="buyer-setup-btn purple setup-btn"
-              onClick={() => alert('Coming soon')}
-            >
-              {' '}
+            <Button className="buyer-setup-btn purple setup-btn" onClick={() => alert('Coming soon')}>
               Use
             </Button>
           </div>
         </div>
         <div className="info-buyer__block">
-          <h4>Note! </h4>
+          <h4>Withdraw process</h4>
           <div>
-            <p>
-              In order to hide your identitity, the traking number of your
-              delivery should be encrypted by the public key you control.
-            </p>
-            <p>Register with your own or generated and store new keypair.</p>
-            <p>
-              <b>Note</b>: If you loose your loose it your won’t be able to
-              track your delivery.
-            </p>
+            <p>Users who receive profit or refund don’t receive amout immediatly but should call separate function.</p>
           </div>
         </div>
       </div>

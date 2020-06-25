@@ -10,7 +10,7 @@ const Footer = () => {
             <Col className="d-flex flex-column">
                 <Link to="#"> Learn more</Link>
                 <Link to="#">About Us </Link>
-                <Link to="#">About TON</Link>
+                <Link to="#">About Tezos</Link>
                 <Link to="#">Terms And</Link>
                 <Link to="#">Conditions</Link>
                 <Link to="#">FAQ</Link>

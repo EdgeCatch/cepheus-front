@@ -12,7 +12,7 @@ class SellerItems extends React.Component {
     super(props);
     this.state = {
       isModalAddItemOpen: false,
-      items: []
+      items: [],
     };
   }
   componentDidMount() {
@@ -36,22 +36,20 @@ class SellerItems extends React.Component {
     this.setState({ isModalAddItemOpen: false });
   };
 
-  // <<<<<<< ipfs
-  //     render() {
-  //         const { isModalAddItemOpen } = this.state;
-  //         const { sellItemsList, ItemManagerClient } = this.props;
-  // =======
   handleGetManagers = async () => {
     const { itemManager } = await getManagers();
     const { publicKey } = JSON.parse(localStorage.getItem('account'));
     const allItems = (await itemManager.getAll()) || [];
     const myItems = allItems.filter(item => item.value.seller === publicKey);
+
     this.setState({ ...this.state, items: myItems });
   };
+
   render() {
     const { isModalAddItemOpen } = this.state;
     const { sellItemsList, ItemManager } = this.props;
     const goodsForSaleList = () => sellItemsList.map(item => item);
+
     return (
       <>
         <div className="seller-items__block">
@@ -71,16 +69,10 @@ class SellerItems extends React.Component {
                   <div className="order-list_item">
                     <div className="test-item__info">
                       <div className="test-info-elements">
-                        <img
-                          src={order.value.images[0]}
-                          alt="item images"
-                          width="64px"
-                        />
+                        <img src={order.value.images[0]} alt="item images" width="64px" />
                       </div>
                       <div className="test-info-elements">
-                        <h4 className="item__info_article">
-                          {order.value.name}
-                        </h4>
+                        <h4 className="item__info_article">{order.value.name}</h4>
                         <p className="item__info_exact">${order.value.price}</p>
                       </div>
                       <div className="test-info-elements">
@@ -96,6 +88,7 @@ class SellerItems extends React.Component {
                 ))}
               </div>
             </div>
+
           )}
           <Modal
             title="Add new item"

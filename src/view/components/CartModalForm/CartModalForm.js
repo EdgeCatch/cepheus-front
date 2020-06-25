@@ -1,19 +1,21 @@
 // @flow
 
 import React from 'react';
+import { ThanosWallet } from '@thanos-wallet/dapp';
 import store from '../../../store/index';
 import { getManagers } from '../../../ipfs';
-import { ThanosWallet } from '@thanos-wallet/dapp';
 import { MARKET_ADDRESS, TOKEN_ADDRESS } from '../../../config';
 import { ModalContext } from '../Modal/Modal';
+
 function CartModalForm({ handleCancel }) {
   const useModalContext = React.useContext(ModalContext);
 
   const [cridentials, setCridentails] = React.useState({
     name: '',
     phone: '',
-    postOffice: ''
+    postOffice: '',
   });
+
   async function handleSubmitOrder(e) {
     useModalContext.setLoading(true);
     e.preventDefault();
@@ -21,9 +23,10 @@ function CartModalForm({ handleCancel }) {
     const { orderManager } = await getManagers();
     const {
       cart: { items: itemsCart },
-      market: { items: allItems }
+      market: { items: allItems },
     } = store.getState();
     const wallet = new ThanosWallet('Cepheus');
+
     await wallet.connect('carthagenet', { forcePermission: true });
     const tezos = wallet.toTezos();
     const contractMarket = await tezos.wallet.at(MARKET_ADDRESS);
@@ -31,8 +34,10 @@ function CartModalForm({ handleCancel }) {
 
     const accountPkh = await tezos.wallet.pkh();
     const contractStorage = await contractMarket.storage();
+
     for (const cartItem in itemsCart) {
       const search = allItems.find(item => item.cid == itemsCart[cartItem].cid);
+
 
       try {
         const { seller_id } = await contractStorage.items.get(search.cid);
@@ -44,19 +49,18 @@ function CartModalForm({ handleCancel }) {
           cridentials.postOffice,
           publicKey,
           search.value.seller,
-          search.cid
+          search.cid,
         );
         const approveS = await contractToken.methods
-          .approve(
-            MARKET_ADDRESS,
-            Number(search.value.price) * itemsCart[cartItem].count
-          )
+          .approve(MARKET_ADDRESS, Number(search.value.price) * itemsCart[cartItem].count)
           .send();
+
         await approveS.confirmation();
 
         const operation = await contractMarket.methods
           .makeOrder(cid.string, search.cid, `${itemsCart[cartItem].count}`)
           .send();
+
         await operation.confirmation();
         console.log('DONE', operation);
         store.dispatch({ type: 'CLEAR_CART', payload: '' });

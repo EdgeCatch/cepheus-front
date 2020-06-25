@@ -7,7 +7,7 @@ import CartModalForm from '../../components/CartModalForm';
 import store from '../../../store/index';
 
 type CartPageState = {
-  isOpenModalPurchase: boolean
+  isOpenModalPurchase: boolean,
 };
 
 type CartPageProps = {
@@ -15,14 +15,14 @@ type CartPageProps = {
   cartItemsCount: String,
   addedCount: number,
   removeFromCart: Function,
-  items: Array<Object>
+  items: Array<Object>,
 };
 
 class CartPage extends React.Component<CartPageProps, CartPageState> {
   constructor(props: CartPageProps) {
     super(props);
     this.state = {
-      isOpenModalPurchase: false
+      isOpenModalPurchase: false,
     };
   }
 
@@ -52,19 +52,15 @@ class CartPage extends React.Component<CartPageProps, CartPageState> {
   render() {
     const { isOpenModalPurchase } = this.state;
     const { cartItemsCount, removeFromCart, items, addedCount } = this.props;
+
     console.log(items);
     const renderedItems = () =>
       items.map(item => (
-        <CartItem
-          key={item.cid}
-          id={item.cid}
-          count={item.count}
-          remove={() => removeFromCart(item.cid)}
-        />
+        <CartItem key={item.cid} id={item.cid} count={item.count} remove={() => removeFromCart(item.cid)} />
       ));
 
     return (
-      <React.Fragment>
+      <>
         <div>
           <h4 className="cart-page__headline">Cart</h4>
         </div>
@@ -77,11 +73,7 @@ class CartPage extends React.Component<CartPageProps, CartPageState> {
               <div className="summary__block">
                 <p>Items count: {cartItemsCount}</p>
                 {/* <p>Total price: ${this.handleGetTotalPrice()}</p> */}
-                <button
-                  id="make-order"
-                  type="submit"
-                  onClick={() => this.openPurchaseModal()}
-                >
+                <button id="make-order" type="submit" onClick={() => this.openPurchaseModal()}>
                   Make an Order
                 </button>
               </div>
@@ -97,7 +89,7 @@ class CartPage extends React.Component<CartPageProps, CartPageState> {
             <CartModalForm handleCancel={() => this.handleCancel()} />
           </Modal>
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }
