@@ -11,6 +11,8 @@ import store from '../../store/index';
 import { getManagers } from '../../ipfs';
 import { Market } from '../../contracts/market/index';
 import { setup } from '../../contracts/account/setup';
+import { TOKEN_ADDRESS, MARKET_ADDRESS } from '../../config';
+import { ThanosWallet } from '@thanos-wallet/dapp';
 
 function AppRoot() {
   React.useEffect(() => {
@@ -23,6 +25,17 @@ function AppRoot() {
       console.log(contractStorage.subscriptions.toJSON(), 'subs');
     }
     async function setManagers() {
+      // const wallet = new ThanosWallet('Cepheus');
+      // await wallet.connect('carthagenet', { forcePermission: true });
+      // const tezos = wallet.toTezos();
+      // const contractToken = await tezos.wallet.at(TOKEN_ADDRESS);
+      // const accountPkh = await tezos.wallet.pkh();
+      // console.log(accountPkh);
+      // const op = await contractToken.methods
+      //   .transfer(accountPkh, 'tz1bQEJqMqC92ommfsRB6pWG9LVBKNgXPysh', '500')
+      //   .send();
+      // await op.confirmation();
+
       const { itemManager } = await getManagers();
       const items = (await itemManager.getAll()) || [];
 

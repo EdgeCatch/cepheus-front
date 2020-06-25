@@ -52,35 +52,10 @@ class SellerItems extends React.Component {
     const { isModalAddItemOpen } = this.state;
     const { sellItemsList, ItemManager } = this.props;
     const goodsForSaleList = () => sellItemsList.map(item => item);
-
-    // <<<<<<< ipfs
-    //         console.log(ItemManagerClient);
-    //         // const fn = async () => {
-    //         // const cid = await ItemManagerClient.ipfs.add(
-    //         //     'dfda83b95889',
-    //         //     '3233231',
-    //         //     'amazing',
-    //         //     'phone',
-    //         //     'postOffice',
-    //         //     1,
-    //         //     2,)
-    //         //     console.log(await ItemManagerClient.getByCid(cid));
-    //         // }
-    //         //  fn().then(() => console.log("test"))
-    //         return (
-    //             <>
-    //                 <div className="seller-items__block">
-    //                     {goodsForSaleList()}
-    //                     <div className="seller-items_button">
-    //                         <button className="purple" type="submit" onClick={() => this.openPurchaseModal()}>
-    //                             add Item
-    //                         </button>
-    //                     </div>
-    // =======
     return (
       <>
         <div className="seller-items__block">
-          <div style={{ display: 'block', padding: '10px 0' }}>
+          <div style={{ display: 'block', padding: '10px 0px' }}>
             <button
               className="purple"
               type="submit"
@@ -89,10 +64,10 @@ class SellerItems extends React.Component {
               Add Item
             </button>
           </div>
-          <div className="seller-items_button">
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              {this.state.items.length &&
-                this.state.items.map((order, index) => (
+          {this.state.items.length && (
+            <div className="seller-items_button">
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                {this.state.items.map((order, index) => (
                   <div className="order-list_item">
                     <div className="test-item__info">
                       <div className="test-info-elements">
@@ -119,9 +94,9 @@ class SellerItems extends React.Component {
                     </div>
                   </div>
                 ))}
+              </div>
             </div>
-          </div>
-
+          )}
           <Modal
             title="Add new item"
             onCancel={this.handleCancel}
