@@ -43,7 +43,6 @@ function OrderSellerItem({ orderId }) {
       const contractStorage = await market.getFullStorage();
       const items = (await contractStorage.seller_orders.get(accountPkh)) || [];
 
-      console.log(items);
       const orders = items.map(item => itemManager.getByCid(item));
       const ordersAll = await Promise.all(orders);
       const ordersItems = ordersAll.map(async (item, index) => {
@@ -62,9 +61,6 @@ function OrderSellerItem({ orderId }) {
       setOrders(items);
     } catch (e) {
       console.error(e);
-      alert(e.meesage);
-      setOrdersItems([]);
-      setOrders([]);
     }
     //   console.log(await itemManager.getByCid(item.value.itemCid));
     setLoading(false);
