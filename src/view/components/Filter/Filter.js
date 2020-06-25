@@ -41,7 +41,7 @@ export class Filter extends React.Component {
     `;
 
     const FilterTypeTemplate = object =>
-      Object.keys(object).map(i => <FilterItem name={i} />);
+      Object.keys(object).map(i => <FilterItem name={i} key={i} />);
 
     const FilterTypeComponent = () => FilterTypeTemplate(FilterTypes);
 

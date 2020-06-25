@@ -40,6 +40,7 @@ function BagsAndCases({ isReady, market, bags, ...props }) {
         ) : (
           <span>No items found</span>
         )}
+
       </div>
     </div>
   );

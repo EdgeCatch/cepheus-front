@@ -2,7 +2,7 @@
 
 import React from 'react';
 import store from '../../../store/index';
-import { getOrderManager } from '../../../ipfs';
+import { getManagers } from '../../../ipfs';
 import { ThanosWallet } from '@thanos-wallet/dapp';
 import { MARKET_ADDRESS, TOKEN_ADDRESS } from '../../../config';
 import { ModalContext } from '../Modal/Modal';
@@ -20,7 +20,7 @@ function CartModalForm() {
     e.preventDefault();
 
     const { publicKey } = JSON.parse(localStorage.getItem('account'));
-    const orderManager = getOrderManager();
+    const { orderManager } = await getManagers();
     const {
       cart: { items: itemsCart },
       market: { items: allItems }
