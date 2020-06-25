@@ -1,18 +1,22 @@
+* {
+  outline: none;
+}
+
 #wrapper {
-    max-width: 1800px;
-    padding: 40px 50px 80px;
+  max-width: 1800px;
+  padding: 40px 50px 80px;
 }
 
 .content__container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 60px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 60px 0;
 }
 
 .page-divider {
-    height: 1px;
-    width: 100%;
-    background-color: #fff;
-    margin: 3rem 0 2em;
+  height: 1px;
+  width: 100%;
+  background-color: #fff;
+  margin: 3rem 0 2em;
 }

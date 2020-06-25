@@ -128,7 +128,10 @@ class SellerItems extends React.Component {
             isOpen={isModalAddItemOpen}
             buttonText=""
           >
-            <SellerModalForm />
+            <SellerModalForm
+              handleCancel={() => this.handleCancel()}
+              handleGetManagers={() => this.handleGetManagers()}
+            />
           </Modal>
         </div>
       </>

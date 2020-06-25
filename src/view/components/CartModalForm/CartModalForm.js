@@ -6,8 +6,7 @@ import { getManagers } from '../../../ipfs';
 import { ThanosWallet } from '@thanos-wallet/dapp';
 import { MARKET_ADDRESS, TOKEN_ADDRESS } from '../../../config';
 import { ModalContext } from '../Modal/Modal';
-
-function CartModalForm() {
+function CartModalForm({ handleCancel }) {
   const useModalContext = React.useContext(ModalContext);
 
   const [cridentials, setCridentails] = React.useState({
@@ -18,7 +17,6 @@ function CartModalForm() {
   async function handleSubmitOrder(e) {
     useModalContext.setLoading(true);
     e.preventDefault();
-
     const { publicKey } = JSON.parse(localStorage.getItem('account'));
     const { orderManager } = await getManagers();
     const {
@@ -61,8 +59,11 @@ function CartModalForm() {
           .send();
         await operation.confirmation();
         console.log('DONE', operation);
+        store.dispatch({ type: 'CLEAR_CART', payload: '' });
+        handleCancel();
       } catch (e) {
         console.error(e);
+        alert(e.message);
       }
     }
 

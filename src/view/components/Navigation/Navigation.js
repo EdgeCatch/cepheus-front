@@ -13,7 +13,11 @@ import { withRouter } from 'react-router-dom';
 import * as cartActions from '../../../store/actions/cart';
 
 function Navigation({ items, ...props }) {
-  console.log(props, 'navigaton');
+  const [isLogin, setIsLogin] = React.useState(false);
+  React.useEffect(() => {
+    const account = localStorage.getItem('account');
+    setIsLogin(!!account);
+  });
   return (
     <Navbar className="header d-flex d-flex justify-content-between">
       <HeaderLogo />
@@ -65,6 +69,22 @@ function Navigation({ items, ...props }) {
             alt=""
           />
         </Link>
+        {isLogin && (
+          <Link
+            to="/"
+            onClick={() => {
+              localStorage.removeItem('account');
+              localStorage.removeItem('pkh');
+              setIsLogin(false);
+            }}
+          >
+            <img
+              className="header__nav_icons"
+              src={iconsCollection.logout}
+              alt=""
+            />
+          </Link>
+        )}
       </Nav>
     </Navbar>
   );

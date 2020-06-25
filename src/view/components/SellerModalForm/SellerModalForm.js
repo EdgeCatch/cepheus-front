@@ -29,7 +29,7 @@ import { ModalContext } from '../Modal/Modal';
 import setSellItemInfo from '../../../store/actions/sellModalForm';
 import './sellerModalForm.scss';
 
-function SellerModalForm(...props) {
+function SellerModalForm({ handleCancel, handleGetManagers, ...props }) {
   const useModalContext = React.useContext(ModalContext);
   const [item, setItem] = React.useState({
     name: '',
@@ -134,6 +134,8 @@ function SellerModalForm(...props) {
         });
       }
       setManagers();
+      await handleGetManagers();
+      handleCancel();
     } catch (e) {
       alert(e);
       console.log(e.message);
