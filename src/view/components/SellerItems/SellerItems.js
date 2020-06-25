@@ -15,7 +15,9 @@ class SellerItems extends React.Component {
       items: []
     };
   }
-
+  componentDidMount() {
+    this.handleGetManagers();
+  }
   onSubmit(e) {
     this.props.sellItems();
     this.setState({ isModalAddItemOpen: false });
@@ -42,17 +44,14 @@ class SellerItems extends React.Component {
   handleGetManagers = async () => {
     const { itemManager } = await getManagers();
     const { publicKey } = JSON.parse(localStorage.getItem('account'));
-    const allItems = await itemManager.getAll();
+    const allItems = (await itemManager.getAll()) || [];
     const myItems = allItems.filter(item => item.value.seller === publicKey);
-    console.log(myItems);
     this.setState({ ...this.state, items: myItems });
   };
   render() {
     const { isModalAddItemOpen } = this.state;
     const { sellItemsList, ItemManager } = this.props;
     const goodsForSaleList = () => sellItemsList.map(item => item);
-
-    this.handleGetManagers();
 
     // <<<<<<< ipfs
     //         console.log(ItemManagerClient);

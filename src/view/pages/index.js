@@ -3,6 +3,11 @@ import WishListPage from './WishList';
 import CartPage from '../containers/CartPage';
 import ProfilePage from '../containers/Profile';
 import BagsAndCases from '../containers/BagsAndCases';
+import Parfumes from '../containers/Parfumes';
+import Ties from '../containers/Ties';
+import Phone from '../containers/Phone';
+import Cigarettes from '../containers/Cigarettes';
+import Alchol from '../containers/Alcohol';
 import InfoItem from '../components/InfoItem';
 
 export {
@@ -11,5 +16,10 @@ export {
   CartPage,
   ProfilePage,
   BagsAndCases,
-  InfoItem
+  Parfumes,
+  Ties,
+  Phone,
+  Alchol,
+  InfoItem,
+  Cigarettes
 };

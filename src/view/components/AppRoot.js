@@ -23,8 +23,8 @@ function AppRoot() {
       console.log(contractStorage.subscriptions.toJSON(), 'subs');
     }
     async function setManagers() {
-      const { itemManager, orderManager, publicKey } = await getManagers();
-      const items = await itemManager.getAll();
+      const { itemManager } = await getManagers();
+      const items = (await itemManager.getAll()) || [];
       store.dispatch({
         type: 'SET_ITEMS',
         items

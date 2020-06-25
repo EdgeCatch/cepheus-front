@@ -35,7 +35,7 @@ function CartModalForm() {
     const contractStorage = await contractMarket.storage();
     for (const cartItem in itemsCart) {
       const search = allItems.find(item => item.cid == itemsCart[cartItem].cid);
-      console.log(search, allItems, cartItem);
+
       try {
         const { seller_id } = await contractStorage.items.get(search.cid);
         const cid = await orderManager.add(
@@ -48,7 +48,6 @@ function CartModalForm() {
           search.value.seller,
           search.cid
         );
-
         const approveS = await contractToken.methods
           .approve(
             MARKET_ADDRESS,
@@ -56,8 +55,6 @@ function CartModalForm() {
           )
           .send();
         await approveS.confirmation();
-
-        console.log(cid.string, search);
 
         const operation = await contractMarket.methods
           .makeOrder(cid.string, search.cid, `${itemsCart[cartItem].count}`)

@@ -1,9 +1,8 @@
 // @flow
 import React from 'react';
 import BagItem from '../../containers/BagItem';
-import bagItems from './bagItems';
 import Filter from '../../components/Filter/Filter';
-import './bagsAndCases.scss';
+import './parfumes.scss';
 import { ThanosWallet } from '@thanos-wallet/dapp';
 import { MARKET_ADDRESS } from '../../../config';
 import store from '../../../store/index';
@@ -16,7 +15,7 @@ type Props = {
   totalPrice: string
 };
 
-function BagsAndCases({ isReady, market, bags, ...props }) {
+function Parfumes({ isReady, market, bags, ...props }) {
   React.useEffect(() => {
     async function handleGetManagers() {
       const { itemManager, orderManager, publicKey } = await getManagers();
@@ -45,4 +44,4 @@ function BagsAndCases({ isReady, market, bags, ...props }) {
   );
 }
 
-export default BagsAndCases;
+export default Parfumes;

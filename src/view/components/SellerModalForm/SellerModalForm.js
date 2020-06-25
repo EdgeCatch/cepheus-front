@@ -24,6 +24,7 @@ import { ThanosWallet } from '@thanos-wallet/dapp';
 import { MARKET_ADDRESS } from '../../../config';
 import { getManagers } from '../../../ipfs';
 import Button from '../Button';
+import store from '../../../store/index';
 import { ModalContext } from '../Modal/Modal';
 import setSellItemInfo from '../../../store/actions/sellModalForm';
 import './sellerModalForm.scss';
@@ -45,7 +46,7 @@ function SellerModalForm(...props) {
   const [areaDropClass, setAreaDropClass] = React.useState('unhighlight');
   function handleChange(evt) {
     const { value, name } = evt.target;
-
+    console.log(evt, value, name);
     setItem({
       ...item,
       [name]: value
@@ -100,6 +101,7 @@ function SellerModalForm(...props) {
     return reader.result;
   }
   async function handleAddItem() {
+    console.log(item);
     useModalContext.setLoading(true);
     const { publicKey } = JSON.parse(localStorage.getItem('account'));
     try {
@@ -123,9 +125,18 @@ function SellerModalForm(...props) {
         .addItem(cid.string, item.price)
         .send();
       await operation.confirmation();
+      async function setManagers() {
+        const { itemManager } = await getManagers();
+        const items = (await itemManager.getAll()) || [];
+        store.dispatch({
+          type: 'SET_ITEMS',
+          items
+        });
+      }
+      setManagers();
     } catch (e) {
       alert(e);
-      console.log(e);
+      console.log(e.message);
     }
     useModalContext.setLoading(false);
   }
@@ -178,6 +189,7 @@ function SellerModalForm(...props) {
           type="text"
           name="category"
           value={item.category}
+          onChange={handleChange}
           placeholder="Category"
           component="select"
         >
