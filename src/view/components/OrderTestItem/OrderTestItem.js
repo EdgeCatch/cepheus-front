@@ -34,9 +34,7 @@ const OrderTestItem = () => {
       const Tezos = await setup();
       const market = await Market.init(Tezos);
       const contractStorage = await market.getFullStorage({});
-      console.log(contractStorage, 'ss', accountPkh);
       const items = (await contractStorage.buyer_orders.get(accountPkh)) || [];
-      console.log(items, 'lol');
       const orders = items.map(item => itemManager.getByCid(item));
       const ordersAll = await Promise.all(orders);
       const ordersItems = ordersAll.map(item =>
@@ -131,6 +129,7 @@ const OrderTestItem = () => {
         >
           Delivery Info
         </button>
+        {console.log(orders[index], 'resolve')}
         <button
           type="submit"
           className="dark"
@@ -305,7 +304,7 @@ const OrderTestItem = () => {
                   textAlign: 'center'
                 }}
               >
-                The Seller has not yet provided delivery information
+                The Seller has not provided delivery information yet
               </span>
             )}
           </React.Fragment>

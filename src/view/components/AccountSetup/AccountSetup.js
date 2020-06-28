@@ -12,6 +12,8 @@ import { saveAccount } from '../../../contracts/account/storage';
 import './sellerSetup.scss';
 import { MARKET_ADDRESS } from '../../../config';
 import { publicKey, privateKey } from '../../constants';
+import { Market } from '../../../contracts/market/index';
+import { setup } from '../../../contracts/account/setup';
 
 const PLANS = {
   free: {
@@ -32,22 +34,18 @@ const PLANS = {
 };
 
 function AccountSetup() {
-  const { handleSubmit, register, setValue, errors, getValues } = useForm();
+  const {
+    market: { subscriptions }
+  } = store.getState();
 
-  const [selectedPlan, setPlan] = React.useState('free');
+  const { register, setValue, errors, getValues } = useForm();
+
+  const [selectedPlan, setPlan] = React.useState(0);
   const [loading, setLoading] = React.useState(false);
-  const [subscriptions, setSubscription] = React.useState([]);
-  const onSubmit = values => console.log(values);
 
-  React.useEffect(() => {
-    store.subscribe(() =>
-      setSubscription(store.getState().market.subscriptions)
-    );
+  async function handleGetAccount(e) {
+    e.preventDefault();
 
-    console.log(subscriptions);
-  }, []);
-
-  async function handleGetAccount() {
     setLoading(true);
     const { mnemonic, publicKey } = await generateAccount();
 
@@ -62,32 +60,44 @@ function AccountSetup() {
     setLoading(false);
   }
 
-  async function handleAuthAccount() {
-    setLoading(true);
+  async function handleAuthAccount(e) {
+    e.preventDefault();
 
+    setLoading(true);
     const accData = getValues();
     const wallet = new ThanosWallet('Cepheus');
-
     await wallet.connect('carthagenet', { forcePermission: true });
     const tezos = wallet.toTezos();
     const accountPkh = await tezos.wallet.pkh();
+    const Tezos = await setup();
+    const market = await Market.init(Tezos);
+    const contractStorage = await market.getFullStorage();
+    const account = (await contractStorage.accounts.get(accountPkh)) || {};
 
-    console.log(accData);
-    const { mnemonic, publicKey } = await getAccount(accData.mnemonic);
+    if (Object.keys(account).length) {
+      if (account.public_key == accData.publicKey) {
+        const { publicKey } = await getAccount(accData.mnemonic);
+        localStorage.setItem('pkh', accountPkh);
+        localStorage.setItem(
+          'account',
+          JSON.stringify({
+            publicKey,
+            subscription: account.subscription
+          })
+        );
+        document.location.reload();
+      } else {
+        console.error('Wrong public key');
+      }
+    } else {
+      console.error('Account is not registered');
+    }
 
-    localStorage.setItem('pkh', accountPkh);
-    localStorage.setItem(
-      'account',
-      JSON.stringify({
-        mnemonic,
-        publicKey
-      })
-    );
-    document.location.reload();
     setLoading(false);
   }
 
-  async function handleSaveAccount() {
+  async function handleSaveAccount(e) {
+    e.preventDefault();
     setLoading(true);
     const accData = getValues();
 
@@ -99,7 +109,7 @@ function AccountSetup() {
       const contract = await tezos.wallet.at(MARKET_ADDRESS);
       const plan = Object.keys(PLANS).indexOf(selectedPlan);
       const operation = await contract.methods
-        .register(`${plan}`, accData.publicKey)
+        .register(`${selectedPlan}`, accData.publicKey)
         .send();
 
       await operation.confirmation();
@@ -107,8 +117,8 @@ function AccountSetup() {
       localStorage.setItem(
         'account',
         JSON.stringify({
-          mnemonic: accData.mnemonic,
-          publicKey: accData.publicKey
+          publicKey: accData.publicKey,
+          subscription: selectedPlan
         })
       );
       document.location.reload();
@@ -143,10 +153,7 @@ function AccountSetup() {
         style={{ opacity: loading ? '0.5' : '1' }}
       >
         <h3>Setup Your Account</h3>
-        <form
-          className="buyer-setup__form-unregistered"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className="buyer-setup__form-unregistered" autoComplete="off">
           <textarea
             name="mnemonic"
             className={privateKey}
@@ -165,43 +172,44 @@ function AccountSetup() {
           />
 
           <div className="sub-plans">
-            {Object.values(PLANS).map((plan, index) => (
-              <div
-                className={classNames(
-                  'subscription',
-                  plan.name.toLocaleLowerCase() === selectedPlan &&
-                    'sub-selected'
+            {Object.values(subscriptions).map((item, index) => (
+              <React.Fragment key={index}>
+                {item && (
+                  <div
+                    className={classNames(
+                      'subscription',
+                      index === selectedPlan && 'sub-selected'
+                    )}
+                    onClick={() => setPlan(index)}
+                  >
+                    <span>{item.name}</span>
+                    <div className="sub-details">
+                      <p>Price: {item.price.toNumber()} </p>
+                      <p>Fee: {item.fee.toNumber()}</p>
+                    </div>
+                  </div>
                 )}
-                onClick={() => setPlan(plan.name.toLocaleLowerCase())}
-              >
-                <span>{plan.name}</span>
-                <div className="sub-details">
-                  <p>Price: {plan.price} </p>
-                  <p>Fee: {plan.fee}</p>
-                </div>
-              </div>
+              </React.Fragment>
             ))}
           </div>
           <div className="buyer-setup-buttons">
             <Button
               content="Random"
               className="buyer-setup-btn dark "
-              onClick={handleGetAccount}
+              onClick={e => handleGetAccount(e)}
             >
               Random
             </Button>
 
             <Button
               className="buyer-setup-btn purple setup-btn"
-              type="submit"
-              onClick={handleSaveAccount}
+              onClick={e => handleSaveAccount(e)}
             >
               Register
             </Button>
             <Button
               className="buyer-setup-btn purple setup-btn"
-              type="submit"
-              onClick={handleAuthAccount}
+              onClick={e => handleAuthAccount(e)}
             >
               Auth
             </Button>

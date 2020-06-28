@@ -46,7 +46,6 @@ function SellerModalForm({ handleCancel, handleGetManagers, ...props }) {
   const [areaDropClass, setAreaDropClass] = React.useState('unhighlight');
   function handleChange(evt) {
     const { value, name } = evt.target;
-    console.log(evt, value, name);
     setItem({
       ...item,
       [name]: value
@@ -138,7 +137,7 @@ function SellerModalForm({ handleCancel, handleGetManagers, ...props }) {
       handleCancel();
     } catch (e) {
       alert(e);
-      console.log(e.message);
+      console.error(e.message);
     }
     useModalContext.setLoading(false);
   }

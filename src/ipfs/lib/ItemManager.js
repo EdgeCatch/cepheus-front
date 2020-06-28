@@ -17,7 +17,6 @@ class ItemManager {
     let marketContract = await Tezos.contract.at(marketContractAddress);
 
     const storage = await marketContract.storage();
-    console.log(storage, storage.items_db);
 
     return new ItemManager(ipfs, marketContract, storage.items_db);
   }

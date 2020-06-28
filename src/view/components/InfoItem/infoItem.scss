@@ -1,62 +1,69 @@
 .item {
-    background: linear-gradient(170.75deg, rgba(0, 0, 0, 0.4) -9.69%, rgba(43, 43, 43, 0.4) 115.55%), #2f3338;
-    height: 120px;
-    box-shadow: 17.1981px 17.1981px 34.3963px #020303, -17.1981px -17.1981px 34.3963px rgba(39, 42, 47, 0.29);
-    border-radius: 20px;
-    color: #fff;
-    width: 70%;
-    padding: 20px;
-    display: flex;
-    position: relative;
-    min-width: 635px;
-    max-width: 700px;
+  background: linear-gradient(
+      170.75deg,
+      rgba(0, 0, 0, 0.4) -9.69%,
+      rgba(43, 43, 43, 0.4) 115.55%
+    ),
+    #2f3338;
+  height: 120px;
+  box-shadow: 17.1981px 17.1981px 34.3963px #020303,
+    -17.1981px -17.1981px 34.3963px rgba(39, 42, 47, 0.29);
+  border-radius: 20px;
+  color: #fff;
+  width: 70%;
+  padding: 20px;
+  display: flex;
+  position: relative;
+  min-width: 635px;
+  max-width: 700px;
 }
 
 .item__info {
-    display: flex;
-    width: 82%;
-    justify-content: space-between;
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .info-elements {
-    width: fit-content;
+  width: fit-content;
 }
 
 .info-elements:first-child {
 }
 .info-elements {
-    display: flex;
-    height: 2rem;
-    width: max-content;
-    flex-direction: column;
+  display: flex;
+  height: 2rem;
+  width: max-content;
+  flex-direction: column;
 }
 
 .info-elements:last-child {
 }
 .item__info_article {
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 21px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 21px;
 }
 
 .item__info_exact {
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 21px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 21px;
 }
 
 .item__img {
-    width: 80px;
-    height: 80px;
-    margin-right: 10px;
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
 }
 
 .remove-btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-radius: 0px 20px 0px 0px;
-    background-color: #5458f7;
-    border: none;
-    color: #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0px 20px 0px 0px;
+  background-color: #5458f7;
+  border: none;
+  color: #fff;
 }

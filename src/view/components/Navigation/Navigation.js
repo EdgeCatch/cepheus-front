@@ -17,7 +17,13 @@ function Navigation({ items, ...props }) {
   React.useEffect(() => {
     const account = localStorage.getItem('account');
     setIsLogin(!!account);
-  });
+  }, [isLogin]);
+
+  async function handleLogout() {
+    localStorage.removeItem('account');
+    localStorage.removeItem('pkh');
+    setIsLogin(false);
+  }
   return (
     <Navbar className="header d-flex d-flex justify-content-between">
       <HeaderLogo />
@@ -70,14 +76,7 @@ function Navigation({ items, ...props }) {
           />
         </Link>
         {isLogin && (
-          <Link
-            to="/"
-            onClick={() => {
-              localStorage.removeItem('account');
-              localStorage.removeItem('pkh');
-              setIsLogin(false);
-            }}
-          >
+          <Link to="/" onClick={() => handleLogout()}>
             <img
               className="header__nav_icons"
               src={iconsCollection.logout}

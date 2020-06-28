@@ -24,20 +24,23 @@ const InfoItem = (props: Props) => {
       </div>
       <div className="item__info">
         <div className="info-elements">
-          <h4 className="item__info_article">{curr.value.name} </h4>
-          <p className="item__info_exact">{curr.value.price}$</p>
+          <span className="item__info_article">
+            {curr.value.name.slice(0, 15)}
+          </span>
+          <span className="item__info_exact">{curr.value.size}</span>
+          <span className="item__info_exact">{curr.value.colour}</span>
         </div>
         <div className="info-elements">
-          <h4 className="item__info_article">Price</h4>
-          <p className="item__info_exact">$109</p>
+          <span className="item__info_article">Price</span>
+          <span className="item__info_exact">${curr.value.price}</span>
         </div>
         <div className="info-elements">
-          <h4 className="item__info_article">Count </h4>
-          <p className="item__info_exact">{count}</p>
+          <span className="item__info_article">Count </span>
+          <span className="item__info_exact">{count}</span>
         </div>
         <div className="info-elements">
-          <h4 className="item__info_article">Total </h4>
-          <p className="item__info_exact">$109</p>
+          <span className="item__info_article">Total </span>
+          <span className="item__info_exact">${count * curr.value.price}</span>
         </div>
         <button type="submit" className="remove-btn" onClick={onRemove}>
           x

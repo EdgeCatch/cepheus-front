@@ -20,9 +20,8 @@ function AppRoot() {
       const Tezos = await setup();
       const market = await Market.init(Tezos);
       const contractStorage = await market.getFullStorage({
-        subscriptions: [0, 1, 2]
+        subscriptions: [0]
       });
-      console.log(contractStorage.subscriptions.toJSON(), 'subs');
     }
     async function setManagers() {
       // const wallet = new ThanosWallet('Cepheus');

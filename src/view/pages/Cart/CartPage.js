@@ -7,7 +7,7 @@ import CartModalForm from '../../components/CartModalForm';
 import store from '../../../store/index';
 
 type CartPageState = {
-  isOpenModalPurchase: boolean,
+  isOpenModalPurchase: boolean
 };
 
 type CartPageProps = {
@@ -15,14 +15,14 @@ type CartPageProps = {
   cartItemsCount: String,
   addedCount: number,
   removeFromCart: Function,
-  items: Array<Object>,
+  items: Array<Object>
 };
 
 class CartPage extends React.Component<CartPageProps, CartPageState> {
   constructor(props: CartPageProps) {
     super(props);
     this.state = {
-      isOpenModalPurchase: false,
+      isOpenModalPurchase: false
     };
   }
 
@@ -38,16 +38,17 @@ class CartPage extends React.Component<CartPageProps, CartPageState> {
     this.setState({ isOpenModalPurchase: false });
   };
 
-  // handleGetTotalPrice = () => {
-  //   const {
-  //     market: { items }
-  //   } = store.getState();
-  //   const totalPrice = this.props.items.reduce((acc, curr) => {
-  //     const [current] = items.filter(item => item.cid === curr);
-  //     return acc + parseFloat(current.value.price);
-  //   }, 0);
-  //   return totalPrice;
-  // };
+  handleGetTotalPrice = () => {
+    const {
+      market: { items },
+      cart: { cartItems }
+    } = store.getState();
+    const totalPrice = this.props.items.reduce((acc, curr) => {
+      const [current] = items.filter(item => item.cid === curr.cid);
+      return acc + parseFloat(current.value.price * curr.count);
+    }, 0);
+    return totalPrice;
+  };
 
   render() {
     const { isOpenModalPurchase } = this.state;
@@ -56,7 +57,12 @@ class CartPage extends React.Component<CartPageProps, CartPageState> {
     console.log(items);
     const renderedItems = () =>
       items.map(item => (
-        <CartItem key={item.cid} id={item.cid} count={item.count} remove={() => removeFromCart(item.cid)} />
+        <CartItem
+          key={item.cid}
+          id={item.cid}
+          count={item.count}
+          remove={() => removeFromCart(item.cid)}
+        />
       ));
 
     return (
@@ -72,8 +78,12 @@ class CartPage extends React.Component<CartPageProps, CartPageState> {
               <p className="summary__article">Summary</p>
               <div className="summary__block">
                 <p>Items count: {cartItemsCount}</p>
-                {/* <p>Total price: ${this.handleGetTotalPrice()}</p> */}
-                <button id="make-order" type="submit" onClick={() => this.openPurchaseModal()}>
+                <p>Total: ${this.handleGetTotalPrice()}</p>
+                <button
+                  id="make-order"
+                  type="submit"
+                  onClick={() => this.openPurchaseModal()}
+                >
                   Make an Order
                 </button>
               </div>

@@ -29,7 +29,6 @@ function OrderSellerItem({ orderId }) {
 
   React.useEffect(() => {
     getOrders();
-    console.log(orders, ordersItems);
   }, []);
 
   async function getOrders() {
@@ -51,7 +50,7 @@ function OrderSellerItem({ orderId }) {
 
           return {
             ...(await itemManager.getByCid(item.value.itemCid)),
-            status: i.status.toNumber(),
+            status: 1
           };
         }
       });
@@ -62,7 +61,6 @@ function OrderSellerItem({ orderId }) {
     } catch (e) {
       console.error(e);
     }
-    //   console.log(await itemManager.getByCid(item.value.itemCid));
     setLoading(false);
   }
   async function handleAcceptOrder(ipfs) {
@@ -71,16 +69,20 @@ function OrderSellerItem({ orderId }) {
 
     try {
       const { itemManager } = await getManagers();
-      const deliveryCid = await itemManager.addDeliveryInfo(track_number, description);
+      const deliveryCid = await itemManager.addDeliveryInfo(
+        track_number,
+        description
+      );
       const wallet = new ThanosWallet('Cepheus');
 
       await wallet.connect('carthagenet', { forcePermission: true });
       const tezos = wallet.toTezos();
       const contractMarket = await tezos.wallet.at(MARKET_ADDRESS);
-      const operation = await contractMarket.methods.acceptOrder(selectedOrderId, deliveryCid.string).send();
+      const operation = await contractMarket.methods
+        .acceptOrder(selectedOrderId, deliveryCid.string)
+        .send();
 
       await operation.confirmation();
-      console.log('Done!', track_number, description);
     } catch (e) {
       console.log(e);
     }
@@ -89,7 +91,6 @@ function OrderSellerItem({ orderId }) {
 
   const OrderButtons = ({ orderId, status }) => {
     const [loading, setLoading] = useState(false);
-
     return resolveOrder ? (
       <div className="resolve-buttons">
         {/* temporary button feature to change a state of bool */}
@@ -107,9 +108,7 @@ function OrderSellerItem({ orderId }) {
                 >
                   Confirm
                 </button>
-                <button type="submit" className="dark">
-                  Request Refund
-                </button>
+
                 <img
                   className="order-detail__enhancer"
                   src={orderEnchancer}
@@ -171,30 +170,40 @@ function OrderSellerItem({ orderId }) {
       {!loading ? (
         orders.length ? (
           orders.map((order, index) => (
-            <div className="order-list_item">
-              <div className="test-item__info">
-                <div className="test-info-elements">
-                  <img src={ordersItems[index].value.images[0]} alt="item images" width="64px" />
+            <React.Fragment>
+              {Object.keys(order).length && (
+                <div className="order-list_item">
+                  <div className="test-item__info">
+                    <div className="test-info-elements">
+                      <img
+                        src={ordersItems[index].value.images[0]}
+                        alt="item images"
+                        width="64px"
+                      />
+                    </div>
+                    <div className="test-info-elements">
+                      <h4 className="item__info_article">
+                        Order:{ordersItems[index].value.name}
+                      </h4>
+                      <p className="item__info_exact">
+                        ${ordersItems[index].value.price}
+                      </p>
+                    </div>
+                    <div className="test-info-elements">
+                      <h4 className="item__info_article">Size</h4>
+                      <p className="item__info_exact">
+                        {ordersItems[index].value.size}
+                      </p>
+                    </div>
+
+                    <OrderButtons
+                      orderId={order}
+                      status={ordersItems[index].status}
+                    />
+                  </div>
                 </div>
-                <div className="test-info-elements">
-                  <h4 className="item__info_article">Order:{ordersItems[index].value.name}</h4>
-                  <p className="item__info_exact">${ordersItems[index].value.price}</p>
-                </div>
-                <div className="test-info-elements">
-                  <h4 className="item__info_article">Size</h4>
-                  <p className="item__info_exact">{ordersItems[index].value.size}</p>
-                </div>
-                <div className="test-info-elements">
-                  <h4 className="item__info_article">Count </h4>
-                  <p className="item__info_exact">${ordersItems[index].value.count}</p>
-                </div>
-                <div className="test-info-elements">
-                  <h4 className="item__info_article">Tracking number </h4>
-                  <p className="item__info_exact">$109</p>
-                </div>
-                <OrderButtons orderId={order} status={ordersItems[index].status} />
-              </div>
-            </div>
+              )}
+            </React.Fragment>
           ))
         ) : (
           <span>No items found</span>
@@ -205,19 +214,23 @@ function OrderSellerItem({ orderId }) {
             transform: 'translate(-50%, -50%)',
             position: 'absolute',
             left: '60%',
-            top: '50%',
+            top: '50%'
           }}
         />
       )}
 
-      <Modal title="Delivery Details" onCancel={() => setIsModalDeliveryOpen(false)} isOpen={isModalDeliveryOpen}>
+      <Modal
+        title="Delivery Details"
+        onCancel={() => setIsModalDeliveryOpen(false)}
+        isOpen={isModalDeliveryOpen}
+      >
         {isDetailsLoading ? (
           <div
             style={{
               transform: 'translate(-50%, -50%)',
               position: 'absolute',
               left: ' 50%',
-              top: '40%',
+              top: '40%'
             }}
           >
             <Loader />
@@ -228,14 +241,14 @@ function OrderSellerItem({ orderId }) {
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'center',
+                justifyContent: 'center'
               }}
             >
               <div
                 style={{
                   display: 'flex',
                   flexDirection: 'row',
-                  justifyContent: 'center',
+                  justifyContent: 'center'
                 }}
               >
                 <input
@@ -251,7 +264,7 @@ function OrderSellerItem({ orderId }) {
                 style={{
                   display: 'flex',
                   flexDirection: 'row',
-                  justifyContent: 'center',
+                  justifyContent: 'center'
                 }}
               >
                 <textarea
@@ -266,7 +279,10 @@ function OrderSellerItem({ orderId }) {
               </div>
             </div>
             <div className="modal-footer">
-              <Button className=" purple buy-btn " onClick={() => handleAcceptOrder(orderId)}>
+              <Button
+                className=" purple buy-btn "
+                onClick={() => handleAcceptOrder(orderId)}
+              >
                 Submit
               </Button>
             </div>
@@ -279,5 +295,5 @@ function OrderSellerItem({ orderId }) {
 
 export default reduxForm({
   form: 'sellModal',
-  destroyOnUnmount: false,
+  destroyOnUnmount: false
 })(OrderSellerItem);

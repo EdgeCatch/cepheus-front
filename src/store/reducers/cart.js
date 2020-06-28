@@ -3,8 +3,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log(action);
-
   switch (action.type) {
     case 'ADD_TO_CART':
       let tempItems = state.items;
@@ -14,7 +12,6 @@ export default (state = initialState, action) => {
         }
         return false;
       });
-      console.log(itemIndex);
 
       if (itemIndex > -1) {
         tempItems[itemIndex].count = tempItems[itemIndex].count + 1;

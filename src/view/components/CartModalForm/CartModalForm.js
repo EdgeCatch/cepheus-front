@@ -64,7 +64,6 @@ function CartModalForm({ handleCancel }) {
           .send();
 
         await operation.confirmation();
-        console.log('DONE', operation);
         store.dispatch({ type: 'CLEAR_CART', payload: '' });
         handleCancel();
       } catch (e) {

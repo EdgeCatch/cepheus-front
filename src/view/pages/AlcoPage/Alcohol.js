@@ -20,7 +20,6 @@ function Alchol({ isReady, market, bags, ...props }) {
     async function handleGetManagers() {
       const { itemManager, orderManager, publicKey } = await getManagers();
 
-      console.log(itemManager, orderManager, publicKey);
       return { itemManager, orderManager, publicKey };
     }
     handleGetManagers();
