@@ -11,8 +11,6 @@ import store from '../../store/index';
 import { getManagers } from '../../ipfs';
 import { Market } from '../../contracts/market/index';
 import { setup } from '../../contracts/account/setup';
-import { TOKEN_ADDRESS, MARKET_ADDRESS } from '../../config';
-import { ThanosWallet } from '@thanos-wallet/dapp';
 
 function AppRoot() {
   React.useEffect(() => {
@@ -22,6 +20,10 @@ function AppRoot() {
       const contractStorage = await market.getFullStorage({
         subscriptions: [0]
       });
+      // store.dispatch({
+      //   type: 'SET_SUBSCRIPTIONS',
+      //   payload: contractStorage.subscriptionsExtended
+      // });
     }
     async function setManagers() {
       // const wallet = new ThanosWallet('Cepheus');

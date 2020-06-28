@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { ThanosWallet } from '@thanos-wallet/dapp';
 import { useForm } from 'react-hook-form';
-import { MARKET_ADDRESS, TOKEN_ADDRESS } from '../../../config';
+import { MARKET_ADDRESS } from '../../../config';
 import Modal, { ModalContext } from '../Modal/Modal';
 import Button from '../Button';
 
-import DeliveryModal from '../DeliveryModal/DeliveryModal';
 import Loader from '../../components/Loader/Loader';
 import { Market } from '../../../contracts/market/index';
 import { setup } from '../../../contracts/account/setup';
@@ -23,9 +22,7 @@ function OrderSellerItem({ orderId }) {
   const [selectedOrderId, setSelectedOrderId] = React.useState(-1);
   const [orders, setOrders] = useState([]);
   const [isDetailsLoading, setIsDetailsLoading] = React.useState(false);
-  const { handleSubmit, register, setValue, errors, getValues } = useForm();
-
-  const useModalContext = React.useContext(ModalContext);
+  const { register, getValues } = useForm();
 
   React.useEffect(() => {
     getOrders();
@@ -46,11 +43,12 @@ function OrderSellerItem({ orderId }) {
       const ordersAll = await Promise.all(orders);
       const ordersItems = ordersAll.map(async (item, index) => {
         if (item.value.itemCid) {
+          console.log(items[index], 'items[index]');
           const i = await contractStorage.orders.get(items[index]);
 
           return {
             ...(await itemManager.getByCid(item.value.itemCid)),
-            status: 1
+            status: i.status.toNumber()
           };
         }
       });
@@ -63,7 +61,19 @@ function OrderSellerItem({ orderId }) {
     }
     setLoading(false);
   }
-  async function handleAcceptOrder(ipfs) {
+  async function handleAcceptRefund() {
+    const wallet = new ThanosWallet('Cepheus');
+    await wallet.connect('carthagenet', { forcePermission: true });
+    const tezos = wallet.toTezos();
+    const contractMarket = await tezos.wallet.at(MARKET_ADDRESS);
+    const acceptRefund = await contractMarket.methods
+      .acceptRefund(selectedOrderId)
+      .send();
+    await acceptRefund.confirmation();
+    console.log('DONE');
+    await getOrders();
+  }
+  async function handleAcceptOrder() {
     setIsDetailsLoading(true);
     const { track_number, description } = getValues();
 
@@ -83,17 +93,19 @@ function OrderSellerItem({ orderId }) {
         .send();
 
       await operation.confirmation();
+      await getOrders();
     } catch (e) {
       console.log(e);
     }
+    setIsModalDeliveryOpen(false);
     setIsDetailsLoading(false);
   }
 
   const OrderButtons = ({ orderId, status }) => {
     const [loading, setLoading] = useState(false);
-    return resolveOrder ? (
+    return (
       <div className="resolve-buttons">
-        {/* temporary button feature to change a state of bool */}
+        {console.log(status, 'seller status')}
         {!loading ? (
           <>
             {status === 1 && (
@@ -108,44 +120,28 @@ function OrderSellerItem({ orderId }) {
                 >
                   Confirm
                 </button>
-
-                <img
-                  className="order-detail__enhancer"
-                  src={orderEnchancer}
-                  alt=""
-                  style={{ transform: 'rotate(180deg)' }}
-                  onClick={() => {
-                    setResolverOrder(!resolveOrder);
-                  }}
-                />
               </>
             )}
             {status === 2 && (
               <>
                 <span>Confirmed</span>
-                <img
-                  className="order-detail__enhancer"
-                  src={orderEnchancer}
-                  alt=""
-                  style={{ transform: 'rotate(180deg)' }}
-                  onClick={() => {
-                    setResolverOrder(!resolveOrder);
-                  }}
-                />
               </>
             )}
             {status === 3 && (
               <>
                 <span>Requested refund</span>
-                <img
-                  className="order-detail__enhancer"
-                  src={orderEnchancer}
-                  alt=""
-                  style={{ transform: 'rotate(180deg)' }}
-                  onClick={() => {
-                    setResolverOrder(!resolveOrder);
-                  }}
-                />
+                <button
+                  type="submit"
+                  className="purple"
+                  onClick={() => handleAcceptRefund()}
+                >
+                  Accept refund
+                </button>
+              </>
+            )}
+            {status === 6 && (
+              <>
+                <span>Received</span>
               </>
             )}
           </>
@@ -153,15 +149,6 @@ function OrderSellerItem({ orderId }) {
           <Loader />
         )}
       </div>
-    ) : (
-      <img
-        className="order-detail__enhancer"
-        src={orderEnchancer}
-        alt=""
-        onClick={() => {
-          setResolverOrder(!resolveOrder);
-        }}
-      />
     );
   };
 

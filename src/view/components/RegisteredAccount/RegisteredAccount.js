@@ -31,15 +31,16 @@ function RegisteredAccount() {
     //   const wallet = new ThanosWallet('Cepheus');
     //   await wallet.connect('carthagenet', { forcePermission: true });
     //   const tezos = wallet.toTezos();
-    //   const contractToken = await tezos.wallet.at(TOKEN_ADDRESS);
-    //   const t = await contractToken.methods
-    //     .transfer(
-    //       'tz1YMUyxoBs1FjLGz5caLwh9ScxnnxXWAuMn',
-    //       'tz1ec53idwXui2LHEP1E9A3cVTT229gghEsW',
-    //       '500'
-    //     )
-    //     .send();
-    //   t.confirmation();
+    //   const contractToken = await tezos.wallet.at(MARKET_ADDRESS);
+    //   console.log(contractToken.methods, 'aa');
+    //   // const t = await contractToken.methods
+    //   //   .transfer(
+    //   //     'tz1YMUyxoBs1FjLGz5caLwh9ScxnnxXWAuMn',
+    //   //     'tz1ec53idwXui2LHEP1E9A3cVTT229gghEsW',
+    //   //     '500'
+    //   //   )
+    //   //   .send();
+    //   // t.confirmation();
     // }
     // handleTransferMoney();
   }, []);
@@ -82,7 +83,7 @@ function RegisteredAccount() {
     try {
       const { receiverAddress, amount } = getValues();
       const wallet = new ThanosWallet('Cepheus');
-      await wallet.connect('carthagenet');
+      await wallet.connect('carthagenet', { forcePermission: true });
       const tezos = wallet.toTezos();
       const contractMarket = await tezos.wallet.at(MARKET_ADDRESS);
       console.log(receiverAddress, amount);
@@ -117,7 +118,7 @@ function RegisteredAccount() {
             </form>
             <div className="sub-plans">
               {Object.keys(subscriptions).map((item, index) => (
-                <React.Fragment>
+                <React.Fragment key={index}>
                   {subscriptions[item] && (
                     <div
                       className={

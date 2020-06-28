@@ -6,4 +6,78 @@
 .seller-setup-item {
   @include seller-setup;
   min-height: 35%;
+  display: flex;
+  justify-content: center;
+}
+
+@mixin buyer-setup-buttons {
+  height: 20%;
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+}
+
+.buyer-setup {
+  border-radius: 20px;
+
+  color: #fff;
+  padding: 45px 55px;
+  display: flex;
+  width: 55em;
+}
+
+.setup-buyer__block {
+  height: 100%;
+  min-width: 40%;
+  max-width: 50%;
+  margin-right: 40px;
+}
+
+.setup-buyer__block h3 {
+  text-align: center;
+}
+
+.setup-buyer__key {
+  height: 5rem;
+}
+
+.info-buyer__block {
+  width: 40%;
+}
+
+.buyer-setup__form-unregistered {
+  margin-top: 35px;
+  height: 40%;
+}
+
+.buyer-setup__form-registered {
+  margin-top: 35px;
+  height: auto;
+}
+
+.buyer-setup__form textarea {
+  width: 100%;
+  display: block;
+  margin: 8px 0;
+}
+.profile-setup-buttons {
+  margin-top: 30px;
+  display: flex;
+
+  justify-content: space-evenly;
+}
+
+.buyer-setup-buttons {
+  @include buyer-setup-buttons;
+  margin: 50px 0;
+}
+.buyer-setup-btn {
+  padding: 8px 12px;
+}
+
+.buyer-setup-buttons button {
+  margin: 10px;
+}
+.sub-details {
+  padding: 7px 0;
 }

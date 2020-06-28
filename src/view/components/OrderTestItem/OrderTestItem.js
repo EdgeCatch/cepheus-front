@@ -37,9 +37,15 @@ const OrderTestItem = () => {
       const items = (await contractStorage.buyer_orders.get(accountPkh)) || [];
       const orders = items.map(item => itemManager.getByCid(item));
       const ordersAll = await Promise.all(orders);
-      const ordersItems = ordersAll.map(item =>
-        item.value.itemCid ? itemManager.getByCid(item.value.itemCid) : {}
-      );
+      const ordersItems = ordersAll.map(async (item, index) => {
+        const i = await contractStorage.orders.get(items[index]);
+        if (item.value.itemCid) {
+          return {
+            ...(await itemManager.getByCid(item.value.itemCid)),
+            status: i.status.toNumber()
+          };
+        }
+      });
       const allOrdersItems = await Promise.all(ordersItems);
       setOrdersItems(allOrdersItems);
       setOrders(items);
@@ -90,6 +96,9 @@ const OrderTestItem = () => {
       alert(e.message);
     }
     setRefundLoading(false);
+    await getOrders();
+
+    setIsModalRefundOpen(false);
   }
 
   async function fetchDeliveryDetails(index) {
@@ -115,48 +124,58 @@ const OrderTestItem = () => {
 
     setDetailsLoad(false);
   }
-  const OrderButtons = ({ index }) => {
-    return resolveOrder[index] ? (
-      <div className="resolve-buttons">
-        {/* temporary button feature to change a state of bool */}
-        <button
-          type="submit"
-          className="purple"
-          onClick={() => {
-            setIsModalDeliveryOpen(!isModalDeliveryOpen);
-            fetchDeliveryDetails(index);
-          }}
-        >
-          Delivery Info
-        </button>
-        {console.log(orders[index], 'resolve')}
-        <button
-          type="submit"
-          className="dark"
-          onClick={() => setIsModalRefundOpen(true)}
-        >
-          Request Refund
-        </button>
-        <img
-          className="order-detail__enhancer"
-          src={orderEnchancer}
-          alt=""
-          onClick={() => {
-            resolveOrder[index] = !resolveOrder[index];
-            setResolverOrder([...resolveOrder]);
-          }}
-        />
-      </div>
-    ) : (
-      <img
-        className="order-detail__enhancer"
-        src={orderEnchancer}
-        alt=""
-        onClick={() => {
-          resolveOrder[index] = !resolveOrder[index];
-          setResolverOrder([...resolveOrder]);
-        }}
-      />
+  const OrderButtons = ({ index, status }) => {
+    return (
+      <React.Fragment>
+        {status === 6 && (
+          <div className="resolve-buttons">
+            <span>Received</span>
+          </div>
+        )}
+        {status === 1 && (
+          <div>
+            <div className="resolve-buttons">
+              {/* temporary button feature to change a state of bool */}
+              <button type="submit" className="purple" disabled={true}>
+                No Info
+              </button>
+            </div>
+          </div>
+        )}
+        {status === 2 && (
+          <div className="resolve-buttons">
+            <button
+              type="submit"
+              className="purple"
+              onClick={() => {
+                setIsModalDeliveryOpen(!isModalDeliveryOpen);
+                fetchDeliveryDetails(index);
+              }}
+            >
+              Delivery Info
+            </button>
+            <button
+              type="submit"
+              className="dark"
+              onClick={() => setIsModalRefundOpen(true)}
+            >
+              Request Refund
+            </button>
+          </div>
+        )}
+        {status === 3 && (
+          <div className="resolve-buttons">
+            <button
+              type="submit"
+              className="dark"
+              onClick={() => setIsModalRefundOpen(true)}
+              disabled={true}
+            >
+              Refund requested
+            </button>
+          </div>
+        )}
+      </React.Fragment>
     );
   };
 
@@ -188,14 +207,12 @@ const OrderTestItem = () => {
                     {ordersItems[index].value.size}
                   </p>
                 </div>
-                <div className="test-info-elements">
-                  <h4 className="item__info_article">Count </h4>
-                  <p className="item__info_exact">
-                    ${ordersItems[index].value.count}
-                  </p>
-                </div>
 
-                <OrderButtons orderId={order} index={index} />
+                <OrderButtons
+                  orderId={order}
+                  index={index}
+                  status={ordersItems[index].status}
+                />
               </div>
             </div>
           ))
