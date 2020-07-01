@@ -137,7 +137,7 @@ const OrderTestItem = () => {
             <div className="resolve-buttons">
               {/* temporary button feature to change a state of bool */}
               <button type="submit" className="purple" disabled={true}>
-                No Info
+                Waiting approve
               </button>
             </div>
           </div>
@@ -175,6 +175,7 @@ const OrderTestItem = () => {
             </button>
           </div>
         )}
+        {status === 5 && <span>Refunded</span>}
       </React.Fragment>
     );
   };

@@ -15,6 +15,8 @@ import { getManagers } from '../../../ipfs';
 const orderEnchancer = require('./arrowEnhancer.png');
 
 function OrderSellerItem({ orderId }) {
+  const [loadingIndex, setLoadingIndex] = useState(-1);
+
   const [resolveOrder, setResolverOrder] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isModalDeliveryOpen, setIsModalDeliveryOpen] = useState(false);
@@ -61,17 +63,19 @@ function OrderSellerItem({ orderId }) {
     }
     setLoading(false);
   }
-  async function handleAcceptRefund() {
+  async function handleAcceptRefund(id, index) {
+    setLoadingIndex(index);
     const wallet = new ThanosWallet('Cepheus');
     await wallet.connect('carthagenet', { forcePermission: true });
     const tezos = wallet.toTezos();
     const contractMarket = await tezos.wallet.at(MARKET_ADDRESS);
+    console.log(id);
     const acceptRefund = await contractMarket.methods
-      .acceptRefund(selectedOrderId)
+      .acceptRefund(id, 'buyerRefund', 'unit')
       .send();
     await acceptRefund.confirmation();
-    console.log('DONE');
     await getOrders();
+    setLoadingIndex(-1);
   }
   async function handleAcceptOrder() {
     setIsDetailsLoading(true);
@@ -101,7 +105,7 @@ function OrderSellerItem({ orderId }) {
     setIsDetailsLoading(false);
   }
 
-  const OrderButtons = ({ orderId, status }) => {
+  const OrderButtons = ({ orderId, status, index }) => {
     const [loading, setLoading] = useState(false);
     return (
       <div className="resolve-buttons">
@@ -133,10 +137,17 @@ function OrderSellerItem({ orderId }) {
                 <button
                   type="submit"
                   className="purple"
-                  onClick={() => handleAcceptRefund()}
+                  onClick={() => {
+                    handleAcceptRefund(orderId, index);
+                  }}
                 >
                   Accept refund
                 </button>
+              </>
+            )}
+            {status === 5 && (
+              <>
+                <span>Buyer refund</span>
               </>
             )}
             {status === 6 && (
@@ -186,7 +197,18 @@ function OrderSellerItem({ orderId }) {
                     <OrderButtons
                       orderId={order}
                       status={ordersItems[index].status}
+                      index={index}
                     />
+                    {loadingIndex === index && (
+                      <Loader
+                        style={{
+                          transform: 'translate(-50%, -50%)',
+                          position: 'absolute',
+                          left: '50%',
+                          top: '50%'
+                        }}
+                      />
+                    )}
                   </div>
                 </div>
               )}
