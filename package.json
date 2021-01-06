@@ -12,7 +12,7 @@
     "@taquito/signer": "^6.3.0-wallet.3",
     "@taquito/taquito": "^6.3.0-wallet.4",
     "@thanos-wallet/dapp": "^0.4.4",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bip39": "^3.0.2",
     "bootstrap": "^4.4.1",
     "classnames": "^2.2.6",
